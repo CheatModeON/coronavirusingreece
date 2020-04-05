@@ -1,0 +1,346 @@
+
+      * {box-sizing: border-box; font-family: 'Open Sans Condensed', sans-serif;}
+
+      /* Style the tab */
+      .tab {
+        float: left;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        width: 250px;
+        height: 100vh;
+        overflow: auto;
+        overflow-x: hidden; /* Disable horizontal scroll */
+        z-index: 1; /* Stay on top */
+
+      }
+
+      .tab #text {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 22px 16px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          cursor: default;
+          transition: 0.3s;
+          font-family: 'Open Sans', sans-serif;
+          font-size:1.4em;
+      }
+      /* Style the buttons that are used to open the tab content */
+      .tab button {
+        display: block;
+        background-color: inherit;
+        color: black;
+        padding: 22px 16px;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size:0.8em;
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size:0.9em;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current "tab button" class */
+      .tab button.active {
+          position: relative;
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        float: left;
+        /*padding: 0px 12px;
+        /*border: 1px solid #ccc;*/
+        border-left: 2px;
+
+        overflow:auto;
+      }
+      .bg-text {
+        /*background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4); */
+        color: white;
+        font-weight: bold;
+        /*border: 3px solid #f1f1f1;*/
+        position: static;
+        margin-top: -100px;
+        font-family: 'Open Sans Condensed', sans-serif;
+        margin-left: 400px;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+        text-align: center;
+        font-size:2.9em;
+      }
+      #links, #socialDistancing{
+            margin:20px 20px 20px 20px;
+            font-size:1.0em;
+      }
+      /*#icons{
+        position: absolute;
+        bottom: 0;
+      }*/
+      #panel1, #flip1, #panel2, #flip2, #panel3, #flip3, #panel4, #flip4, #panel5, #flip5, #panel6, #flip6, #panel7, #flip7, #panel8, #flip8, #panel9, #flip9 {
+        padding: 5px;
+        text-align: center;
+        background-color: #e6f7ff;
+        border: solid 1px #c3c3c3;
+      }
+      #flip1, #flip2, #flip3, #flip4, #flip5, #flip6, #flip7, #flip8, #flip9 {
+        cursor: pointer;
+        font-size:1.4em;
+      }
+
+      #panel1, #panel2, #panel3, #panel4, #panel5, #panel6, #panel7, #panel8, #panel9 {
+        padding: 50px;
+        display: none;
+      }
+
+      #greek-data, #info, #coronavirus, #daily-plots{
+          margin:0px;
+          font-size:1.0em;
+      }
+      #coronavirus-img {
+        height: 200px;
+        background-repeat:
+        repeat-y;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+        /*background-image: url(https://acutecaretriage.com/wp-content/uploads/2017/11/home-healthcare-lending-healthcare-cash-advance-with-regard-to-banner-health-care.jpg);
+/*      background-image: linear-gradient(red, yellow, green);*/
+        background-image: url('https://www.cityofkaty.com/Home/ShowPublishedImage/1031/637190906709030000');
+      }
+      #info-img {
+        height: 200px;
+        background-repeat: repeat-y;
+        repeat-y;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+        /*background-image: url(https://acutecaretriage.com/wp-content/uploads/2017/11/home-healthcare-lending-healthcare-cash-advance-with-regard-to-banner-health-care.jpg);
+/*      background-image: linear-gradient(red, yellow, green);*/
+        background-image: url('https://onepmfinance.co.uk/wp-content/uploads/2016/06/background-grey-1-1646x1200.png');
+      }
+      table {
+          border-collapse:collapse;
+          /*border:1px solid #7f7f7f;*/
+          width: 100%;
+      }
+      th {
+          padding: 15px;
+          height:20px;
+          text-align:center;
+      }
+      tr, td {
+          /*border:1px solid #7f7f7f;*/
+          height:20px;
+          text-align:center;
+          width:50vw;
+      }
+      /*tr:hover {
+          background-color: #f5f5f5;
+      }*/
+      ul{
+          margin: 25px 50px 50px 50px;
+      }
+      li{
+          margin: 10px 0;
+      }
+      h4{
+          margin: 25px 50px 50px 50px;
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background:#f5f5f5;
+        /*border: 1px solid #ccc;*/
+        font-size:0.7em;
+        /*font-family: Arial, Helvetica, sans-serif;*/
+        /*margin: 0 auto 8px 125px;
+        /*text-shadow: 0 1px 0px #000;*/
+        z-index: -1;
+      }
+      #footer-text{
+        margin-left: 250px;
+      }
+      .mapLegend {
+          background:white;
+          color:black;
+      }
+      .mapLegend2 {
+          background:white;
+          color:black;
+      }
+      .jvectormap-legend-title {
+        font-size: 16px;
+      }
+
+      .jvectormap-legend .jvectormap-legend-tick-sample {
+        height: 26px;
+      }
+      .jvectormap-legend-icons {
+        background: white;
+        border: black 1px solid;
+      }
+      .jvectormap-legend-icons {
+        color: black;
+      }
+      #loader {
+        position: absolute;
+        left: calc(50% + 190px);
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -35px 0 0 -75px;
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid #777; /*#3498db;*/
+        width: 40px;
+        height: 40px;
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+      }
+      #loader_text {
+        color: gray;
+        position: absolute;
+        font-size:0.7em;
+
+          position: absolute;
+          left: calc(50% + 125px);
+          top: 50%;
+          z-index: 1;
+          margin: -85px 0 0 -75px;
+
+      }
+      #telegram {
+          position: absolute;
+          bottom: 0;
+          font-size:0.7em;
+          background-color: #f1f1f1;
+      }
+      table.telegram_t {
+          width: 234px;
+      }
+      td.r{
+          width:70%;
+          text-align=left;
+      }
+      td.l{
+          width:30%;
+          text-align=left;
+      }
+      table.telegram_t tr:hover {
+          background-color: inherit;
+      }
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Add animation to "page content" */
+      .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+      }
+
+      @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 }
+        to { bottom:0px; opacity:1 }
+      }
+
+      @keyframes animatebottom {
+        from{ bottom:-100px; opacity:0 }
+        to{ bottom:0; opacity:1 }
+      }
+
+
+
+
+
+div#ball-simulation {
+  margin: auto;
+}
+
+div#ball-graph {
+  margin: 20px auto 5px auto;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 550px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: -450%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size:0.6em;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 90%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+#world-map, #greek-map, #info, #coronavirus, #daily-plots, #links{
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
