@@ -1,7 +1,42 @@
 
       * {box-sizing: border-box; font-family: 'Open Sans Condensed', sans-serif;}
-
+      /*.jvectormap-region {
+          stroke: white;
+          stroke-width: 0.7;
+          outline-style: solid;
+          outline-color: black;
+          outline-width: 1;
+      }*/
       /* Style the tab */
+      .float{
+      	position:fixed;
+      	width:60px;
+      	height:60px;
+      	bottom:40px;
+      	right:40px;
+      	background-color:#0C9;
+      	color:#FFF;
+      	border-radius:50px;
+      	text-align:center;
+      	box-shadow: 2px 2px 3px #999;
+      }
+      .grid-container {
+        display: grid;
+        height: 600px;
+        justify-content: space-evenly;
+        /*align-content: space-evenly;*/
+        grid-template-columns: auto auto auto;
+        grid-gap: 15px;
+        padding: 15px;
+      }
+
+      .grid-container > div {
+        background-color: rgba(230, 245, 255, 1);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 15px;
+      }
+
       .tab {
         float: left;
         border: 1px solid #ccc;
@@ -11,7 +46,8 @@
         overflow: auto;
         overflow-x: hidden; /* Disable horizontal scroll */
         z-index: 1; /* Stay on top */
-
+        width: 15%;
+        min-width: 150px;
       }
 
       .tab #text {
@@ -55,36 +91,43 @@
           position: relative;
         background-color: #ccc;
       }
+      #contentDiv {
+        overflow:auto;
+        overflow-x:hidden;
+      }
 
       /* Style the tab content */
       .tabcontent {
         float: left;
         /*padding: 0px 12px;
-        /*border: 1px solid #ccc;*/
-        border-left: 2px;
+        border: 1px solid #ccc;*/
+        /*border-left: 2px;*/
 
-        overflow:auto;
       }
       .bg-text {
         /*background-color: rgb(0,0,0);
         background-color: rgba(0,0,0, 0.4); */
         color: white;
         font-weight: bold;
+        text-shadow: 5px 5px 10px #000000;
         /*border: 3px solid #f1f1f1;*/
-        position: static;
+        position: relative;
         margin-top: -100px;
         font-family: 'Open Sans Condensed', sans-serif;
-        margin-left: 400px;
+        margin-left: 660px;
         transform: translate(-50%, -50%);
         z-index: 2;
-        width: 80%;
+        width: 100%;
         padding: 20px;
         text-align: center;
         font-size:2.9em;
       }
-      #links, #socialDistancing{
-            margin:20px 20px 20px 20px;
-            font-size:1.0em;
+      #links, #socialDistancing {
+        margin:20px 20px 20px 20px;
+        font-size:1.0em;
+      }
+      span {
+        font-size:1.6em;
       }
       /*#icons{
         position: absolute;
@@ -170,9 +213,10 @@
         /*margin: 0 auto 8px 125px;
         /*text-shadow: 0 1px 0px #000;*/
         z-index: -1;
+        height: 38px;
       }
       #footer-text{
-        margin-left: 250px;
+        margin-left: 180px;
       }
       .mapLegend {
           background:white;
@@ -198,7 +242,7 @@
       }
       #loader {
         position: absolute;
-        left: calc(50% + 190px);
+        left: calc(50% + 150px);
         top: 50%;
         z-index: 1;
         width: 120px;
@@ -218,7 +262,7 @@
         font-size:0.7em;
 
           position: absolute;
-          left: calc(50% + 125px);
+          left: calc(50% + 80px);
           top: 50%;
           z-index: 1;
           margin: -85px 0 0 -75px;
@@ -228,7 +272,7 @@
           position: absolute;
           bottom: 0;
           font-size:0.7em;
-          background-color: #f1f1f1;
+          /*background-color: #f1f1f1;*/
       }
       table.telegram_t {
           width: 234px;
@@ -338,9 +382,79 @@ div#ball-graph {
   padding-left: 8px;
 }
 
-#world-map, #greek-map, #info, #coronavirus, #daily-plots, #links{
+#world-map, #greek-map, #info, #coronavirus, #daily-plots, #digi_home{
   -webkit-animation-name: animatebottom;
   -webkit-animation-duration: 1s;
   animation-name: animatebottom;
   animation-duration: 1s
 }
+
+#box{
+  background-color:white;
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  margin: 20px;
+  width: 60px;
+  height: 34px;
+  z-index: 1;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+*/
+
+/* Rounded sliders
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}*/
