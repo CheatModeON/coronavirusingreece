@@ -100,7 +100,7 @@
         $('#socialDistancing').css('width', window.innerWidth-$(".tab").innerWidth()-50);
         $('#density').css('height', window.innerHeight-38);
         $('#density').css('width', window.innerWidth-$(".tab").innerWidth()-15);
-        $('.bg-text').css('margin-left', (window.innerWidth - $(".tab").innerWidth()) /2);
+        $('.bg-text').css('margin-left', ((window.innerWidth - $(".tab").innerWidth()) /2)-10);
 
         //$('#plot').css('height', window.innerHeight-50);
         //$('#plot').css('width', window.innerWidth-300);
@@ -124,6 +124,10 @@
          width:  window.innerWidth-$(".tab").innerWidth()-15,
          //height:  window.innerHeight-50
         })
+        Plotly.relayout('plot4', {
+         width:  window.innerWidth-$(".tab").innerWidth()-15,
+         //height:  window.innerHeight-50
+        })
         Plotly.relayout('pie1', {
          width:  window.innerWidth-$(".tab").innerWidth()-15,
          //height:  window.innerHeight-50
@@ -132,8 +136,37 @@
          width:  window.innerWidth-$(".tab").innerWidth()-15,
          //height:  window.innerHeight-50
         })
+        Plotly.relayout('dataDiv', {
+         width:  window.innerWidth-$(".tab").innerWidth()-15,
+         //height:  window.innerHeight-50
+        })
+        Plotly.relayout('greeceTrend', {
+         width:  window.innerWidth-$(".tab").innerWidth()-15,
+         //height:  window.innerHeight-50
+        })
 
-        document.getElementById("home").click();
+
+        var location = getUrlVars()["location"];
+        if(location==null){
+          document.getElementById("home").click();
+        } else if (location=="plots"){
+          document.getElementById("the-plots").click();
+        } else if (location=="grdata"){
+          document.getElementById("gr-data").click();
+        } else if (location=="grmap"){
+          document.getElementById("gr-map").click();
+        } else if (location=="worldmap"){
+          document.getElementById("all-map").click();
+        } else if (location=="info"){
+          document.getElementById("gen-info").click();
+        } else if (location=="coronavirus"){
+          document.getElementById("coronavirus-info").click();
+        } else if (location=="socialdistance"){
+          document.getElementById("social-distance").click();
+        } else {
+          document.getElementById("home").click();
+        }
+
       }
 
     </script>
@@ -144,12 +177,12 @@
     <button id="home" class="tablinks" onClick="openTab(event, 'digi_home')">Ψηφιακό Σπίτι</button>
     <button id="all-map" class="tablinks" onClick="openTab(event, 'world-map')">Παγκόσμιος Χάρτης COVID-19</button>
     <button id="gr-map" class="tablinks" onClick="openTab(event, 'greek-map')">Χάρτης Ελλάδας COVID-19</button>
-    <button class="tablinks" onClick="openTab(event, 'daily-plots')">Ημερήσια διαγράμματα</button>
+    <button id="the-plots" class="tablinks" onClick="openTab(event, 'daily-plots')">Ημερήσια διαγράμματα</button>
     <!--button class="tablinks" onClick="openTab(event, 'density')">Στον Κόσμο</button-->
     <button id="gr-data" class="tablinks" onClick="openTab(event, 'greek-data')">Ελλάδα ΤΩΡΑ</button>
-    <button class="tablinks" onClick="openTab(event, 'info')">Μέτρα πρόληψης</button>
-    <button class="tablinks" onClick="openTab(event, 'coronavirus')">Σχετικά με τον Κορονοϊό</button>
-    <button class="tablinks" onClick="openTab(event, 'socialDistancing')">Γιατί μένω μέσα;</button>
+    <button id="gen-info"class="tablinks" onClick="openTab(event, 'info')">Μέτρα πρόληψης</button>
+    <button id="coronavirus-info"class="tablinks" onClick="openTab(event, 'coronavirus')">Σχετικά με τον Κορονοϊό</button>
+    <button id="social-distance"class="tablinks" onClick="openTab(event, 'socialDistancing')">Γιατί μένω μέσα;</button>
     <div id="telegram">
       <iframe id="webroundbuttonwidget2" file="webroundbuttonwidget" src="https://telegrambutton.com/webroundbuttonwidget.php?chat_id=coronavirusingreece&showchatid=true&showmembercount=true&showmembercount=true&color=&pulse=true&textcolor=white&shadowval=&textval=ΖΩΝΤΑΝΗ ΕΝΗΜΕΡΩΣΗ" border="1" style="border:20px;height: 80px;width: 80px;"></iframe>
 
@@ -186,10 +219,16 @@
 
       </div>
       <div id="daily-plots" class="tabcontent" style="text-align: center;">
+          <div id="info-img"></div>
+          <div class="bg-text">ΗΜΕΡΗΣΙΑ ΔΙΑΓΡΑΜΜΑΤΑ</div>
+
+            <div id="greeceTrend"></div>
 
             <div id="compPlot4" style="width: 100%"></div>
             <br>
             <div id="compPlot5"></div>
+            <br>
+            <div id="plot3"></div>
             <br>
             <div class="grid-container">
               <div>
@@ -291,10 +330,23 @@
                 var data = [trace1, trace2, trace3];
 
                 var layout = {
-                  title: 'COVID-19 Data Comparison per Continent',
+                  title: 'COVID-19 Σύγκριση δεδομένων ανά ήπειρο',
                   barmode: 'stack',
                   height: 500,
                   width: 1150,
+                  images: [{
+                    name: 'watermark_1',
+                    source: "http://83.212.112.51/coronavirusmap/plots/logo.png",
+                    xref: "paper",
+                    yref: "paper",
+                    x: 0.4,//0.4
+                    y: 0.8,//0.9
+                    sizex: 0.7,//0.7
+                    sizey: 0.7,//0.7
+                    // sizing: "stretch",
+                    opacity: 0.05,
+                    layer: "below"
+                  }]
                 };
 
                 Plotly.newPlot('bar1', data, layout);
@@ -345,7 +397,7 @@
                 ];
 
                 var layout = {
-                  title: 'COVID-19 Data Continental Share',
+                  title: 'COVID-19 Ποσοστιαίο μοίρασμα δεδομένων ανά ήπειρο',
                   annotations: [
                     {
                       font: {
@@ -384,6 +436,19 @@
                       y: 1
                     }
                   ],
+                  images: [{
+                    name: 'watermark_1',
+                    source: "http://83.212.112.51/coronavirusmap/plots/logo.png",
+                    xref: "paper",
+                    yref: "paper",
+                    x: 0.4,//0.4
+                    y: 0.8,//0.9
+                    sizex: 0.7,//0.7
+                    sizey: 0.7,//0.7
+                    // sizing: "stretch",
+                    opacity: 0.05,
+                    layer: "below"
+                  }],
                   height: 500,
                   width: 1150,
                   showlegend: true,
@@ -395,7 +460,10 @@
               </script>
       </div>
 
-      <div id="greek-data" class="tabcontent" style="text-align: center;"><br></div>
+      <div id="greek-data" class="tabcontent" style="text-align: center;">
+        <div id="info-img"></div>
+        <div class="bg-text">ΕΛΛΑΔΑ ΤΩΡΑ</div>
+      </div>
       <div id="info" class="tabcontent">
           <div id="info-img"></div>
           <div class="bg-text">ΜΕΤΡΑ ΠΡΟΛΗΨΗΣ</div>
@@ -632,7 +700,7 @@
       $('#socialDistancing').css('width', window.innerWidth-$(".tab").innerWidth()-50);
       $('#density').css('height', window.innerHeight-38);
       $('#density').css('width', window.innerWidth-$(".tab").innerWidth()-15);
-      $('.bg-text').css('margin-left', (window.innerWidth - $(".tab").innerWidth()) /2);
+      $('.bg-text').css('margin-left', ((window.innerWidth - $(".tab").innerWidth()) /2)-10);
 
       Plotly.relayout('plot', {
         width:  window.innerWidth-$(".tab").innerWidth()-15,
@@ -654,11 +722,23 @@
         width:  window.innerWidth-$(".tab").innerWidth()-15,
         //height:  window.innerHeight-50
       })
+      Plotly.relayout('plot4', {
+        width:  window.innerWidth-$(".tab").innerWidth()-15,
+        //height:  window.innerHeight-50
+      })
       Plotly.relayout('pie1', {
        width:  window.innerWidth-$(".tab").innerWidth()-15,
        //height:  window.innerHeight-50
       })
       Plotly.relayout('bar1', {
+       width:  window.innerWidth-$(".tab").innerWidth()-15,
+       //height:  window.innerHeight-50
+      })
+      Plotly.relayout('dataDiv', {
+       width:  window.innerWidth-$(".tab").innerWidth()-15,
+       //height:  window.innerHeight-50
+      })
+      Plotly.relayout('greeceTrend', {
        width:  window.innerWidth-$(".tab").innerWidth()-15,
        //height:  window.innerHeight-50
       })
@@ -908,7 +988,7 @@
                     //greek_data_latlon["15"].latLng[0] = parseFloat(obj.lat);
                     //greek_data_latlon["15"].latLng[1] = parseFloat(obj.lng);
                 }
-                if(obj.county_normalized == "ΚΕΦΑΛΟΝΙΑΣ"){
+                if(obj.county_normalized == "ΚΕΦΑΛΛΟΝΙΑΣ"){
                     greek_data_cases["16"] = parseInt(obj.cases, 10);
                     greek_data_hospitalized["16"] = parseInt(obj.hospitalized, 10);
                     greek_data_dead["16"] = parseInt(obj.dead, 10);
@@ -1194,7 +1274,7 @@
                     //greek_data_latlon["41"].latLng[0] = parseFloat(obj.lat);
                     //greek_data_latlon["41"].latLng[1] = parseFloat(obj.lng);
                 }
-                if(obj.county_normalized == "ΕΥΥΒΟΙΑΣ"){
+                if(obj.county_normalized == "ΕΥΒΟΙΑΣ"){
                     greek_data_cases["42"] = parseInt(obj.cases, 10);
                     greek_data_hospitalized["42"] = parseInt(obj.hospitalized, 10);
                     greek_data_dead["42"] = parseInt(obj.dead, 10);
@@ -3761,611 +3841,6 @@
 
            }
          });
-         /*
-         $('#world-map2').vectorMap({
-             map: 'world_mill_en',
-             series: {
-               regions: [{
-                  values: {
-                     "BD": virusData["BD"].active_cases,      //Bangladesh
-                     "BE": virusData["BE"].active_cases,      //Belgium
-                     "BF": virusData["BF"].active_cases,      //Burkina Faso
-                     "BG": virusData["BG"].active_cases,      //Bulgaria
-                     "BA": virusData["BA"].active_cases,      //Bosnia and Herz.
-                     "BN": virusData["BN"].active_cases,      //Brunei
-                     "BO": virusData["BO"].active_cases,      //Bolivia
-                     "JP": virusData["JP"].active_cases,      //Japan
-                     "BI": virusData["BI"].active_cases,      //Burundi
-                     "BJ": virusData["BJ"].active_cases,      //Benin
-                     "BT": virusData["BT"].active_cases,      //Bhutan
-                     "JM": virusData["JM"].active_cases,      //Jamaica
-                     //"BW": virusData[""].active_cases,      //Botswana - N/A
-                     "BR": virusData["BR"].active_cases,      //Brazil
-                     "BS": virusData["BS"].active_cases,      //Bahamas
-                     "BY": virusData["BY"].active_cases,      //Belarus
-                     //"BZ": virusData[""].active_cases,      //Belize - N/A
-                     "RU": virusData["RU"].active_cases,      //Russia
-                     "RW": virusData["RW"].active_cases,      //Rwanda
-                     "RS": virusData["RS"].active_cases,      //Serbia
-                     //"TL": virusData[""].active_cases,      //Timor-Leste - N/A
-                     //"TM": virusData[""].active_cases,      //Turkmenistan - N/A
-                     //"TJ": virusData[""].active_cases,      //Tajikistan - N/A
-                     "RO": virusData["RO"].active_cases,      //Romania
-                     //"GW": virusData[""].active_cases,      //Guinea-Bissau - N/A
-                     "GT": virusData["GT"].active_cases,      //Guatemala
-                     "GR": virusData["GR"].active_cases,      //Greece
-                     "GQ": virusData["GQ"].active_cases,      //Eq. Guinea
-                     "GY": virusData["GY"].active_cases,      //Guyana
-                     "GE": virusData["GE"].active_cases,      //Georgia
-                     "GB": virusData["GB"].active_cases,      //United Kingdom
-                     "GA": virusData["GA"].active_cases,      //Gabon
-                     "GN": virusData["GN"].active_cases,      //Guinea
-                     "GM": virusData["GM"].active_cases,      //Gambia
-                     "GL": virusData["GL"].active_cases,      //Greenland
-                     "GH": virusData["GH"].active_cases,      //Ghana
-                     "OM": virusData["OM"].active_cases,      //Oman
-                     "TN": virusData["TN"].active_cases,      //Tunisia
-                     "JO": virusData["JO"].active_cases,      //Jordan
-                     "HR": virusData["HR"].active_cases,      //Croatia
-                     //"HT": virusData["HT"].active_cases,      //Haiti
-                     "HU": virusData["HU"].active_cases,      //Hungary
-                     "HN": virusData["HN"].active_cases,      //Honduras
-                     "PR": virusData["PR"].active_cases,      //Puerto Rico
-                     "PS": virusData["PS"].active_cases,      //Palestine
-                     "PT": virusData["PT"].active_cases,      //Portugal
-                     "PY": virusData["PY"].active_cases,      //Paraguay
-                     "PA": virusData["PA"].active_cases,      //Panama
-                     //"PG": virusData[""].active_cases,      //Papua New Guinea - N/A
-                     "PE": virusData["PE"].active_cases,      //Peru
-                     "PK": virusData["PK"].active_cases,      //Pakistan
-                     //"PH": virusData[""].active_cases,      //Philippines - N/A
-                     "PL": virusData["PL"].active_cases,      //Poland
-                     "ZM": virusData["ZM"].active_cases,      //Zambia
-                     //"EH": virusData[""].active_cases,      //W. Sahara - N/A
-                     "EE": virusData["EE"].active_cases,      //Estonia
-                     "EG": virusData["EG"].active_cases,      //Egypt
-                     "ZA": virusData["ZA"].active_cases,      //South Africa
-                     "EC": virusData["EC"].active_cases,      //Ecuador
-                     "IT": virusData["IT"].active_cases,      //Italy
-                     "VN": virusData["VN"].active_cases,      //Vietnam
-                     //"SB": virusData[""].active_cases,      //Solomon Is. - N/A
-                     "ET": virusData["ET"].active_cases,      //Ethiopia
-                     "SO": virusData["SO"].active_cases,      //Somalia
-                     //"ZW": virusData[""].active_cases,      //Zimbabwe - N/A
-                     "ES": virusData["ES"].active_cases,      //Spain
-                     //"ER": virusData[""].active_cases,      //Eritrea - N/A
-                     "ME": virusData["ME"].active_cases,      //Montenegro
-                     "MD": virusData["MD"].active_cases,      //Moldova
-                     //"MG": virusData[""].active_cases,      //Madagascar - N/A
-                     "MA": virusData["MA"].active_cases,      //Morocco
-                     "UZ": virusData["UZ"].active_cases,      //Uzbekistan
-                     //"MM": virusData[""].active_cases,      //Myanmar - N/A
-                     //"ML": virusData[""].active_cases,      //Mali - N/A
-                     "MN": virusData["MN"].active_cases,      //Mongolia
-                     "MK": virusData["MK"].active_cases,      //North Macedonia
-                     //"MW": virusData[""].active_cases,      //Malawi - N/A
-                     "MR": virusData["MR"].active_cases,      //Mauritania
-                     //"UG": virusData[""].active_cases,      //Uganda - N/A
-                     "MY": virusData["MY"].active_cases,      //Malaysia
-                     "MX": virusData["MX"].active_cases,      //Mexico
-                     "IL": virusData["IL"].active_cases,      //Israel
-                     "FR": virusData["FR"].active_cases,      //France
-                     //"XS": virusData[""].active_cases,      //Somaliland - N/A
-                     "FI": virusData["FI"].active_cases,      //Finland
-                     //"FJ": virusData[""].active_cases,      //Fiji - N/A
-                     //"FK": virusData[""].active_cases,      //Falkland Is. - N/A
-                     //"NI": virusData[""].active_cases,      //Nicaragua - N/A
-                     "NL": virusData["NL"].active_cases,      //Netherlands
-                     "NO": virusData["NO"].active_cases,      //Norway
-                     "NA": virusData["NA"].active_cases,      //Namibia
-                     //"VU": virusData[""].active_cases,      //Vanuatu - N/A
-                     "NC": virusData["NC"].active_cases,      //New Caledonia
-                     //"NE": virusData[""].active_cases,      //Niger - N/A
-                     "NG": virusData["NG"].active_cases,      //Nigeria
-                     "NZ": virusData["NZ"].active_cases,      //New Zealand
-                     "NP": virusData["NP"].active_cases,      //Nepal
-                     //"XK": virusData[""].active_cases,      //Kosovo - N/A
-                     "CI": virusData["CI"].active_cases,      //Côte d'Ivoire
-                     "CH": virusData["CH"].active_cases,      //Switzerland
-                     "CO": virusData["CO"].active_cases,      //Colombia
-                     "CN": virusData["CN"].active_cases,      //China
-                     "CM": virusData["CM"].active_cases,      //Cameroon
-                     "CL": virusData["CL"].active_cases,      //Chile
-                     //"XC": virusData[""].active_cases,      //N. Cyprus - N/A
-                     "CA": virusData["CA"].active_cases,      //Canada
-                     "CG": virusData["CG"].active_cases,      //Congo
-                     "CF": virusData["CF"].active_cases,      //Central African Rep.
-                     "CD": virusData["CD"].active_cases,      //Dem. Rep. Congo
-                     "CZ": virusData["CZ"].active_cases,      //Czech Rep.
-                     "CY": virusData["CY"].active_cases,      //Cyprus
-                     "CR": virusData["CR"].active_cases,      //Costa Rica
-                     "CU": virusData["CU"].active_cases,      //Cuba
-                     //"SZ": virusData[""].active_cases,      //Swaziland - N/A
-                     //"SY": virusData[""].active_cases,      //Syria - N/A
-                     "KG": virusData["KG"].active_cases,      //Kyrgyzstan
-                     "KE": virusData["KE"].active_cases,      //Kenya
-                     //"SS": virusData[""].active_cases,      //S. Sudan - N/A
-                     "SR": virusData["SR"].active_cases,      //Suriname
-                     "KH": virusData["KH"].active_cases,      //Cambodia
-                     //"SV": virusData[""].active_cases,      //El Salvador - N/A
-                     "SK": virusData["SK"].active_cases,      //Slovakia
-                     "KR": virusData["KR"].active_cases,      //Korea
-                     "SI": virusData["SI"].active_cases,      //Slovenia
-                     //"KP": virusData[""].active_cases,      //Dem. Rep. Korea - N/A
-                     "KW": virusData["KW"].active_cases,      //Kuwait
-                     "SN": virusData["SN"].active_cases,      //Senegal
-                     //"SL": virusData[""].active_cases,      //Sierra Leone - N/A
-                     "KZ": virusData["KZ"].active_cases,      //Kazakhstan
-                     "SA": virusData["SA"].active_cases,      //Saudi Arabia
-                     "SE": virusData["SE"].active_cases,      //Sweden
-                     "SD": virusData["SD"].active_cases,      //Sudan
-                     "DO": virusData["DO"].active_cases,      //Dominican Rep.
-                     "DJ": virusData["DJ"].active_cases,      //Djibouti
-                     "DK": virusData["DK"].active_cases,      //Denmark
-                     "DE": virusData["DE"].active_cases,      //Germany
-                     //"YE": virusData[""].active_cases,      //Yemen - N/A
-                     "DZ": virusData["DZ"].active_cases,      //Algeria
-                     "US": virusData["US"].active_cases,      //United States
-                     "UY": virusData["UY"].active_cases,      //Uruguay
-                     "LB": virusData["LB"].active_cases,      //Lebanon
-                     //"LA": virusData[""].active_cases,      //Lao PDR - N/A
-                     "TW": virusData["TW"].active_cases,      //Taiwan
-                     "TT": virusData["TT"].active_cases,      //Trinidad and Tobago
-                     "TR": virusData["TR"].active_cases,      //Turkey
-                     "LK": virusData["LK"].active_cases,      //Sri Lanka
-                     "LV": virusData["LV"].active_cases,      //Latvia
-                     "LT": virusData["LT"].active_cases,      //Lithuania
-                     "LU": virusData["LU"].active_cases,      //Luxembourg
-                     "LR": virusData["LR"].active_cases,      //Liberia
-                     //"LS": virusData[""].active_cases,      //Lesotho - N/A
-                     "TH": virusData["TH"].active_cases,      //Thailand
-                     //"TF": virusData[""].active_cases,      //Fr. S. Antarctic Lands - N/A
-                     "TG": virusData["TG"].active_cases,      //Togo
-                     //"TD": virusData[""].active_cases,      //Chad - N/A
-                     //"LY": virusData[""].active_cases,      //Libya - N/A
-                     "AE": virusData["AE"].active_cases,      //United Arab Emirates
-                     "VE": virusData["VE"].active_cases,      //Venezuela
-                     "AF": virusData["AF"].active_cases,      //Afghanistan
-                     "IQ": virusData["IQ"].active_cases,      //Iraq
-                     "IS": virusData["IS"].active_cases,      //Iceland
-                     "IR": virusData["IR"].active_cases,      //Iran
-                     "AM": virusData["AM"].active_cases,      //Armenia
-                     "AL": virusData["AL"].active_cases,      //Albania
-                     //"AO": virusData[""].active_cases,      //Angola - N/A
-                     "AR": virusData["AR"].active_cases,      //Argentina
-                     "AU": virusData["AU"].active_cases,      //Australia
-                     "AT": virusData["AT"].active_cases,      //Austria
-                     "IN": virusData["IN"].active_cases,      //India
-                     "TZ": virusData["TZ"].active_cases,      //Tanzania
-                     "AZ": virusData["AZ"].active_cases,      //Azerbaijan
-                     "IE": virusData["IE"].active_cases,      //Ireland
-                     "ID": virusData["ID"].active_cases,      //Indonesia
-                     "UA": virusData["UA"].active_cases,      //Ukraine
-                     "QA": virusData["QA"].active_cases      //Qatar
-                     //"MZ": virusData[""].total_deaths       //Mozambique - N/A,
-                     },
-                 legend: {
-                   title: "Πλήθος κρουσμάτων",
-                   cssClass: "mapLegend",
-                   vertical: false
-                 },
-                 min: 0,
-                 max: getMaxActive(virusData),
-                 scale: ['#f9ecf9', '#4d194d','#000000'],
-                 //scale: ['#ffe6e6', '#4d0000'],
-                 normalizeFunction: 'polynomial'
-               }]
-             },
-             onRegionTipShow: function(e, el, code){
-                 if(virusData[code]!=null || typeof(virusData[code]) !== 'undefined'){
-                     el.html(el.html()+' (Active cases: '+virusData[code].active_cases+')');
-                 }
-             }
-           });
-
-            $('#world-map3').vectorMap({
-              map: 'world_mill_en',
-              series: {
-                regions: [{
-                   values: {
-                      "BD": virusData["BD"].total_recovered,      //Bangladesh
-                      "BE": virusData["BE"].total_recovered,      //Belgium
-                      "BF": virusData["BF"].total_recovered,      //Burkina Faso
-                      "BG": virusData["BG"].total_recovered,      //Bulgaria
-                      "BA": virusData["BA"].total_recovered,      //Bosnia and Herz.
-                      "BN": virusData["BN"].total_recovered,      //Brunei
-                      "BO": virusData["BO"].total_recovered,      //Bolivia
-                      "JP": virusData["JP"].total_recovered,      //Japan
-                      "BI": virusData["BI"].total_recovered,      //Burundi
-                      "BJ": virusData["BJ"].total_recovered,      //Benin
-                      "BT": virusData["BT"].total_recovered,      //Bhutan
-                      "JM": virusData["JM"].total_recovered,      //Jamaica
-                      //"BW": virusData[""].total_recovered,      //Botswana - N/A
-                      "BR": virusData["BR"].total_recovered,      //Brazil
-                      "BS": virusData["BS"].total_recovered,      //Bahamas
-                      "BY": virusData["BY"].total_recovered,      //Belarus
-                      //"BZ": virusData[""].total_recovered,      //Belize - N/A
-                      "RU": virusData["RU"].total_recovered,      //Russia
-                      "RW": virusData["RW"].total_recovered,      //Rwanda
-                      "RS": virusData["RS"].total_recovered,      //Serbia
-                      //"TL": virusData[""].total_recovered,      //Timor-Leste - N/A
-                      //"TM": virusData[""].total_recovered,      //Turkmenistan - N/A
-                      //"TJ": virusData[""].total_recovered,      //Tajikistan - N/A
-                      "RO": virusData["RO"].total_recovered,      //Romania
-                      //"GW": virusData[""].total_recovered,      //Guinea-Bissau - N/A
-                      "GT": virusData["GT"].total_recovered,      //Guatemala
-                      "GR": virusData["GR"].total_recovered,      //Greece
-                      "GQ": virusData["GQ"].total_recovered,      //Eq. Guinea
-                      "GY": virusData["GY"].total_recovered,      //Guyana
-                      "GE": virusData["GE"].total_recovered,      //Georgia
-                      "GB": virusData["GB"].total_recovered,      //United Kingdom
-                      "GA": virusData["GA"].total_recovered,      //Gabon
-                      "GN": virusData["GN"].total_recovered,      //Guinea
-                      "GM": virusData["GM"].total_recovered,      //Gambia
-                      "GL": virusData["GL"].total_recovered,      //Greenland
-                      "GH": virusData["GH"].total_recovered,      //Ghana
-                      "OM": virusData["OM"].total_recovered,      //Oman
-                      "TN": virusData["TN"].total_recovered,      //Tunisia
-                      "JO": virusData["JO"].total_recovered,      //Jordan
-                      "HR": virusData["HR"].total_recovered,      //Croatia
-                      //"HT": virusData["HT"].total_recovered,      //Haiti
-                      "HU": virusData["HU"].total_recovered,      //Hungary
-                      "HN": virusData["HN"].total_recovered,      //Honduras
-                      "PR": virusData["PR"].total_recovered,      //Puerto Rico
-                      "PS": virusData["PS"].total_recovered,      //Palestine
-                      "PT": virusData["PT"].total_recovered,      //Portugal
-                      "PY": virusData["PY"].total_recovered,      //Paraguay
-                      "PA": virusData["PA"].total_recovered,      //Panama
-                      //"PG": virusData[""].total_recovered,      //Papua New Guinea - N/A
-                      "PE": virusData["PE"].total_recovered,      //Peru
-                      "PK": virusData["PK"].total_recovered,      //Pakistan
-                      //"PH": virusData[""].total_recovered,      //Philippines - N/A
-                      "PL": virusData["PL"].total_recovered,      //Poland
-                      "ZM": virusData["ZM"].total_recovered,      //Zambia
-                      //"EH": virusData[""].total_recovered,      //W. Sahara - N/A
-                      "EE": virusData["EE"].total_recovered,      //Estonia
-                      "EG": virusData["EG"].total_recovered,      //Egypt
-                      "ZA": virusData["ZA"].total_recovered,      //South Africa
-                      "EC": virusData["EC"].total_recovered,      //Ecuador
-                      "IT": virusData["IT"].total_recovered,      //Italy
-                      "VN": virusData["VN"].total_recovered,      //Vietnam
-                      //"SB": virusData[""].total_recovered,      //Solomon Is. - N/A
-                      "ET": virusData["ET"].total_recovered,      //Ethiopia
-                      "SO": virusData["SO"].total_recovered,      //Somalia
-                      //"ZW": virusData[""].total_recovered,      //Zimbabwe - N/A
-                      "ES": virusData["ES"].total_recovered,      //Spain
-                      //"ER": virusData[""].total_recovered,      //Eritrea - N/A
-                      "ME": virusData["ME"].total_recovered,      //Montenegro
-                      "MD": virusData["MD"].total_recovered,      //Moldova
-                      //"MG": virusData[""].total_recovered,      //Madagascar - N/A
-                      "MA": virusData["MA"].total_recovered,      //Morocco
-                      "UZ": virusData["UZ"].total_recovered,      //Uzbekistan
-                      //"MM": virusData[""].total_recovered,      //Myanmar - N/A
-                      //"ML": virusData[""].total_recovered,      //Mali - N/A
-                      "MN": virusData["MN"].total_recovered,      //Mongolia
-                      "MK": virusData["MK"].total_recovered,      //North Macedonia
-                      //"MW": virusData[""].total_recovered,      //Malawi - N/A
-                      "MR": virusData["MR"].total_recovered,      //Mauritania
-                      //"UG": virusData[""].total_recovered,      //Uganda - N/A
-                      "MY": virusData["MY"].total_recovered,      //Malaysia
-                      "MX": virusData["MX"].total_recovered,      //Mexico
-                      "IL": virusData["IL"].total_recovered,      //Israel
-                      "FR": virusData["FR"].total_recovered,      //France
-                      //"XS": virusData[""].total_recovered,      //Somaliland - N/A
-                      "FI": virusData["FI"].total_recovered,      //Finland
-                      //"FJ": virusData[""].total_recovered,      //Fiji - N/A
-                      //"FK": virusData[""].total_recovered,      //Falkland Is. - N/A
-                      //"NI": virusData[""].total_recovered,      //Nicaragua - N/A
-                      "NL": virusData["NL"].total_recovered,      //Netherlands
-                      "NO": virusData["NO"].total_recovered,      //Norway
-                      "NA": virusData["NA"].total_recovered,      //Namibia
-                      //"VU": virusData[""].total_recovered,      //Vanuatu - N/A
-                      "NC": virusData["NC"].total_recovered,      //New Caledonia
-                      //"NE": virusData[""].total_recovered,      //Niger - N/A
-                      "NG": virusData["NG"].total_recovered,      //Nigeria
-                      "NZ": virusData["NZ"].total_recovered,      //New Zealand
-                      "NP": virusData["NP"].total_recovered,      //Nepal
-                      //"XK": virusData[""].total_recovered,      //Kosovo - N/A
-                      "CI": virusData["CI"].total_recovered,      //Côte d'Ivoire
-                      "CH": virusData["CH"].total_recovered,      //Switzerland
-                      "CO": virusData["CO"].total_recovered,      //Colombia
-                      "CN": virusData["CN"].total_recovered,      //China
-                      "CM": virusData["CM"].total_recovered,      //Cameroon
-                      "CL": virusData["CL"].total_recovered,      //Chile
-                      //"XC": virusData[""].total_recovered,      //N. Cyprus - N/A
-                      "CA": virusData["CA"].total_recovered,      //Canada
-                      "CG": virusData["CG"].total_recovered,      //Congo
-                      "CF": virusData["CF"].total_recovered,      //Central African Rep.
-                      "CD": virusData["CD"].total_recovered,      //Dem. Rep. Congo
-                      "CZ": virusData["CZ"].total_recovered,      //Czech Rep.
-                      "CY": virusData["CY"].total_recovered,      //Cyprus
-                      "CR": virusData["CR"].total_recovered,      //Costa Rica
-                      "CU": virusData["CU"].total_recovered,      //Cuba
-                      //"SZ": virusData[""].total_recovered,      //Swaziland - N/A
-                      //"SY": virusData[""].total_recovered,      //Syria - N/A
-                      "KG": virusData["KG"].total_recovered,      //Kyrgyzstan
-                      "KE": virusData["KE"].total_recovered,      //Kenya
-                      //"SS": virusData[""].total_recovered,      //S. Sudan - N/A
-                      "SR": virusData["SR"].total_recovered,      //Suriname
-                      "KH": virusData["KH"].total_recovered,      //Cambodia
-                      //"SV": virusData[""].total_recovered,      //El Salvador - N/A
-                      "SK": virusData["SK"].total_recovered,      //Slovakia
-                      "KR": virusData["KR"].total_recovered,      //Korea
-                      "SI": virusData["SI"].total_recovered,      //Slovenia
-                      //"KP": virusData[""].total_recovered,      //Dem. Rep. Korea - N/A
-                      "KW": virusData["KW"].total_recovered,      //Kuwait
-                      "SN": virusData["SN"].total_recovered,      //Senegal
-                      //"SL": virusData[""].total_recovered,      //Sierra Leone - N/A
-                      "KZ": virusData["KZ"].total_recovered,      //Kazakhstan
-                      "SA": virusData["SA"].total_recovered,      //Saudi Arabia
-                      "SE": virusData["SE"].total_recovered,      //Sweden
-                      "SD": virusData["SD"].total_recovered,      //Sudan
-                      "DO": virusData["DO"].total_recovered,      //Dominican Rep.
-                      "DJ": virusData["DJ"].total_recovered,      //Djibouti
-                      "DK": virusData["DK"].total_recovered,      //Denmark
-                      "DE": virusData["DE"].total_recovered,      //Germany
-                      //"YE": virusData[""].total_recovered,      //Yemen - N/A
-                      "DZ": virusData["DZ"].total_recovered,      //Algeria
-                      "US": virusData["US"].total_recovered,      //United States
-                      "UY": virusData["UY"].total_recovered,      //Uruguay
-                      "LB": virusData["LB"].total_recovered,      //Lebanon
-                      //"LA": virusData[""].total_recovered,      //Lao PDR - N/A
-                      "TW": virusData["TW"].total_recovered,      //Taiwan
-                      "TT": virusData["TT"].total_recovered,      //Trinidad and Tobago
-                      "TR": virusData["TR"].total_recovered,      //Turkey
-                      "LK": virusData["LK"].total_recovered,      //Sri Lanka
-                      "LV": virusData["LV"].total_recovered,      //Latvia
-                      "LT": virusData["LT"].total_recovered,      //Lithuania
-                      "LU": virusData["LU"].total_recovered,      //Luxembourg
-                      "LR": virusData["LR"].total_recovered,      //Liberia
-                      //"LS": virusData[""].total_recovered,      //Lesotho - N/A
-                      "TH": virusData["TH"].total_recovered,      //Thailand
-                      //"TF": virusData[""].total_recovered,      //Fr. S. Antarctic Lands - N/A
-                      "TG": virusData["TG"].total_recovered,      //Togo
-                      //"TD": virusData[""].total_recovered,      //Chad - N/A
-                      //"LY": virusData[""].total_recovered,      //Libya - N/A
-                      "AE": virusData["AE"].total_recovered,      //United Arab Emirates
-                      "VE": virusData["VE"].total_recovered,      //Venezuela
-                      "AF": virusData["AF"].total_recovered,      //Afghanistan
-                      "IQ": virusData["IQ"].total_recovered,      //Iraq
-                      "IS": virusData["IS"].total_recovered,      //Iceland
-                      "IR": virusData["IR"].total_recovered,      //Iran
-                      "AM": virusData["AM"].total_recovered,      //Armenia
-                      "AL": virusData["AL"].total_recovered,      //Albania
-                      //"AO": virusData[""].total_recovered,      //Angola - N/A
-                      "AR": virusData["AR"].total_recovered,      //Argentina
-                      "AU": virusData["AU"].total_recovered,      //Australia
-                      "AT": virusData["AT"].total_recovered,      //Austria
-                      "IN": virusData["IN"].total_recovered,      //India
-                      "TZ": virusData["TZ"].total_recovered,      //Tanzania
-                      "AZ": virusData["AZ"].total_recovered,      //Azerbaijan
-                      "IE": virusData["IE"].total_recovered,      //Ireland
-                      "ID": virusData["ID"].total_recovered,      //Indonesia
-                      "UA": virusData["UA"].total_recovered,      //Ukraine
-                      "QA": virusData["QA"].total_recovered      //Qatar
-                      //"MZ": virusData[""].total_deaths       //Mozambique - N/A,
-                      },
-                  legend: {
-                    title: "Πλήθος αναρρωμένων",
-                    cssClass: "mapLegend",
-                    vertical: false
-                  },
-                  min: 0,
-                  max: getMaxRecovered(virusData),
-                  scale: ['#e6ffe6', '#003300','#000000'],
-                  //scale: ['#ffe6e6', '#4d0000'],
-                  normalizeFunction: 'polynomial'
-                }]
-              },
-              onRegionTipShow: function(e, el, code){
-                  if(virusData[code]!=null || typeof(virusData[code]) !== 'undefined'){
-                        el.html(el.html()+' (Total recovered: '+virusData[code].total_recovered+')');
-                  }
-              }
-            });
-
-
-            $('#world-map4').vectorMap({
-              map: 'world_mill_en',
-              series: {
-                regions: [{
-                   values: {
-                      "BD": virusData["BD"].total_deaths,      //Bangladesh
-                      "BE": virusData["BE"].total_deaths,      //Belgium
-                      "BF": virusData["BF"].total_deaths,      //Burkina Faso
-                      "BG": virusData["BG"].total_deaths,      //Bulgaria
-                      "BA": virusData["BA"].total_deaths,      //Bosnia and Herz.
-                      "BN": virusData["BN"].total_deaths,      //Brunei
-                      "BO": virusData["BO"].total_deaths,      //Bolivia
-                      "JP": virusData["JP"].total_deaths,      //Japan
-                      "BI": virusData["BI"].total_deaths,      //Burundi
-                      "BJ": virusData["BJ"].total_deaths,      //Benin
-                      "BT": virusData["BT"].total_deaths,      //Bhutan
-                      "JM": virusData["JM"].total_deaths,      //Jamaica
-                      //"BW": virusData[""].total_deaths,      //Botswana - N/A
-                      "BR": virusData["BR"].total_deaths,      //Brazil
-                      "BS": virusData["BS"].total_deaths,      //Bahamas
-                      "BY": virusData["BY"].total_deaths,      //Belarus
-                      //"BZ": virusData[""].total_deaths,      //Belize - N/A
-                      "RU": virusData["RU"].total_deaths,      //Russia
-                      "RW": virusData["RW"].total_deaths,      //Rwanda
-                      "RS": virusData["RS"].total_deaths,      //Serbia
-                      //"TL": virusData[""].total_deaths,      //Timor-Leste - N/A
-                      //"TM": virusData[""].total_deaths,      //Turkmenistan - N/A
-                      //"TJ": virusData[""].total_deaths,      //Tajikistan - N/A
-                      "RO": virusData["RO"].total_deaths,      //Romania
-                      //"GW": virusData[""].total_deaths,      //Guinea-Bissau - N/A
-                      "GT": virusData["GT"].total_deaths,      //Guatemala
-                      "GR": virusData["GR"].total_deaths,      //Greece
-                      "GQ": virusData["GQ"].total_deaths,      //Eq. Guinea
-                      "GY": virusData["GY"].total_deaths,      //Guyana
-                      "GE": virusData["GE"].total_deaths,      //Georgia
-                      "GB": virusData["GB"].total_deaths,      //United Kingdom
-                      "GA": virusData["GA"].total_deaths,      //Gabon
-                      "GN": virusData["GN"].total_deaths,      //Guinea
-                      "GM": virusData["GM"].total_deaths,      //Gambia
-                      "GL": virusData["GL"].total_deaths,      //Greenland
-                      "GH": virusData["GH"].total_deaths,      //Ghana
-                      "OM": virusData["OM"].total_deaths,      //Oman
-                      "TN": virusData["TN"].total_deaths,      //Tunisia
-                      "JO": virusData["JO"].total_deaths,      //Jordan
-                      "HR": virusData["HR"].total_deaths,      //Croatia
-                      //"HT": virusData["HT"].total_deaths,      //Haiti
-                      "HU": virusData["HU"].total_deaths,      //Hungary
-                      "HN": virusData["HN"].total_deaths,      //Honduras
-                      "PR": virusData["PR"].total_deaths,      //Puerto Rico
-                      "PS": virusData["PS"].total_deaths,      //Palestine
-                      "PT": virusData["PT"].total_deaths,      //Portugal
-                      "PY": virusData["PY"].total_deaths,      //Paraguay
-                      "PA": virusData["PA"].total_deaths,      //Panama
-                      //"PG": virusData[""].total_deaths,      //Papua New Guinea - N/A
-                      "PE": virusData["PE"].total_deaths,      //Peru
-                      "PK": virusData["PK"].total_deaths,      //Pakistan
-                      //"PH": virusData[""].total_deaths,      //Philippines - N/A
-                      "PL": virusData["PL"].total_deaths,      //Poland
-                      "ZM": virusData["ZM"].total_deaths,      //Zambia
-                      //"EH": virusData[""].total_deaths,      //W. Sahara - N/A
-                      "EE": virusData["EE"].total_deaths,      //Estonia
-                      "EG": virusData["EG"].total_deaths,      //Egypt
-                      "ZA": virusData["ZA"].total_deaths,      //South Africa
-                      "EC": virusData["EC"].total_deaths,      //Ecuador
-                      "IT": virusData["IT"].total_deaths,      //Italy
-                      "VN": virusData["VN"].total_deaths,      //Vietnam
-                      //"SB": virusData[""].total_deaths,      //Solomon Is. - N/A
-                      "ET": virusData["ET"].total_deaths,      //Ethiopia
-                      "SO": virusData["SO"].total_deaths,      //Somalia
-                      //"ZW": virusData[""].total_deaths,      //Zimbabwe - N/A
-                      "ES": virusData["ES"].total_deaths,      //Spain
-                      //"ER": virusData[""].total_deaths,      //Eritrea - N/A
-                      "ME": virusData["ME"].total_deaths,      //Montenegro
-                      "MD": virusData["MD"].total_deaths,      //Moldova
-                      //"MG": virusData[""].total_deaths,      //Madagascar - N/A
-                      "MA": virusData["MA"].total_deaths,      //Morocco
-                      "UZ": virusData["UZ"].total_deaths,      //Uzbekistan
-                      //"MM": virusData[""].total_deaths,      //Myanmar - N/A
-                      //"ML": virusData[""].total_deaths,      //Mali - N/A
-                      "MN": virusData["MN"].total_deaths,      //Mongolia
-                      "MK": virusData["MK"].total_deaths,      //North Macedonia
-                      //"MW": virusData[""].total_deaths,      //Malawi - N/A
-                      "MR": virusData["MR"].total_deaths,      //Mauritania
-                      //"UG": virusData[""].total_deaths,      //Uganda - N/A
-                      "MY": virusData["MY"].total_deaths,      //Malaysia
-                      "MX": virusData["MX"].total_deaths,      //Mexico
-                      "IL": virusData["IL"].total_deaths,      //Israel
-                      "FR": virusData["FR"].total_deaths,      //France
-                      //"XS": virusData[""].total_deaths,      //Somaliland - N/A
-                      "FI": virusData["FI"].total_deaths,      //Finland
-                      //"FJ": virusData[""].total_deaths,      //Fiji - N/A
-                      //"FK": virusData[""].total_deaths,      //Falkland Is. - N/A
-                      //"NI": virusData[""].total_deaths,      //Nicaragua - N/A
-                      "NL": virusData["NL"].total_deaths,      //Netherlands
-                      "NO": virusData["NO"].total_deaths,      //Norway
-                      "NA": virusData["NA"].total_deaths,      //Namibia
-                      //"VU": virusData[""].total_deaths,      //Vanuatu - N/A
-                      "NC": virusData["NC"].total_deaths,      //New Caledonia
-                      //"NE": virusData[""].total_deaths,      //Niger - N/A
-                      "NG": virusData["NG"].total_deaths,      //Nigeria
-                      "NZ": virusData["NZ"].total_deaths,      //New Zealand
-                      "NP": virusData["NP"].total_deaths,      //Nepal
-                      //"XK": virusData[""].total_deaths,      //Kosovo - N/A
-                      "CI": virusData["CI"].total_deaths,      //Côte d'Ivoire
-                      "CH": virusData["CH"].total_deaths,      //Switzerland
-                      "CO": virusData["CO"].total_deaths,      //Colombia
-                      "CN": virusData["CN"].total_deaths,      //China
-                      "CM": virusData["CM"].total_deaths,      //Cameroon
-                      "CL": virusData["CL"].total_deaths,      //Chile
-                      //"XC": virusData[""].total_deaths,      //N. Cyprus - N/A
-                      "CA": virusData["CA"].total_deaths,      //Canada
-                      "CG": virusData["CG"].total_deaths,      //Congo
-                      "CF": virusData["CF"].total_deaths,      //Central African Rep.
-                      "CD": virusData["CD"].total_deaths,      //Dem. Rep. Congo
-                      "CZ": virusData["CZ"].total_deaths,      //Czech Rep.
-                      "CY": virusData["CY"].total_deaths,      //Cyprus
-                      "CR": virusData["CR"].total_deaths,      //Costa Rica
-                      "CU": virusData["CU"].total_deaths,      //Cuba
-                      //"SZ": virusData[""].total_deaths,      //Swaziland - N/A
-                      //"SY": virusData[""].total_deaths,      //Syria - N/A
-                      "KG": virusData["KG"].total_deaths,      //Kyrgyzstan
-                      "KE": virusData["KE"].total_deaths,      //Kenya
-                      //"SS": virusData[""].total_deaths,      //S. Sudan - N/A
-                      "SR": virusData["SR"].total_deaths,      //Suriname
-                      "KH": virusData["KH"].total_deaths,      //Cambodia
-                      //"SV": virusData[""].total_deaths,      //El Salvador - N/A
-                      "SK": virusData["SK"].total_deaths,      //Slovakia
-                      "KR": virusData["KR"].total_deaths,      //Korea
-                      "SI": virusData["SI"].total_deaths,      //Slovenia
-                      //"KP": virusData[""].total_deaths,      //Dem. Rep. Korea - N/A
-                      "KW": virusData["KW"].total_deaths,      //Kuwait
-                      "SN": virusData["SN"].total_deaths,      //Senegal
-                      //"SL": virusData[""].total_deaths,      //Sierra Leone - N/A
-                      "KZ": virusData["KZ"].total_deaths,      //Kazakhstan
-                      "SA": virusData["SA"].total_deaths,      //Saudi Arabia
-                      "SE": virusData["SE"].total_deaths,      //Sweden
-                      "SD": virusData["SD"].total_deaths,      //Sudan
-                      "DO": virusData["DO"].total_deaths,      //Dominican Rep.
-                      "DJ": virusData["DJ"].total_deaths,      //Djibouti
-                      "DK": virusData["DK"].total_deaths,      //Denmark
-                      "DE": virusData["DE"].total_deaths,      //Germany
-                      //"YE": virusData[""].total_deaths,      //Yemen - N/A
-                      "DZ": virusData["DZ"].total_deaths,      //Algeria
-                      "US": virusData["US"].total_deaths,      //United States
-                      "UY": virusData["UY"].total_deaths,      //Uruguay
-                      "LB": virusData["LB"].total_deaths,      //Lebanon
-                      //"LA": virusData[""].total_deaths,      //Lao PDR - N/A
-                      "TW": virusData["TW"].total_deaths,      //Taiwan
-                      "TT": virusData["TT"].total_deaths,      //Trinidad and Tobago
-                      "TR": virusData["TR"].total_deaths,      //Turkey
-                      "LK": virusData["LK"].total_deaths,      //Sri Lanka
-                      "LV": virusData["LV"].total_deaths,      //Latvia
-                      "LT": virusData["LT"].total_deaths,      //Lithuania
-                      "LU": virusData["LU"].total_deaths,      //Luxembourg
-                      "LR": virusData["LR"].total_deaths,      //Liberia
-                      //"LS": virusData[""].total_deaths,      //Lesotho - N/A
-                      "TH": virusData["TH"].total_deaths,      //Thailand
-                      //"TF": virusData[""].total_deaths,      //Fr. S. Antarctic Lands - N/A
-                      "TG": virusData["TG"].total_deaths,      //Togo
-                      //"TD": virusData[""].total_deaths,      //Chad - N/A
-                      //"LY": virusData[""].total_deaths,      //Libya - N/A
-                      "AE": virusData["AE"].total_deaths,      //United Arab Emirates
-                      "VE": virusData["VE"].total_deaths,      //Venezuela
-                      "AF": virusData["AF"].total_deaths,      //Afghanistan
-                      "IQ": virusData["IQ"].total_deaths,      //Iraq
-                      "IS": virusData["IS"].total_deaths,      //Iceland
-                      "IR": virusData["IR"].total_deaths,      //Iran
-                      "AM": virusData["AM"].total_deaths,      //Armenia
-                      "AL": virusData["AL"].total_deaths,      //Albania
-                      //"AO": virusData[""].total_deaths,      //Angola - N/A
-                      "AR": virusData["AR"].total_deaths,      //Argentina
-                      "AU": virusData["AU"].total_deaths,      //Australia
-                      "AT": virusData["AT"].total_deaths,      //Austria
-                      "IN": virusData["IN"].total_deaths,      //India
-                      "TZ": virusData["TZ"].total_deaths,      //Tanzania
-                      "AZ": virusData["AZ"].total_deaths,      //Azerbaijan
-                      "IE": virusData["IE"].total_deaths,      //Ireland
-                      "ID": virusData["ID"].total_deaths,      //Indonesia
-                      "UA": virusData["UA"].total_deaths,      //Ukraine
-                      "QA": virusData["QA"].total_deaths      //Qatar
-                      //"MZ": virusData[""].total_deaths       //Mozambique - N/A,
-                      },
-                  //scale: ['#C8EEFF', '#0071A4'],
-                  legend: {
-                    title: "Πλήθος θυμάτων",
-                    cssClass: "mapLegend",
-                    vertical: false
-                  },
-                  min: 0,
-                  max: getMaxDeaths(virusData),
-                  scale: ['#ffe6e6', '#4d0000','#000000'],
-                  normalizeFunction: 'polynomial'
-                }]
-              },
-              onRegionTipShow: function(e, el, code){
-                  if(virusData[code]!=null || typeof(virusData[code]) !== 'undefined'){
-                      el.html(el.html()+' (Total deaths: '+virusData[code].total_deaths+')');
-                  }
-              }
-            });
-        */
 
         // end of maps
 
@@ -4441,7 +3916,7 @@
             margin: {
               l: 50,
               r: 50,
-              b: 50,
+              b: 100,
               t: 80,
               pad: 4
             },
@@ -4519,7 +3994,7 @@
             },
             yaxis:  {
               title: ' (%) αύξησης',
-              range: [-100, 2100]
+              range: [-100, 500]
             },
             images: [{
               name: 'watermark_1',
@@ -4621,8 +4096,8 @@
                 yref: "paper",
                 x: 0.4,//0.4
                 y: 1.0,//0.9
-                sizex: 0.5,//0.7
-                sizey: 0.5,//0.7
+                sizex: 0.7,//0.7
+                sizey: 0.7,//0.7
                 // sizing: "stretch",
                 opacity: 0.05,
                 layer: "below"
@@ -4670,7 +4145,7 @@
                 pad: 4
               },
               title: {
-                text: "Απόδοση υγειονομικού συστήματος ανά κράτος "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+                text: "Απόδοση υγειονομικού συστήματος ανά χώρα "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
                 font: {
                   size: 20
                 }
@@ -4688,8 +4163,8 @@
                 yref: "paper",
                 x: 0.4,//0.4
                 y: 0.8,//0.9
-                sizex: 0.5,//0.7
-                sizey: 0.5,//0.7
+                sizex: 0.7,//0.7
+                sizey: 0.7,//0.7
                 // sizing: "stretch",
                 opacity: 0.05,
                 layer: "below"
@@ -4698,7 +4173,208 @@
 
         Plotly.newPlot('compPlot5', data, layout);
 
+        t_data = [];
+        var gr = 0;
+        for (key in virusData) {
+          if (virusData.hasOwnProperty(key)){
+            if(key=="GR"){
+              gr = parseInt(virusData[key].total_cases_per_mil, 10);
+            }
+            if(parseInt(virusData[key].total_cases_per_mil, 10)!=-99999){
+              t_data.push(parseInt(virusData[key].total_cases_per_mil, 10));
+            }
+          }
+        }
 
+        var status;
+        if(gr<getMean(t_data)) {
+          status = ("Η Ελλάδα είναι κάτω από το μέσο όρο");
+        } else {
+          status = ("Η Ελλάδα είναι πάνω από το μέσο όρο");
+        }
+
+        var trace = {
+            x: t_data,
+            type: 'histogram',
+            histnorm: 'percent'
+          };
+        var data = [trace];
+        var layout = {
+            width: window.innerWidth-250,
+            height: 500,
+            margin: {
+              l: 50,
+              r: 50,
+              b: 50,
+              t: 80,
+              pad: 4
+            },
+            //barmode: 'stack',
+            title: {
+              text: "Ιστόγραμμα κρουσμάτων των χωρών " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+              font: {
+                size: 20
+              }
+            },
+            annotations: [{
+              text: "Μέση τιμή: "  + getMean(t_data).toFixed(2) + "<br>Διάμεσος: " + median(t_data).toFixed(2) + "<br>Τυπική απόκλιση: " + getSD(t_data).toFixed(2) + "<br>" + status,
+                font: {
+                size: 13,
+                color: 'rgb(116, 101, 130)',
+              },
+              showarrow: false,
+              align: 'center',
+              x: 0.5,
+              y: 1,
+              xref: 'paper',
+              yref: 'paper',
+            }],
+            xaxis: {
+              title: 'Κρούσματα ανά 1,000,000 πληθυσμού'
+            },
+            yaxis: {
+              title: 'Ποσοστό (%)'
+            },
+            images: [{
+              name: 'watermark_1',
+              source: "http://83.212.112.51/coronavirusmap/plots/logo.png",
+              xref: "paper",
+              yref: "paper",
+              x: 0.4,//0.4
+              y: 0.8,//0.9
+              sizex: 0.7,//0.7
+              sizey: 0.7,//0.7
+              // sizing: "stretch",
+              opacity: 0.05,
+              layer: "below"
+            }],
+            legend: {
+              x: 0,
+              xanchor: 'left',
+              y: 1
+            }
+        };
+        Plotly.newPlot('plot3', data, layout);
+
+
+        weekly_data1=weeklyGR1();
+        weekly_data2=weeklyGR2();
+        static__clinical_data1=[5,15,40,92,139,158,148,147,102,93,50,35,28,18,10,5,4,1,2,2,1]; //lab only
+        static_data1=[32,49,45,52,72,62,92,81,63,49,39,40,28,22,9];
+        error = [13,20,15,14,15,25,28,19,17,12,14,11,9,8,5];
+        static_data2=[0,3,3,14,19,17,17,17,20,8,3,5,3,5,6,4,1,4,2,2]; //deaths proved only
+
+
+        var data = [
+          {
+            y: weekly_data1,
+            name: 'COVID-19 cases',
+            type: 'bar'
+          },
+          {
+            y: static_data1.map(x => (x*10434536) /1000),
+            name: 'Common Infuenza cases',
+            type: 'bar',
+            error_y: {
+              type: 'data',
+              array: error.map(x => (x*10434536) /1000),
+              visible: true
+            }
+          },
+          {
+            y: weekly_data2,
+            name: 'COVID-19 deaths',
+            type: 'bar',
+            xaxis: 'x2',
+            yaxis: 'y2'
+          },
+          {
+            y: static_data2,
+            name: 'Common Infuenza deaths',
+            type: 'bar',
+            error_y: {
+              type: 'data',
+              array: static_data2.map(x => x * 6.96), // calculate actual ... 696% more error
+              arrayminus: static_data2.map(x => x * 0),
+              visible: true
+            },
+            xaxis: 'x2',
+            yaxis: 'y2'
+          }
+        ];
+        var layout = {
+            width: window.innerWidth-250,
+            height: 600,
+            margin: {
+              l: 50,
+              r: 50,
+              b: 50,
+              t: 230,
+              pad: 4
+            },
+            //barmode: 'stack',
+            title: {
+              text: "Σύγκριση κορονοϊού (2020) με κοινή γρίπη (2019) "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear()+"",
+              font: {
+                size: 20
+              }
+            },
+            xaxis: {
+              title: 'Εβδομάδα'
+            },
+            xaxis2: {
+              title: 'Εβδομάδα'
+            },
+            yaxis:  {
+              title: 'Αρθιμός ανθρώπων',
+              //range: [0, 2000000]
+            },
+            yaxis2:  {
+              title: 'Αρθιμός ανθρώπων',
+              //range: [0, 300]
+            },
+            images: [{
+              name: 'watermark_1',
+              source: "http://83.212.112.51/coronavirusmap/plots/logo.png",
+              xref: "paper",
+              yref: "paper",
+              x: 0.4,//0.4
+              y: 0.8,//0.9
+              sizex: 0.7,//0.7
+              sizey: 0.7,//0.7
+              // sizing: "stretch",
+              opacity: 0.05,
+              layer: "below"
+            }],
+            legend: {
+              x: 0,
+              xanchor: 'left',
+              y: 1
+            },
+            annotations: [{
+              text: "Αριστερά: Εβδομαδιαία εκτίμηση αριθμού κρουσμάτων γριπώδους συνδρομής (με ενσωμάτωση σφάλματος*) έναντι κρουσμάτων COVID-19<br>Δεξιά: Αριθμός θανάτων (σε ΜΕΘ & εκτός ΜΕΘ) ανά εβδομάδα, σε ασθενείς με εργαστηριακά επιβεβαιωμένη γρίπη (με ενσωμάτωση σφάλματος**) έναντι αριθμού θανάτων ανά εβδομάδα λόγω COVID-19<br><br>*Το σφάλμα προσδιορίζεται από την ετήσια έκθεση του ΕΟΔΥ<br>**Το σφάλμα προσδιορίζεται ως εξής: 1071 εκτιμώμενοι θάνατοι / 154 θάνατοι από εργαστηριακά επιβεβαιωμένη γρίπη = 696% προσαύξηση σφάλματος",
+                font: {
+                size: 13,
+                color: 'rgb(116, 101, 130)'
+              },
+              showarrow: false,
+              align: 'center',
+              x: 0.5,
+              //y: 1,
+
+              y: 1,
+              yanchor: 'bottom',
+
+              xref: 'paper',
+              yref: 'paper',
+            }],
+            grid: {rows: 1, columns: 2, pattern: 'independent'}
+        };
+
+        Plotly.newPlot('plot4', data, layout, {staticPlot: false});
+
+
+        test();
         showPage();
 
 
@@ -4721,6 +4397,289 @@
     });
 
   </script>
+
+  <script>
+  function test(){
+
+
+  var frames = [];
+
+
+    weekly_data = [];
+    total_data = [];
+    dates = [];
+
+    //init array
+    for(var i=0; i<y_cases.length; i++){
+      weekly_data.push(0);
+      total_data.push(0);
+      dates.push(x_total[i]);
+    }
+    //moving avg
+    for(var i=0; i<weekly_data.length; i++){
+      //alert(weekly_data[i]);
+      /*f(i%7==0){
+        weekly_data[i]=y_cases[i];
+      } else {
+        weekly_data[i]=weekly_data[i-1]+y_cases[i];
+      }*/
+      for(var d=0; d<4; d++){
+        weekly_data[i] += y_cases[i+3-d];
+        total_data[i] += y_total[i+3-d];
+      }
+      for(var d=0; d<3; d++){
+        weekly_data[i] += y_cases[i+d-3];
+        total_data[i] += y_total[i+d-3];
+      }
+      weekly_data[i] = parseInt(weekly_data[i]/7,10);
+      total_data[i] = parseInt(total_data[i]/7,10);
+    }
+
+  // LLS
+  var s1 =0;
+  var s2 =0;
+  var s3 =0;
+  var s4 =0;
+  var n =total_data.length-7;
+   //for (var i=3; i<total_data.length-4; i++){alert(total_data[i]);}
+   for (var i=3;i<total_data.length-4; i++){
+     //if(!isNaN(total_data[i]) && !isNaN(weekly_data[i])){
+       s1 += (total_data[i]*weekly_data[i]);
+       s2 += total_data[i];
+       s3 += weekly_data[i];
+       s4 += Math.pow(total_data[i],2);
+     //}
+   }
+   m = ( (n*s1) - (s2*s3) ) / (n*s4 - Math.pow(s2,2)) ; // m festivalscope
+   c = weekly_data[10]-m*total_data[10]; //y-intercept
+   //y = m*x+c
+
+   //RMSE
+   var rmse = 0
+   for (var i=3; i<n-4; i++){
+     var y_pred = c + m * total_data[i];
+     rmse += Math.pow((weekly_data[i] - y_pred),2);
+   }
+   rmse = Math.sqrt(rmse/n);
+
+
+   var linex =[];
+   var liney =[];
+    var n = y_total.length;
+    for (var i = 0; i < n; i++) {
+      liney.push(m*total_data[i]+c);
+      linex.push(total_data[i]);
+    }
+
+    var n = y_total.length;
+    for (var i = 0; i < n; i++) {
+      frames[i] = {data: [{x: [], y: [], text: []},{x: [], y: [], text: []}]}
+
+      frames[i].data[0].x = total_data.slice(0, i+1);
+      frames[i].data[0].y = weekly_data.slice(0, i+1);
+      frames[i].data[0].text = dates.slice(0, i+1);
+
+      frames[i].data[1].x = linex.slice(0, i+1);
+      frames[i].data[1].y = liney.slice(0, i+1);
+    }
+    var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'Greece',
+      //fill: 'tozeroy',
+      //fill: 'tonexty',
+      x: frames[0].data[0].x,
+      y: frames[0].data[0].y,
+      //text: frames[1].data[0].text,
+      line: {color: 'grey'}
+    };
+    var trace2 = {
+      type: 'scatter',
+      mode: "lines",
+      name: 'Linear Least Squares Regression Fitting',
+      fill: 'tonexty',
+      x: frames[0].data[1].x,
+      y: frames[0].data[1].y,
+      //text: frames[1].data[0].text,
+      line: {color: 'red'}
+    };
+    /*var trace2 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'AAPL High',
+      x: table[0],
+      y: table[1],
+      //text: frames[1].data[0].text,
+      line: {color: 'red'}
+    };*/
+    var data = [trace1, trace2];
+
+/*
+    var sliderSteps = [];
+    for (i = 0; i < x_total.length; i++) {
+      sliderSteps.push({
+        method: 'animate',
+        label: x_total[i],
+        args: [[x_total[i]], {
+          mode: 'immediate',
+          transition: {duration: 300},
+          frame: {duration: 300, redraw: false},
+        }]
+      });
+    }*/
+
+  var layout = {
+    title: 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Κλικ στο έναρξη!)',
+    font: {
+      size: 14
+    },
+    margin: { t: 150, r: 55, l: 55, b: 50 },
+    height: 600,
+    width: 1100,
+    xaxis: {
+      title: 'Κινούμενος εβδομαδιαίος μέσος όρος συνολικών κρουσμάτων',
+      //type: 'log',
+      //range: [0,4]
+      range: [0,1800]
+      //autorange: true
+      //range: [frames[n-1].data[0].x[0],
+      //      frames[n-1].data[0].x[n-1]],
+      //      type: 'lol'
+    },
+    yaxis: {
+      //range: [-1,2],
+      title: 'Κινούμενος εβδομαδιαίος μέσος όρος νέων κρουσμάτων',
+      range: [0,120],
+      //type: 'log',
+      //autorange: true
+    },
+    annotations: [{
+      text: "RMSE: "+rmse.toFixed(2),
+        font: {
+        size: 13,
+        color: 'rgb(116, 101, 130)',
+      },
+      showarrow: false,
+      align: 'center',
+      x: 0.5,
+      y: 1,
+      xref: 'paper',
+      yref: 'paper',
+    }],
+    //hovermode: 'closest',
+    images: [{
+      name: 'watermark_1',
+      source: "http://83.212.112.51/coronavirusmap/plots/logo.png",
+      xref: "paper",
+      yref: "paper",
+      x: 0.4,//0.4
+      y: 0.8,//0.9
+      sizex: 0.7,//0.7
+      sizey: 0.7,//0.7
+      // sizing: "stretch",
+      opacity: 0.05,
+      layer: "below"
+    }],
+    legend: {
+      orientation: 'h',
+      x: 0.5,
+      y: 1.2,
+      xanchor: 'center'
+    },
+    updatemenus: [
+      {
+        buttons: [{
+        method: "animate",
+        args: [null, {
+          fromcurrent: true,
+          transition: {
+            duration: 0,
+          },
+          frame: {
+            duration: 100,
+            redraw: false
+          }
+        }],
+        label: "Έναρξη"
+      }, {
+        method: "animate",
+        args: [
+          [null],
+          {
+            mode: "immediate",
+            transition: {
+              duration: 0
+            },
+            frame: {
+              duration: 0,
+              redraw: false
+            }
+          }
+        ],
+        label: "Παύση"
+      }],
+        x: 0.5,
+        y: 0,
+        yanchor: "top",
+        xanchor: "center",
+        showactive: false,
+        direction: "left",
+        type: "buttons",
+        pad: {"t": 87, "r": 10},
+      },
+      {
+      buttons: [{
+          args: [{'visible': [true, true]},
+                       {'title': 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Γραμμική κλίμακα)',
+                        'xaxis': {'type': 'linear'},
+                        'yaxis': {'type': 'linear'}
+                      }
+                      ],
+          //args: ['type', 'linear'],
+          label:'Linear',
+          method:'update'
+      },
+      {
+          args: [{'visible': [true, true]},
+                       {'title': 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Λογαριθμική κλίμακα)',
+                        'xaxis': {'type': 'log'},
+                        'yaxis': {'type': 'log'}
+                      }
+                      ],
+          //args: ['type', 'log'],
+          label: 'Log',
+          method: 'update'
+      }],
+      direction: 'down',
+          pad: {'r': 10, 't': 10},
+          showactive: true,
+          type: 'dropdown',
+          x: 0.78,
+          xanchor: 'left',
+          y: 1.2,
+          yanchor: 'top'
+
+      }]
+    /*
+    sliders: [{
+      pad: {l: 130, t: 55},
+      currentvalue: {
+        visible: true,
+        prefix: 'Year:',
+        xanchor: 'right',
+        font: {size: 20, color: '#666'}
+      },
+      steps: sliderSteps
+    }]*/
+  };
+
+  Plotly.newPlot('greeceTrend', data, layout).then(function() {
+      Plotly.addFrames('greeceTrend', frames);
+    });
+
+
+}
+</script>
     <!--div align = "center" id = "box">
       <label class = "switch">
       <input id="toggle" type = "checkbox" onclick="toggle()">
@@ -4782,10 +4741,15 @@
       return [numbers[0], numbers[numbers.length - 1]];
   }
 
+
   function drawTable() {
           // get the reference for the body
           var div = document.getElementById('greek-data');
 
+
+
+
+/*
           var tbl = document.createElement("table");
           tbl.style.width = "60%";
           tbl.style.marginLeft = "20%";
@@ -4800,13 +4764,14 @@
 
           var row = document.createElement("tr");
           var cell = document.createElement("td");
-          var cellText = document.createTextNode( "Η Ελλάδα μπήκε στον παγκόσμιο χάρτη με τις χώρες που έχουν εντοπιστεί κρούσματα του κορωνοϊού την Τετάρτη (26/02), με το πρώτο κρούσμα στη Θεσσαλονίκη." );
+          var cellText = document.createTextNode( "Η Ελλάδα μπήκε στον παγκόσμιο χάρτη με τις χώρες που έχουν εντοπιστεί κρούσματα του κορωνοϊού την Τετάρτη (26/02), με το πρώτο επιβεβαιωμένο κρούσμα στη Θεσσαλονίκη." );
           cell.appendChild(cellText);
           row.appendChild(cell);
           tbl.appendChild(row);
 
           div.appendChild(tbl);
 
+          /*
           var tbl = document.createElement("table");
           var thead = document.createElement("thead");
           var tbody = document.createElement("tbody");
@@ -4828,7 +4793,6 @@
           td.style.fontSize = "xx-large";
           td.appendChild(document.createTextNode(virusData["GR"].total_cases));
           tr.appendChild(td);
-
           tbody.appendChild(tr);
           tbl.appendChild(tbody);
 
@@ -4978,12 +4942,80 @@
           tbl.appendChild(tbody);
 
           div.appendChild(tbl);
+          */
 
           /*var gr_data = document.createElement("div");
           var h = document.createElement("H2");
           h.innerHTML = "Γραφική απεικόνιση δεδομένων";
           gr_data.appendChild(h);
           div.appendChild(gr_data);*/
+
+          var main_container = document.createElement("div");
+          main_container.id = "main-container";
+
+          //get yesterday position on array
+          var pos = -1;
+          var today = new Date();
+          var yesterday = new Date(today);
+          yesterday.setDate(today.getDate() - 1);
+          for(var i=0; i<x_total.length; i++){
+            if(x_total[i].getDate()==yesterday.getDate() && x_total[i].getMonth()==yesterday.getMonth() && x_total[i].getFullYear()==yesterday.getFullYear()){
+              pos = i;
+              break;
+            }
+          }
+
+
+          var div2 = document.createElement("div");
+          div2.id = "dataDiv";
+          div.appendChild(div2);
+
+          var reference1 = y_total[pos] // yesterday's reference
+          var reference2 = y_total_deaths[pos] // yesterday's reference
+          var layout = {
+            width:  (window.innerWidth-$(".tab").innerWidth()),
+            height: 700,
+            margin: { t: 100, r: 25, l: 25, b: 50 },
+            grid: { rows: 3, columns: 1, pattern: "independent" }
+          };
+          var data = [{
+            type: "indicator",
+            mode: "number+delta",
+            value: virusData["GR"].total_cases,
+            title: {
+              text:
+                "<span style='font-size:1.2em; color:lightblue'>Συνολικά κρούσματα</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+            },
+            delta: { position: "right", reference: reference1/*, relative: true */},
+            domain: {row:0, column: 0}
+          },
+          {
+            type: "indicator",
+            mode: "number+delta",
+            value: virusData["GR"].total_deaths,
+            number: { suffix: " ("+ (virusData["GR"].total_deaths*100/virusData["GR"].total_cases).toFixed() + "%)"},
+            title: {
+              text:
+                "<span style='font-size:1.2em; color:red'>Θανόντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+            },
+            delta: { position: "right", reference: reference2/*, relative: true */},
+            domain: {row:1, column: 0}
+          },
+          {
+            type: "indicator",
+            mode: "number+delta",
+            value: virusData["GR"].total_recovered,
+            number: { suffix: " ("+ (virusData["GR"].total_recovered*100/virusData["GR"].total_cases).toFixed() + "%)"},
+            title: {
+              text:
+                "<span style='font-size:1.2em; color:green'>Αναρρώσαντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+            },
+            delta: {position: "right"},
+            /*delta: { position: "top", reference: reference, relative: true },*/
+            domain: {row:2, column: 0}
+          }]
+          Plotly.newPlot('dataDiv', data, layout);
+
 
           var plot_div = document.createElement("div");
           plot_div.id = "plot";
@@ -4993,92 +5025,10 @@
           plot_div.id = "plot2";
           div.appendChild(plot_div);
 
-          t_data = [];
-          var gr = 0;
-          for (key in virusData) {
-            if (virusData.hasOwnProperty(key)){
-              if(key=="GR"){
-                gr = parseInt(virusData[key].total_cases_per_mil, 10);
-              }
-              if(parseInt(virusData[key].total_cases_per_mil, 10)!=-99999){
-                t_data.push(parseInt(virusData[key].total_cases_per_mil, 10));
-              }
-            }
-          }
-
           var plot_div = document.createElement("div");
-          plot_div.id = "plot3";
+          plot_div.id = "plot4";
           div.appendChild(plot_div);
 
-          var status;
-          if(gr<getMean(t_data)) {
-            status = ("Η Ελλάδα είναι κάτω από το μέσο όρο");
-          } else {
-            status = ("Η Ελλάδα είναι πάνω από το μέσο όρο");
-          }
-
-          var trace = {
-              x: t_data,
-              type: 'histogram',
-              histnorm: 'percent'
-            };
-          var data = [trace];
-          var layout = {
-              width: window.innerWidth-250,
-              height: 600,
-              margin: {
-                l: 50,
-                r: 50,
-                b: 50,
-                t: 80,
-                pad: 4
-              },
-              //barmode: 'stack',
-              title: {
-                text: "Ιστόγραμμα κρουσμάτων των χωρών " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
-                font: {
-                  size: 20
-                }
-              },
-              annotations: [{
-                text: "Μέση τιμή: "  + getMean(t_data).toFixed(2) + "<br>Διάμεσος: " + median(t_data).toFixed(2) + "<br>Τυπική απόκλιση: " + getSD(t_data).toFixed(2) + "<br>" + status,
-                  font: {
-                  size: 13,
-                  color: 'rgb(116, 101, 130)',
-                },
-                showarrow: false,
-                align: 'center',
-                x: 0.5,
-                y: 1,
-                xref: 'paper',
-                yref: 'paper',
-              }],
-              xaxis: {
-                title: 'Κρούσματα ανά 1,000,000 πληθυσμού'
-              },
-              yaxis: {
-                title: 'Ποσοστό (%)'
-              },
-              images: [{
-                name: 'watermark_1',
-                source: "http://83.212.112.51/coronavirusmap/plots/logo.png",
-                xref: "paper",
-                yref: "paper",
-                x: 0.4,//0.4
-                y: 0.8,//0.9
-                sizex: 0.5,//0.7
-                sizey: 0.5,//0.7
-                // sizing: "stretch",
-                opacity: 0.05,
-                layer: "below"
-              }],
-              legend: {
-                x: 0,
-                xanchor: 'left',
-                y: 1
-              }
-          };
-          Plotly.newPlot('plot3', data, layout);
 
   }
   function makeUL(array) {
@@ -5170,6 +5120,60 @@
       return max;
   }
 */
+
+  function ISO8601_week_no(dt)
+  {
+     var tdt = new Date(dt.valueOf());
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4)
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+  }
+
+  function weeklyGR1(){
+    weekly_data = []
+    //init array
+    for(var i=0; i<ISO8601_week_no(new Date()); i++){
+      weekly_data.push(0);
+    }
+    for(var i=0; i<x_cases.length; i++){
+      weekly_data[ISO8601_week_no(x_cases[i])]+=y_cases[i];
+    }
+    //convert weekly data per million cases
+    /*for(var i=0; i<weekly_data.length; i++){
+      weekly_data[i]=(weekly_data[i]*1000000) / 10434536;
+    }*/
+    return weekly_data;
+  }
+
+  function weeklyGR2(){
+    weekly_data = []
+    //init array
+    for(var i=0; i<ISO8601_week_no(new Date()); i++){
+      weekly_data.push(0);
+    }
+    for(var i=0; i<x_deaths.length; i++){
+      weekly_data[ISO8601_week_no(x_deaths[i])]+=y_deaths[i];
+    }
+    //convert weekly data per million cases
+    /*for(var i=0; i<weekly_data.length; i++){
+      weekly_data[i]=(weekly_data[i]*1000000) / 10434536;
+    }*/
+    return weekly_data;
+  }
+
+  function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+      });
+      return vars;
+  }
 
   // Functionality on TABS click
   function openTab(evt, cityName) {
