@@ -8,6 +8,29 @@
           outline-width: 1;
       }*/
       /* Style the tab */
+      #logo {
+        position: absolute;
+        opacity: 0.2;
+        top: 0;
+        right: 0;
+        z-index: 10;
+      }
+      #infoi,#infoi2 {
+        color: white;
+        opacity: 0.6;
+        font-size: 35px;
+        padding-left: 20px;
+        /*height:30%;*/
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        text-shadow: 5px 5px 10px #000000;
+      }
+      #infoi2 {
+        font-size: 35px;
+      }
+
       .float{
       	position:fixed;
       	width:60px;
@@ -98,6 +121,8 @@
 
       /* Style the tab content */
       .tabcontent {
+        /*position: relative;*/
+
         float: left;
         /*padding: 0px 12px;
         border: 1px solid #ccc;*/
@@ -135,6 +160,7 @@
       }*/
       #panel1, #flip1, #panel2, #flip2, #panel3, #flip3, #panel4, #flip4, #panel5, #flip5, #panel6, #flip6, #panel7, #flip7, #panel8, #flip8, #panel9, #flip9 {
         padding: 5px;
+        padding: 15px 0 15px 0;
         text-align: center;
         background-color: #e6f7ff;
         border: solid 1px #c3c3c3;
@@ -155,8 +181,7 @@
       }
       #coronavirus-img {
         height: 200px;
-        background-repeat:
-        repeat-y;
+        background-repeat: repeat-y;
         filter: blur(4px);
         -webkit-filter: blur(4px);
         /*background-image: url(https://acutecaretriage.com/wp-content/uploads/2017/11/home-healthcare-lending-healthcare-cash-advance-with-regard-to-banner-health-care.jpg);
@@ -166,12 +191,20 @@
       #info-img {
         height: 200px;
         background-repeat: repeat-y;
-        repeat-y;
         filter: blur(4px);
         -webkit-filter: blur(4px);
         /*background-image: url(https://acutecaretriage.com/wp-content/uploads/2017/11/home-healthcare-lending-healthcare-cash-advance-with-regard-to-banner-health-care.jpg);
 /*      background-image: linear-gradient(red, yellow, green);*/
         background-image: url('https://onepmfinance.co.uk/wp-content/uploads/2016/06/background-grey-1-1646x1200.png');
+      }
+      #greek-img {
+        height: 200px;
+        background-repeat: repeat-y;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+        /*background-image: url(https://acutecaretriage.com/wp-content/uploads/2017/11/home-healthcare-lending-healthcare-cash-advance-with-regard-to-banner-health-care.jpg);
+/*      background-image: linear-gradient(red, yellow, green);*/
+        background-image: url('https://image.freepik.com/free-photo/plaster-sculpture-medical-mask-concept-coronavirus-epidemics-risk-biological-contamination-prevention-treatment-influenza_112337-1448.jpg');
       }
       table {
           border-collapse:collapse;
