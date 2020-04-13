@@ -9,27 +9,20 @@
   <meta charset="UTF-8">
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
-
   <link rel="stylesheet" href="assets/jquery-jvectormap-2.0.5.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="assets/style.css" type="text/css">
   <script src="assets/jquery-1.8.2.js"></script>
   <!--script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script-->
-
-
   <script src="assets/jquery-jvectormap-2.0.5.min.js"></script>
   <script src="assets/jquery-jvectormap-world-mill-en.js"></script>
 
   <script src="assets/dataformat.js" type="text/javascript"></script>
   <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
   <script language="javascript" type="text/javascript" src="assets/SocialDistancingSimulator.js"></script>
-
   <!--link href="assets/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/-->
-
   <script type="text/javascript" src="assets/maps/jquery.vmap.greece2.js" charset="utf-8"></script>
 
   <script src="assets/jquery-csv.js"></script>
-
-
   <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
   <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -38,10 +31,8 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-42135511-3');
   </script>
-
 </head>
 <body onload="begin()" style="margin:0;">
   <script>
@@ -4480,858 +4471,17 @@
 
         // end of maps
 
-        drawTable();
-        var options = [
-                set0 = ['#Μένουμε_σπίτι αποφεύγοντας τις άσκοπες μετακινήσεις','Αποφεύγουμε τις επαφές με ανθρώπους ( συγχρωτισμός ) και αντικείμενα','Αποφυγή επαφής με άτομα που έχουν συμπτώματα λοίμωξης του αναπνευστικού συστήματος','Εφαρμογή κανόνων υγιεινής με συχνό πλύσιμο των χεριών','Αν έχουμε συμπτώματα προσπαθούμε να απομονωθούμε ( καραντίνα ) και επικοινωνούμε με τον ιατρό μας','Όταν βήχουμε η φταρνιζόμαστε, φροντίζουμε να μην διασπείρουμε τα σταγονίδια καλύπτοντας το στόμα και την μύτη με τα χέρια μας ή με χαρτομάνδηλα','Αναβολή ταξιδιών και μαζικών εκδηλώσεων','Αποφυγή συγχρωτισμού και επισκέψεων σε χώρους υπηρεσιών υγείας','Εαν παρουσιάσουμε συμπτώματα, μένουμε σπίτι και επικοινωνούμε με τον θεράποντα ιατρό μας','Η χρήση μάσκας εμποδίζει την μετάδοση του ιού από τους ασθενείς σε υγιείς και πρέπει να χρησιμοποιείται από τους νοσούντες, τους επαγγελματίες υγείας και άτομα που φροντίζουν ασθενείς με κορωνοϊό','Απαιτείται πειθαρχία και συμμόρφωση με τα μέτρα που επιβλήθηκαν, όπως επίσης υπομονή και αισιοδοξία','Η υπερβολή, ο πανικός και η υστερία είναι κακοί σύμβουλοι και οδηγούν στην παράνοια'],
-                set1 = ['Πρόκειται για έναν ιό RNA που προήλθε από μετάλλαξη του κορωνοιού, ο οποίος προκάλεσε την επιδημία του 2003 με το σύνδρομο της οξείας αναπνευστικής ανεπάρκειας SARS ( Severe Acute Respiratory Syndrome )','Οι κορωνοϊοί αποτελούν ομάδα ιών που προκαλούν λοιμώξεις του αναπνευστικού συστήματος σε ανθρώπους και ζώα.','Το στέλεχος covid-19 εμφανίστηκε τον Δεκέμβριο του 2019 στην πόλη Wuhan της Κίνας και απομονώθηκε στις 9 Ιανουαρίου του 2020.','Στην περιοχή αυτή υπάρχουν πολλά εργαστήρια βιολογικών ερευνών.','Ο κορωνοϊός μεταδίδεται μέσω σταγονιδίων κατά την ομιλία - τον βήχα ή το πτάρνισμα','Ο χρόνος_επώασης, δηλαδή το διάστημα από την μόλυνση μέχρις την εμφάνιση των συμπτωμάτων, μπορεί να είναι 14 ημέρες. Συνήθως όμως ανέρχεται σε 5 ημέρες.','Τα συμπτώματα είναι ίδια με εκείνα του κοινού κρυολογήματος:','Πυρετός - καταβολή - μυαλγίες - καταρροή - άλγος στον φάρυγγα ( πονόλαιμος ) - βήχας και στις σοβαρές περιπτώσεις δυσκολία στην αναπνοή ( δύσπνοια ).','Οι περισσότεροι άνθρωποι που θα μολυνθούν θα παρουσιάσουν ήπια συμπτωματολογία ή δεν θα έχουν καμμία εκδήλωση ( ασυμπτωματικοί ).','Ιδιαίτερο κίνδυνο όταν νοσήσουν έχουν οι ευπαθείς ομάδες :','Ηλικιωμένοι άνω των 75 ετών','Άτομα με υποκείμενη νόσο , όπως υπέρταση - σακχαρώδη διαβήτη - πνευμονοπάθεια - ανοσοκαταστολή - καρδιαγγειακά νοσήματα - κακοήθειες και τέλος παχύσαρκοι.']
-            ];
-
-        var para = document.createElement("h4");
-        para.innerHTML = 'Τα μέτρα που λαμβάνουμε για την αποφυγή της μετάδοσης είναι: ';
-        document.getElementById('info').appendChild(para);
-        document.getElementById('info').appendChild(makeUL(options[0]));
-        var para = document.createElement("h4");
-        para.innerHTML = '- Δρ. Απόστολος Ζέρβας';
-        document.getElementById('info').appendChild(para);
-
-        var para = document.createElement("h4");
-        para.innerHTML = 'Coronavirus (COVID-19): ';
-        document.getElementById('coronavirus').appendChild(para);
-        document.getElementById('coronavirus').appendChild(makeUL(options[1]));
-        var para = document.createElement("h4");
-        para.innerHTML = '- Δρ. Απόστολος Ζέρβας';
-        document.getElementById('coronavirus').appendChild(para);
-
-        var data = [
-          {
-            x: x_total,
-            y: y_total,
-            name: 'Συνολικά κρούσματα',
-            type: 'scatter',
-            mode: "lines",
-          },
-          {
-            x: x_total,
-            y: y_total_deaths,
-            name: 'Συνολικοί θανόντες',
-            type: 'scatter',
-            mode: "lines",
-          },
-          {
-            x: x_cases,
-            y: y_cases,
-            name: 'Κρούσματα ανά ημέρα',
-            type: 'bar',
-            mode: "lines",
-          },
-          {
-            x: x_recovered,
-            y: y_recovered,
-            name: 'Έχουν αναρρώσει',
-            type: 'scatter',
-            mode: "lines",
-          },
-          {
-            x: x_hospitalized,
-            y: y_hospitalized,
-            name: 'Νοσηλεύονται',
-            type: 'scatter',
-            mode: "lines",
-          },
-          {
-            x: x_deaths,
-            y: y_deaths,
-            name: 'Θανόντες ανά ημέρα',
-            type: 'bar',
-            mode: "lines",
-          }
-        ];
-        var layout = {
-            width: window.innerWidth-250,
-            height: 600,
-            margin: {
-              l: 50,
-              r: 50,
-              b: 100,
-              t: 80,
-              pad: 4
-            },
-            //barmode: 'stack',
-            title: {
-              text: "Γραφική απεικόνιση δεδομένων "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
-              font: {
-                size: 20
-              }
-            },
-            yaxis: {
-              title: 'Αριθμός ατόμων'
-            },
-            images: [{
-              name: 'watermark_1',
-              source: "http://83.212.112.51/coronavirusmap/logo.png",
-              xref: "paper",
-              yref: "paper",
-              x: 0.4,//0.4
-              y: 0.8,//0.9
-              sizex: 0.5,//0.7
-              sizey: 0.5,//0.7
-              // sizing: "stretch",
-              opacity: 0.05,
-              layer: "below"
-            }],
-            legend: {
-              x: 0,
-              xanchor: 'left',
-              y: 1
-            }
-        };
-
-        Plotly.newPlot('plot', data, layout, {staticPlot: false});
-
-        var data = [
-          {
-            x: x_total,
-            y: growth_total,
-            name: 'Καθημερινή ποσοστιαία αύξηση total',
-            type: 'scatter',
-            mode: "lines",
-          },
-          {
-            x: x_total,
-            y: growth_cases,
-            name: 'Καθημερινή ποσοστιαία αύξηση cases',
-            type: 'scatter',
-            mode: "lines",
-          },
-          {
-            x: x_total,
-            y: growth_deaths,
-            name: 'Καθημερινή ποσοστιαία αύξηση deaths',
-            type: 'scatter',
-            mode: "lines",
-          }
-        ];
-        var layout = {
-            width: window.innerWidth-250,
-            height: 600,
-            margin: {
-              l: 50,
-              r: 50,
-              b: 50,
-              t: 80,
-              pad: 4
-            },
-            //barmode: 'stack',
-            title: {
-              text: "Ποσοστιαίες τάσεις κρουσμάτων και θανάτων "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
-              font: {
-                size: 20
-              }
-            },
-            yaxis:  {
-              title: ' (%) αύξησης',
-              range: [-100, 500]
-            },
-            images: [{
-              name: 'watermark_1',
-              source: "http://83.212.112.51/coronavirusmap/logo.png",
-              xref: "paper",
-              yref: "paper",
-              x: 0.4,//0.4
-              y: 0.8,//0.9
-              sizex: 0.5,//0.7
-              sizey: 0.5,//0.7
-              // sizing: "stretch",
-              opacity: 0.05,
-              layer: "below"
-            }],
-            legend: {
-              x: 0,
-              xanchor: 'left',
-              y: 1
-            }
-        };
-
-        Plotly.newPlot('plot2', data, layout, {staticPlot: false});
-
-        var greek_pop = 10423054;
-        var usa_pop = 331002651;
-        var germ_pop = 83783942;
-        var spain_poo = 46754778;
-        var italy_pop = 60461826;
-        var france_pop = 65273511;
-        var uk_pop = 67886011;
-        var russia_pop = 145934462;
-        var cz_pop = 10708981;
-        var romania_pop = 19237691;
-        var ukraine_pop = 43733762;
-        var poland_pop = 37846611;
-
-        var greece_expenditure = 2223;
-        var usa_expenditure = 9892;
-        var germany_expenditure = 5551;
-        var italy_expenditure = 3391;
-        var france_expenditure = 4600;
-        var uk_expenditure = 4192;
-        var russia_expenditure = 1329;
-        var cz_expenditure = 2544;
-        var romania_expenditure = 1152;
-        var ukraine_expenditure = 2662;
-        var poland_expenditure = 1798;
-
-        var greece_ratio = (((virusData["GR"].total_deaths  / virusData["GR"].total_cases))) * 100;
-        var usa_ratio = (((virusData["US"].total_deaths  / virusData["US"].total_cases ))) * 100;
-        var germany_ratio = (((virusData["DE"].total_deaths  / virusData["DE"].total_cases ))) * 100;
-        var spain_ratio = (virusData["ES"].total_deaths  / virusData["ES"].total_cases ) * 100;
-        var italy_ratio = (((virusData["IT"].total_deaths  / virusData["IT"].total_cases ))) * 100;
-        var france_ratio = (((virusData["FR"].total_deaths  / virusData["FR"].total_cases ))) * 100;
-        var uk_ratio = (((virusData["GB"].total_deaths  / virusData["GB"].total_cases ))) * 100;
-        var russia_ratio = (((virusData["RU"].total_deaths  / virusData["RU"].total_cases ))) * 100;
-        var cz_ratio = (((virusData["CZ"].total_deaths  / virusData["CZ"].total_cases ))) * 100;
-        var romania_ratio = (((virusData["RO"].total_deaths  / virusData["RO"].total_cases ))) * 100;
-        var ukraine_ratio = (((virusData["UA"].total_deaths  / virusData["UA"].total_cases ))) * 100;
-        var poland_ratio = (((virusData["PL"].total_deaths  / virusData["PL"].total_cases ))) * 100;
-
-        var data = [
-            {
-              x: ['Ελλάδα','ΗΠΑ','Γερμανία','Ισπανία','Ιταλία','Γαλλία','Αγγλία','Ρωσία','Τσεχία','Ρουμανία','Ουκρανία','Πολωνία'],
-              y: [greece_ratio,usa_ratio,germany_ratio,spain_ratio,italy_ratio,france_ratio,uk_ratio,russia_ratio,cz_ratio,romania_ratio,ukraine_ratio,poland_ratio],
-              type: 'bar',
-              text: [(greece_ratio).toFixed(1)+"%",(usa_ratio).toFixed(1)+"%",(germany_ratio).toFixed(1)+"%",(spain_ratio).toFixed(1)+"%",(italy_ratio).toFixed(1)+"%",(france_ratio).toFixed(1)+"%",(uk_ratio).toFixed(1)+"%",(russia_ratio).toFixed(1)+"%",(cz_ratio).toFixed(1)+"%",(romania_ratio).toFixed(1)+"%",(ukraine_ratio).toFixed(1)+"%",(poland_ratio).toFixed(1)+"%"].map(String),
-              textposition: 'auto',
-              hoverinfo: 'none'
-            }
-
-          ];
-        var layout = {
-              width: window.innerWidth-250,
-              height: 400,
-              margin: {
-                l: 50,
-                r: 50,
-                b: 80,
-                t: 100,
-                pad: 4
-              },
-              title: {
-                text: "Σύγκριση θνησιμότητας ανά χώρα " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
-                font: {
-                  size: 20
-                }
-              },
-              xaxis: {
-                tickangle: -45
-              },
-              yaxis: {
-                title: ' Ποσοστό θνησιμότητας (%) '
-              },
-              images: [{
-                name: 'watermark_1',
-                source: "http://83.212.112.51/coronavirusmap/logo.png",
-                xref: "paper",
-                yref: "paper",
-                x: 0.4,//0.4
-                y: 1.0,//0.9
-                sizex: 0.7,//0.7
-                sizey: 0.7,//0.7
-                // sizing: "stretch",
-                opacity: 0.05,
-                layer: "below"
-              }]
-        };
-
-        Plotly.newPlot('compPlot4', data, layout);
-
-        greece_ratio =  (virusData["GR"].total_recovered *100 / virusData["GR"].total_cases);
-        usa_ratio = (virusData["US"].total_recovered *100 / virusData["US"].total_cases);
-        germany_ratio = (virusData["DE"].total_recovered *100 / virusData["DE"].total_cases);
-        spain_ratio = (virusData["ES"].total_recovered *100 / virusData["ES"].total_cases);
-        italy_ratio = (virusData["IT"].total_recovered *100 / virusData["IT"].total_cases);
-        france_ratio = (virusData["FR"].total_recovered *100 / virusData["FR"].total_cases);
-        uk_ratio = (virusData["GB"].total_recovered *100 / virusData["GB"].total_cases);
-        russia_ratio = (virusData["RU"].total_recovered *100 / virusData["RU"].total_cases);
-        cz_ratio = (virusData["CZ"].total_recovered *100 / virusData["CZ"].total_cases);
-        romania_ratio = (virusData["RO"].total_recovered *100 / virusData["RO"].total_cases);
-        ukraine_ratio = (virusData["UA"].total_recovered *100 / virusData["UA"].total_cases);
-        poland_ratio = (virusData["PL"].total_recovered *100 / virusData["PL"].total_cases);
-
-        var data = [
-            {
-              x: [greece_expenditure,usa_expenditure,germany_expenditure,italy_expenditure,france_expenditure,uk_expenditure,russia_expenditure,cz_expenditure,romania_expenditure,ukraine_expenditure,poland_expenditure],
-              y: [greece_ratio,usa_ratio,germany_ratio,italy_ratio,france_ratio,uk_ratio,russia_ratio,cz_ratio,romania_ratio,ukraine_ratio,poland_ratio],
-              //y: [1/greece_ratio,1/usa_ratio,1/germany_ratio,1/italy_ratio,1/france_ratio,1/uk_ratio,1/russia_ratio,1/cz_ratio,1/romania_ratio,1/ukraine_ratio,1/poland_ratio],
-              mode: 'markers+text',
-              type: 'scatter',
-              textposition: 'auto',
-              hoverinfo: 'none',
-              text: ['Ελλάδα','ΗΠΑ','Γερμανία','Ιταλία','Γαλλία','Αγγλία','Ρωσία','Τσεχία','Ρουμανία','Ουκρανία','Πολωνία'],
-              textposition: 'top center',
-              marker: { size: 20 }
-            }
-
-          ];
-        var layout = {
-              width: window.innerWidth-250,
-              height: 600,
-              margin: {
-                l: 50,
-                r: 50,
-                b: 80,
-                t: 100,
-                pad: 4
-              },
-              title: {
-                text: "Απόδοση υγειονομικού συστήματος ανά χώρα "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
-                font: {
-                  size: 20
-                }
-              },
-              xaxis: {
-                title: 'Κατά κεφαλή δαπάνες για την υγεία (2016)'
-              },
-              yaxis: {
-                title: 'Ποσοστό ίασης (%)'
-              },
-              images: [{
-                name: 'watermark_1',
-                source: "http://83.212.112.51/coronavirusmap/logo.png",
-                xref: "paper",
-                yref: "paper",
-                x: 0.4,//0.4
-                y: 0.8,//0.9
-                sizex: 0.7,//0.7
-                sizey: 0.7,//0.7
-                // sizing: "stretch",
-                opacity: 0.05,
-                layer: "below"
-              }]
-        };
-
-        Plotly.newPlot('compPlot5', data, layout);
-
-        t_data = [];
-        var gr = 0;
-        for (key in virusData) {
-          if (virusData.hasOwnProperty(key)){
-            if(key=="GR"){
-              gr = parseInt(virusData[key].total_cases_per_mil, 10);
-            }
-            if(parseInt(virusData[key].total_cases_per_mil, 10)!=-99999){
-              t_data.push(parseInt(virusData[key].total_cases_per_mil, 10));
-            }
-          }
-        }
-
-        var status;
-        if(gr<getMean(t_data)) {
-          status = ("Η Ελλάδα είναι κάτω από το μέσο όρο");
-        } else {
-          status = ("Η Ελλάδα είναι πάνω από το μέσο όρο");
-        }
-
-        var trace = {
-            x: t_data,
-            type: 'histogram',
-            histnorm: 'percent'
-          };
-        var data = [trace];
-        var layout = {
-            width: window.innerWidth-250,
-            height: 500,
-            margin: {
-              l: 50,
-              r: 50,
-              b: 50,
-              t: 80,
-              pad: 4
-            },
-            //barmode: 'stack',
-            title: {
-              text: "Ιστόγραμμα κρουσμάτων των χωρών " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
-              font: {
-                size: 20
-              }
-            },
-            annotations: [{
-              text: "Μέση τιμή: "  + getMean(t_data).toFixed(2) + "<br>Διάμεσος: " + median(t_data).toFixed(2) + "<br>Τυπική απόκλιση: " + getSD(t_data).toFixed(2) + "<br>" + status,
-                font: {
-                size: 13,
-                color: 'rgb(116, 101, 130)',
-              },
-              showarrow: false,
-              align: 'center',
-              x: 0.5,
-              y: 1,
-              xref: 'paper',
-              yref: 'paper',
-            }],
-            xaxis: {
-              title: 'Κρούσματα ανά 1,000,000 πληθυσμού'
-            },
-            yaxis: {
-              title: 'Ποσοστό (%)'
-            },
-            images: [{
-              name: 'watermark_1',
-              source: "http://83.212.112.51/coronavirusmap/logo.png",
-              xref: "paper",
-              yref: "paper",
-              x: 0.4,//0.4
-              y: 0.8,//0.9
-              sizex: 0.7,//0.7
-              sizey: 0.7,//0.7
-              // sizing: "stretch",
-              opacity: 0.05,
-              layer: "below"
-            }],
-            legend: {
-              x: 0,
-              xanchor: 'left',
-              y: 1
-            }
-        };
-        Plotly.newPlot('plot3', data, layout);
-
-
-        weekly_data1=weeklyGR1();
-        weekly_data2=weeklyGR2();
-        static__clinical_data1=[5,15,40,92,139,158,148,147,102,93,50,35,28,18,10,5,4,1,2,2,1]; //lab only
-        static_data1=[32,49,45,52,72,62,92,81,63,49,39,40,28,22,9,10,7,5,12,2,3];
-        error = [13,20,15,14,15,25,28,19,17,12,14,11,9,8,5,5,4,4,5,2,2];
-        static_data2=[0,3,3,14,19,17,17,17,20,8,3,5,3,5,6,4,1,4,2,2]; //deaths proved only
-
-
-        var data = [
-          {
-            y: weekly_data1,
-            name: 'COVID-19 cases',
-            type: 'bar'
-          },
-          {
-            y: static_data1.map(x => (x*10434536) /1000),
-            name: 'Common Infuenza cases',
-            type: 'bar',
-            error_y: {
-              type: 'data',
-              array: error.map(x => (x*10434536) /1000),
-              visible: true
-            }
-          },
-          {
-            y: weekly_data2,
-            name: 'COVID-19 deaths',
-            type: 'bar',
-            xaxis: 'x2',
-            yaxis: 'y2'
-          },
-          {
-            y: static_data2,
-            name: 'Common Infuenza deaths',
-            type: 'bar',
-            error_y: {
-              type: 'data',
-              array: static_data2.map(x => x * 6.96), // calculate actual ... 696% more error
-              arrayminus: static_data2.map(x => x * 0),
-              visible: true
-            },
-            xaxis: 'x2',
-            yaxis: 'y2'
-          }
-        ];
-        var layout = {
-            width: window.innerWidth-250,
-            height: 600,
-            margin: {
-              l: 50,
-              r: 50,
-              b: 50,
-              t: 230,
-              pad: 4
-            },
-            //barmode: 'stack',
-            title: {
-              text: "Σύγκριση κορονοϊού (2020) με κοινή γρίπη (2019) "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear()+"",
-              font: {
-                size: 20
-              }
-            },
-            xaxis: {
-              title: 'Εβδομάδα'
-            },
-            xaxis2: {
-              title: 'Εβδομάδα'
-            },
-            yaxis:  {
-              title: 'Αρθιμός ανθρώπων',
-              //range: [0, 2000000]
-            },
-            yaxis2:  {
-              title: 'Αρθιμός ανθρώπων',
-              //range: [0, 300]
-            },
-            images: [{
-              name: 'watermark_1',
-              source: "http://83.212.112.51/coronavirusmap/logo.png",
-              xref: "paper",
-              yref: "paper",
-              x: 0.4,//0.4
-              y: 0.8,//0.9
-              sizex: 0.7,//0.7
-              sizey: 0.7,//0.7
-              // sizing: "stretch",
-              opacity: 0.05,
-              layer: "below"
-            }],
-            legend: {
-              x: 0,
-              xanchor: 'left',
-              y: 1
-            },
-            annotations: [{
-              text: "Αριστερά: Εβδομαδιαία εκτίμηση αριθμού κρουσμάτων γριπώδους συνδρομής (με ενσωμάτωση σφάλματος*) έναντι κρουσμάτων COVID-19<br>Δεξιά: Αριθμός θανάτων (σε ΜΕΘ & εκτός ΜΕΘ) ανά εβδομάδα, σε ασθενείς με εργαστηριακά επιβεβαιωμένη γρίπη (με ενσωμάτωση σφάλματος**) έναντι αριθμού θανάτων ανά εβδομάδα λόγω COVID-19<br><br>*Το σφάλμα προσδιορίζεται από την ετήσια έκθεση του ΕΟΔΥ<br>**Το σφάλμα προσδιορίζεται ως εξής: 1071 εκτιμώμενοι θάνατοι / 154 θάνατοι από εργαστηριακά επιβεβαιωμένη γρίπη = 696% προσαύξηση σφάλματος",
-                font: {
-                size: 13,
-                color: 'rgb(116, 101, 130)'
-              },
-              showarrow: false,
-              align: 'center',
-              x: 0.5,
-              //y: 1,
-
-              y: 1,
-              yanchor: 'bottom',
-
-              xref: 'paper',
-              yref: 'paper',
-            }],
-            grid: {rows: 1, columns: 2, pattern: 'independent'}
-        };
-
-        Plotly.newPlot('plot4', data, layout, {staticPlot: false});
-
-
-        test();
+        drawGrData();
+        drawInfo();
+        createPlots();
+        doBeforeShow();
         showPage();
 
-        document.getElementById("krousmata").innerHTML=virusData["GR"].total_cases;
-        document.getElementById("thanontes").innerHTML=virusData["GR"].total_deaths;
-        document.getElementById("anarrosantes").innerHTML=virusData["GR"].total_recovered;
-
-        document.getElementById("krousmata_all").innerHTML=world.total_cases;
-        document.getElementById("thanontes_all").innerHTML=world.total_deaths;
-        document.getElementById("anarrosantes_all").innerHTML=world.total_recovered;
-
-                  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                   document.getElementsByClassName(".jvectormap-zoomin")[0].style.lineHeight = "80px";
-                   document.getElementsByClassName(".jvectormap-zoomout")[0].style.lineHeight = "80px";
-
-                    document.getElementsByClassName(".jvectormap-zoomin")[0].style.width = "80px";
-                    document.getElementsByClassName(".jvectormap-zoomout")[0].style.width = "80px";
-
-                     document.getElementsByClassName(".jvectormap-zoomin")[0].style.height = "80px";
-                     document.getElementsByClassName(".jvectormap-zoomout")[0].style.height = "80px";
-
-                      document.getElementsByClassName(".jvectormap-zoomin")[0].style.top = "10px";
-                      document.getElementsByClassName(".jvectormap-zoomout")[0].style.top = "120px";
-
-                      document.getElementsByClassName(".jvectormap-zoomout")[0].style.fontSize = "x-large";
-                  }
       })
     });
 
   </script>
 
-  <script>
-  function test(){
-
-
-  var frames = [];
-
-
-    weekly_data = [];
-    total_data = [];
-    dates = [];
-
-    //init array
-    for(var i=0; i<y_cases.length; i++){
-      weekly_data.push(0);
-      total_data.push(0);
-      dates.push(x_total[i]);
-    }
-    //moving avg
-    for(var i=0; i<weekly_data.length; i++){
-      //alert(weekly_data[i]);
-      /*f(i%7==0){
-        weekly_data[i]=y_cases[i];
-      } else {
-        weekly_data[i]=weekly_data[i-1]+y_cases[i];
-      }*/
-      for(var d=0; d<4; d++){
-        weekly_data[i] += y_cases[i+3-d];
-        total_data[i] += y_total[i+3-d];
-      }
-      for(var d=0; d<3; d++){
-        weekly_data[i] += y_cases[i+d-3];
-        total_data[i] += y_total[i+d-3];
-      }
-      weekly_data[i] = parseInt(weekly_data[i]/7,10);
-      total_data[i] = parseInt(total_data[i]/7,10);
-    }
-
-  // LLS
-  var s1 =0;
-  var s2 =0;
-  var s3 =0;
-  var s4 =0;
-  var n =total_data.length-7;
-   //for (var i=3; i<total_data.length-4; i++){alert(total_data[i]);}
-   for (var i=3;i<total_data.length-4; i++){
-     //if(!isNaN(total_data[i]) && !isNaN(weekly_data[i])){
-       s1 += (total_data[i]*weekly_data[i]);
-       s2 += total_data[i];
-       s3 += weekly_data[i];
-       s4 += Math.pow(total_data[i],2);
-     //}
-   }
-   m = ( (n*s1) - (s2*s3) ) / (n*s4 - Math.pow(s2,2)) ; // m festivalscope
-   c = weekly_data[10]-m*total_data[10]; //y-intercept
-   //y = m*x+c
-
-   //RMSE
-   var rmse = 0
-   for (var i=3; i<n-4; i++){
-     var y_pred = c + m * total_data[i];
-     rmse += Math.pow((weekly_data[i] - y_pred),2);
-   }
-   rmse = Math.sqrt(rmse/n);
-
-
-   var linex =[];
-   var liney =[];
-    var n = y_total.length;
-    for (var i = 0; i < n; i++) {
-      liney.push(m*total_data[i]+c);
-      linex.push(total_data[i]);
-    }
-
-    var n = y_total.length;
-    for (var i = 0; i < n; i++) {
-      frames[i] = {data: [{x: [], y: [], text: []},{x: [], y: [], text: []}]}
-
-      frames[i].data[0].x = total_data.slice(0, i+1);
-      frames[i].data[0].y = weekly_data.slice(0, i+1);
-      frames[i].data[0].text = dates.slice(0, i+1);
-
-      frames[i].data[1].x = linex.slice(0, i+1);
-      frames[i].data[1].y = liney.slice(0, i+1);
-    }
-    var trace1 = {
-      type: "scatter",
-      mode: "lines",
-      name: 'Greece',
-      //fill: 'tozeroy',
-      //fill: 'tonexty',
-      x: frames[0].data[0].x,
-      y: frames[0].data[0].y,
-      //text: frames[1].data[0].text,
-      line: {color: 'grey'}
-    };
-    var trace2 = {
-      type: 'scatter',
-      mode: "lines",
-      name: 'Linear Least Squares Regression Fitting',
-      fill: 'tonexty',
-      x: frames[0].data[1].x,
-      y: frames[0].data[1].y,
-      //text: frames[1].data[0].text,
-      line: {color: 'red'}
-    };
-    /*var trace2 = {
-      type: "scatter",
-      mode: "lines",
-      name: 'AAPL High',
-      x: table[0],
-      y: table[1],
-      //text: frames[1].data[0].text,
-      line: {color: 'red'}
-    };*/
-    var data = [trace1, trace2];
-
-/*
-    var sliderSteps = [];
-    for (i = 0; i < x_total.length; i++) {
-      sliderSteps.push({
-        method: 'animate',
-        label: x_total[i],
-        args: [[x_total[i]], {
-          mode: 'immediate',
-          transition: {duration: 300},
-          frame: {duration: 300, redraw: false},
-        }]
-      });
-    }*/
-
-  var layout = {
-    title: 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Κλικ στο έναρξη!)',
-    font: {
-      size: 14
-    },
-    margin: { t: 150, r: 55, l: 55, b: 50 },
-    height: 600,
-    width: 1100,
-    xaxis: {
-      title: 'Κινούμενος εβδομαδιαίος μέσος όρος συνολικών κρουσμάτων',
-      //type: 'log',
-      //range: [0,4]
-      range: [0,1800]
-      //autorange: true
-      //range: [frames[n-1].data[0].x[0],
-      //      frames[n-1].data[0].x[n-1]],
-      //      type: 'lol'
-    },
-    yaxis: {
-      //range: [-1,2],
-      title: 'Κινούμενος εβδομαδιαίος μέσος όρος νέων κρουσμάτων',
-      range: [0,120],
-      //type: 'log',
-      //autorange: true
-    },
-    annotations: [{
-      text: "RMSE: "+rmse.toFixed(2),
-        font: {
-        size: 13,
-        color: 'rgb(116, 101, 130)',
-      },
-      showarrow: false,
-      align: 'center',
-      x: 0.5,
-      y: 1,
-      xref: 'paper',
-      yref: 'paper',
-    }],
-    //hovermode: 'closest',
-    images: [{
-      name: 'watermark_1',
-      source: "http://83.212.112.51/coronavirusmap/logo.png",
-      xref: "paper",
-      yref: "paper",
-      x: 0.4,//0.4
-      y: 0.8,//0.9
-      sizex: 0.7,//0.7
-      sizey: 0.7,//0.7
-      // sizing: "stretch",
-      opacity: 0.05,
-      layer: "below"
-    }],
-    legend: {
-      orientation: 'h',
-      x: 0.5,
-      y: 1.2,
-      xanchor: 'center'
-    },
-    updatemenus: [
-      {
-        buttons: [{
-        method: "animate",
-        args: [null, {
-          fromcurrent: true,
-          transition: {
-            duration: 0,
-          },
-          frame: {
-            duration: 100,
-            redraw: false
-          }
-        }],
-        label: "Έναρξη"
-      }, {
-        method: "animate",
-        args: [
-          [null],
-          {
-            mode: "immediate",
-            transition: {
-              duration: 0
-            },
-            frame: {
-              duration: 0,
-              redraw: false
-            }
-          }
-        ],
-        label: "Παύση"
-      }],
-        x: 0.5,
-        y: 0,
-        yanchor: "top",
-        xanchor: "center",
-        showactive: false,
-        direction: "left",
-        type: "buttons",
-        pad: {"t": 87, "r": 10},
-      },
-      {
-      buttons: [{
-          args: [{'visible': [true, true]},
-                       {'title': 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Γραμμική κλίμακα)',
-                        'xaxis': {'type': 'linear'},
-                        'yaxis': {'type': 'linear'}
-                      }
-                      ],
-          //args: ['type', 'linear'],
-          label:'Linear',
-          method:'update'
-      },
-      {
-          args: [{'visible': [true, true]},
-                       {'title': 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Λογαριθμική κλίμακα)',
-                        'xaxis': {'type': 'log'},
-                        'yaxis': {'type': 'log'}
-                      }
-                      ],
-          //args: ['type', 'log'],
-          label: 'Log',
-          method: 'update'
-      }],
-      direction: 'down',
-          pad: {'r': 10, 't': 10},
-          showactive: true,
-          type: 'dropdown',
-          x: 0.78,
-          xanchor: 'left',
-          y: 1.2,
-          yanchor: 'top'
-
-      }]
-    /*
-    sliders: [{
-      pad: {l: 130, t: 55},
-      currentvalue: {
-        visible: true,
-        prefix: 'Year:',
-        xanchor: 'right',
-        font: {size: 20, color: '#666'}
-      },
-      steps: sliderSteps
-    }]*/
-  };
-
-  Plotly.newPlot('greeceTrend', data, layout).then(function() {
-      Plotly.addFrames('greeceTrend', frames);
-    });
-
-
-}
-</script>
-    <!--div align = "center" id = "box">
-      <label class = "switch">
-      <input id="toggle" type = "checkbox" onclick="toggle()">
-        <div class = "slider round">
-          <div style="color: white; position: absolute; left:-110px; top:5px; z-index:1;">Παγκόσμιος Χάρτης</div>
-          <div style="color: white; position: absolute; right:-90px; top:5px; z-index:1;">Χάρτης Ελλάδος</div>
-        </div>
-      </div>
-    </div-->
 
   <script>
   // FUNCTIONS
@@ -5384,293 +4534,894 @@
       return [numbers[0], numbers[numbers.length - 1]];
   }
 
-
-  function drawTable() {
-          // get the reference for the body
-          var div = document.getElementById('greek-data');
-
-/*
-          var tbl = document.createElement("table");
-          tbl.style.width = "60%";
-          tbl.style.marginLeft = "20%";
-          tbl.style.marginRight = "20%";
-          var img = document.createElement("img");
-          img.src = "https://cdn.countryflags.com/thumbs/greece/flag-400.png";
-          img.style.height = '60px';
-          img.style.width = '120px';
-          var head = document.createElement("th");
-          head.appendChild(img);
-          tbl.appendChild(head);
-
-          var row = document.createElement("tr");
-          var cell = document.createElement("td");
-          var cellText = document.createTextNode( "Η Ελλάδα μπήκε στον παγκόσμιο χάρτη με τις χώρες που έχουν εντοπιστεί κρούσματα του κορωνοϊού την Τετάρτη (26/02), με το πρώτο επιβεβαιωμένο κρούσμα στη Θεσσαλονίκη." );
-          cell.appendChild(cellText);
-          row.appendChild(cell);
-          tbl.appendChild(row);
-
-          div.appendChild(tbl);
-
-          /*
-          var tbl = document.createElement("table");
-          var thead = document.createElement("thead");
-          var tbody = document.createElement("tbody");
-          var headRow = document.createElement("tr");
-
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Συνολικά κρούσματα"));
-          th.style.color = "Gray";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-
-          thead.appendChild(headRow);
-          tbl.appendChild(thead);
-          var tr = document.createElement("tr");
-
-          var td = document.createElement("td");
-          td.style.color = "Blue";
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          td.appendChild(document.createTextNode(virusData["GR"].total_cases));
-          tr.appendChild(td);
-          tbody.appendChild(tr);
-          tbl.appendChild(tbody);
-
-          div.appendChild(tbl);
-
-          var tbl = document.createElement("table");
-          var thead = document.createElement("thead");
-          var tbody = document.createElement("tbody");
-          var headRow = document.createElement("tr");
-
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Αναρρώσαντες"));
-          th.style.color = "Gray";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-
-          thead.appendChild(headRow);
-          tbl.appendChild(thead);
-          var tr = document.createElement("tr");
-
-          var td = document.createElement("td");
-          td.style.color = "Green";
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          var stats = parseInt(virusData["GR"].total_recovered, 10) * 100 / parseInt(virusData["GR"].total_cases, 10);
-          td.appendChild(document.createTextNode(virusData["GR"].total_recovered + " (" + stats.toFixed(2) + " %)"));
-          tr.appendChild(td);
-
-          tbody.appendChild(tr);
-          tbl.appendChild(tbody);
-
-          div.appendChild(tbl);
-
-
-          var tbl = document.createElement("table");
-          var thead = document.createElement("thead");
-          var tbody = document.createElement("tbody");
-          var headRow = document.createElement("tr");
-
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Σοβαρά περιστατικά"));
-          th.style.color = "Gray";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Ήπια περιστατικά"));
-          th.style.color = "Gray";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-
-          thead.appendChild(headRow);
-          tbl.appendChild(thead);
-          var tr = document.createElement("tr");
-
-          var td = document.createElement("td");
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          var stats = parseInt(virusData["GR"].serious_cases, 10) * 100 / parseInt(virusData["GR"].active_cases, 10);
-          td.appendChild(document.createTextNode(virusData["GR"].serious_cases + " (" + stats.toFixed(2) + " %)"));
-          tr.appendChild(td);
-          var td = document.createElement("td");
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          var mild_cases = parseInt(virusData["GR"].active_cases, 10) - parseInt(virusData["GR"].serious_cases, 10);
-          var stats = (mild_cases * 100) / parseInt(virusData["GR"].active_cases, 10);
-          td.appendChild(document.createTextNode(mild_cases + " (" + stats.toFixed(2) + " %)"));
-          tr.appendChild(td);
-
-          tbody.appendChild(tr);
-          tbl.appendChild(tbody);
-
-          div.appendChild(tbl);
-
-          var tbl = document.createElement("table");
-          var thead = document.createElement("thead");
-          var tbody = document.createElement("tbody");
-          var headRow = document.createElement("tr");
-
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Ενεργά κρούσματα"));
-          th.style.color = "Gray";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Νέα κρούσματα"));
-          th.style.color = "Gray";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-
-          thead.appendChild(headRow);
-          tbl.appendChild(thead);
-          var tr = document.createElement("tr");
-
-          var td = document.createElement("td");
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          td.appendChild(document.createTextNode(virusData["GR"].active_cases));
-          tr.appendChild(td);
-          var td = document.createElement("td");
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          td.appendChild(document.createTextNode(virusData["GR"].new_cases));
-          tr.appendChild(td);
-
-          tbody.appendChild(tr);
-          tbl.appendChild(tbody);
-
-          div.appendChild(tbl);
-
-          var tbl = document.createElement("table");
-          var thead = document.createElement("thead");
-          var tbody = document.createElement("tbody");
-          var headRow = document.createElement("tr");
-
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Συνολικές απώλειες"));
-          th.style.color = "Gray";
-          th.style.fontWeight = "900";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-          var th=document.createElement("th");
-          th.appendChild(document.createTextNode("Νέες απώλειες"));
-          th.style.color = "Gray";
-          th.style.fontWeight = "900";
-          th.style.fontSize = "large";
-          headRow.appendChild(th);
-
-          thead.appendChild(headRow);
-          tbl.appendChild(thead);
-          var tr = document.createElement("tr");
-
-          var td = document.createElement("td");
-          var stats = parseInt(virusData["GR"].total_deaths, 10) * 100 / parseInt(virusData["GR"].total_cases, 10);
-          td.style.color = "Red";
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          td.appendChild(document.createTextNode(virusData["GR"].total_deaths + " (" + stats.toFixed(2) + " %)"));
-          tr.appendChild(td);
-          var td = document.createElement("td");
-          td.style.color = "Red";
-          td.style.fontWeight = "900";
-          td.style.fontSize = "xx-large";
-          td.appendChild(document.createTextNode(virusData["GR"].new_deaths));
-          tr.appendChild(td);
-
-          tbody.appendChild(tr);
-          tbl.appendChild(tbody);
-
-          div.appendChild(tbl);
-          */
-
-          /*var gr_data = document.createElement("div");
-          var h = document.createElement("H2");
-          h.innerHTML = "Γραφική απεικόνιση δεδομένων";
-          gr_data.appendChild(h);
-          div.appendChild(gr_data);*/
-
-          var main_container = document.createElement("div");
-          main_container.id = "main-container";
-
-          //get yesterday position on array
-          var pos = -1;
-          var today = new Date();
-          var yesterday = new Date(today);
-          yesterday.setDate(today.getDate() - 1);
-          for(var i=0; i<x_total.length; i++){
-            if(x_total[i].getDate()==yesterday.getDate() && x_total[i].getMonth()==yesterday.getMonth() && x_total[i].getFullYear()==yesterday.getFullYear()){
-              pos = i;
-              break;
-            }
+  function createPlots(){
+    var data = [
+      {
+        x: x_total,
+        y: y_total,
+        name: 'Συνολικά κρούσματα',
+        type: 'scatter',
+        mode: "lines",
+      },
+      {
+        x: x_total,
+        y: y_total_deaths,
+        name: 'Συνολικοί θανόντες',
+        type: 'scatter',
+        mode: "lines",
+      },
+      {
+        x: x_cases,
+        y: y_cases,
+        name: 'Κρούσματα ανά ημέρα',
+        type: 'bar',
+        mode: "lines",
+      },
+      {
+        x: x_recovered,
+        y: y_recovered,
+        name: 'Έχουν αναρρώσει',
+        type: 'scatter',
+        mode: "lines",
+      },
+      {
+        x: x_hospitalized,
+        y: y_hospitalized,
+        name: 'Νοσηλεύονται',
+        type: 'scatter',
+        mode: "lines",
+      },
+      {
+        x: x_deaths,
+        y: y_deaths,
+        name: 'Θανόντες ανά ημέρα',
+        type: 'bar',
+        mode: "lines",
+      }
+    ];
+    var layout = {
+        width: window.innerWidth-250,
+        height: 600,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 100,
+          t: 80,
+          pad: 4
+        },
+        //barmode: 'stack',
+        title: {
+          text: "Γραφική απεικόνιση δεδομένων "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+          font: {
+            size: 20
           }
+        },
+        yaxis: {
+          title: 'Αριθμός ατόμων'
+        },
+        images: [{
+          name: 'watermark_1',
+          source: "http://83.212.112.51/coronavirusmap/logo.png",
+          xref: "paper",
+          yref: "paper",
+          x: 0.4,//0.4
+          y: 0.8,//0.9
+          sizex: 0.5,//0.7
+          sizey: 0.5,//0.7
+          // sizing: "stretch",
+          opacity: 0.05,
+          layer: "below"
+        }],
+        legend: {
+          x: 0,
+          xanchor: 'left',
+          y: 1
+        }
+    };
 
+    Plotly.newPlot('plot', data, layout, {staticPlot: false});
 
-          var div2 = document.createElement("div");
-          div2.id = "dataDiv";
-          div.appendChild(div2);
+    var data = [
+      {
+        x: x_total,
+        y: growth_total,
+        name: 'Καθημερινή ποσοστιαία αύξηση total',
+        type: 'scatter',
+        mode: "lines",
+      },
+      {
+        x: x_total,
+        y: growth_cases,
+        name: 'Καθημερινή ποσοστιαία αύξηση cases',
+        type: 'scatter',
+        mode: "lines",
+      },
+      {
+        x: x_total,
+        y: growth_deaths,
+        name: 'Καθημερινή ποσοστιαία αύξηση deaths',
+        type: 'scatter',
+        mode: "lines",
+      }
+    ];
+    var layout = {
+        width: window.innerWidth-250,
+        height: 600,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 80,
+          pad: 4
+        },
+        //barmode: 'stack',
+        title: {
+          text: "Ποσοστιαίες τάσεις κρουσμάτων και θανάτων "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+          font: {
+            size: 20
+          }
+        },
+        yaxis:  {
+          title: ' (%) αύξησης',
+          range: [-100, 500]
+        },
+        images: [{
+          name: 'watermark_1',
+          source: "http://83.212.112.51/coronavirusmap/logo.png",
+          xref: "paper",
+          yref: "paper",
+          x: 0.4,//0.4
+          y: 0.8,//0.9
+          sizex: 0.5,//0.7
+          sizey: 0.5,//0.7
+          // sizing: "stretch",
+          opacity: 0.05,
+          layer: "below"
+        }],
+        legend: {
+          x: 0,
+          xanchor: 'left',
+          y: 1
+        }
+    };
 
-          var reference1 = y_total[pos] // yesterday's reference
-          var reference2 = y_total_deaths[pos] // yesterday's reference
-          var layout = {
-            width:  (window.innerWidth-$(".tab").innerWidth()),
-            height: 700,
-            margin: { t: 100, r: 25, l: 25, b: 50 },
-            grid: { rows: 3, columns: 1, pattern: "independent" }
-          };
-          var data = [{
-            type: "indicator",
-            mode: "number+delta",
-            value: virusData["GR"].total_cases,
-            title: {
-              text:
-                "<span style='font-size:1.2em; color:lightblue'>Συνολικά κρούσματα</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
-            },
-            delta: { position: "right", reference: reference1/*, relative: true */},
-            domain: {row:0, column: 0}
+    Plotly.newPlot('plot2', data, layout, {staticPlot: false});
+
+    var greek_pop = 10423054;
+    var usa_pop = 331002651;
+    var germ_pop = 83783942;
+    var spain_poo = 46754778;
+    var italy_pop = 60461826;
+    var france_pop = 65273511;
+    var uk_pop = 67886011;
+    var russia_pop = 145934462;
+    var cz_pop = 10708981;
+    var romania_pop = 19237691;
+    var ukraine_pop = 43733762;
+    var poland_pop = 37846611;
+
+    var greece_expenditure = 2223;
+    var usa_expenditure = 9892;
+    var germany_expenditure = 5551;
+    var italy_expenditure = 3391;
+    var france_expenditure = 4600;
+    var uk_expenditure = 4192;
+    var russia_expenditure = 1329;
+    var cz_expenditure = 2544;
+    var romania_expenditure = 1152;
+    var ukraine_expenditure = 2662;
+    var poland_expenditure = 1798;
+
+    var greece_ratio = (((virusData["GR"].total_deaths  / virusData["GR"].total_cases))) * 100;
+    var usa_ratio = (((virusData["US"].total_deaths  / virusData["US"].total_cases ))) * 100;
+    var germany_ratio = (((virusData["DE"].total_deaths  / virusData["DE"].total_cases ))) * 100;
+    var spain_ratio = (virusData["ES"].total_deaths  / virusData["ES"].total_cases ) * 100;
+    var italy_ratio = (((virusData["IT"].total_deaths  / virusData["IT"].total_cases ))) * 100;
+    var france_ratio = (((virusData["FR"].total_deaths  / virusData["FR"].total_cases ))) * 100;
+    var uk_ratio = (((virusData["GB"].total_deaths  / virusData["GB"].total_cases ))) * 100;
+    var russia_ratio = (((virusData["RU"].total_deaths  / virusData["RU"].total_cases ))) * 100;
+    var cz_ratio = (((virusData["CZ"].total_deaths  / virusData["CZ"].total_cases ))) * 100;
+    var romania_ratio = (((virusData["RO"].total_deaths  / virusData["RO"].total_cases ))) * 100;
+    var ukraine_ratio = (((virusData["UA"].total_deaths  / virusData["UA"].total_cases ))) * 100;
+    var poland_ratio = (((virusData["PL"].total_deaths  / virusData["PL"].total_cases ))) * 100;
+
+    var data = [
+        {
+          x: ['Ελλάδα','ΗΠΑ','Γερμανία','Ισπανία','Ιταλία','Γαλλία','Αγγλία','Ρωσία','Τσεχία','Ρουμανία','Ουκρανία','Πολωνία'],
+          y: [greece_ratio,usa_ratio,germany_ratio,spain_ratio,italy_ratio,france_ratio,uk_ratio,russia_ratio,cz_ratio,romania_ratio,ukraine_ratio,poland_ratio],
+          type: 'bar',
+          text: [(greece_ratio).toFixed(1)+"%",(usa_ratio).toFixed(1)+"%",(germany_ratio).toFixed(1)+"%",(spain_ratio).toFixed(1)+"%",(italy_ratio).toFixed(1)+"%",(france_ratio).toFixed(1)+"%",(uk_ratio).toFixed(1)+"%",(russia_ratio).toFixed(1)+"%",(cz_ratio).toFixed(1)+"%",(romania_ratio).toFixed(1)+"%",(ukraine_ratio).toFixed(1)+"%",(poland_ratio).toFixed(1)+"%"].map(String),
+          textposition: 'auto',
+          hoverinfo: 'none'
+        }
+
+      ];
+    var layout = {
+          width: window.innerWidth-250,
+          height: 400,
+          margin: {
+            l: 50,
+            r: 50,
+            b: 80,
+            t: 100,
+            pad: 4
           },
-          {
-            type: "indicator",
-            mode: "number+delta",
-            value: virusData["GR"].total_deaths,
-            number: { suffix: " ("+ (virusData["GR"].total_deaths*100/virusData["GR"].total_cases).toFixed() + "%)"},
-            title: {
-              text:
-                "<span style='font-size:1.2em; color:red'>Θανόντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
-            },
-            delta: { position: "right", reference: reference2/*, relative: true */},
-            domain: {row:1, column: 0}
+          title: {
+            text: "Σύγκριση θνησιμότητας ανά χώρα " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+            font: {
+              size: 20
+            }
           },
-          {
-            type: "indicator",
-            mode: "number+delta",
-            value: virusData["GR"].total_recovered,
-            number: { suffix: " ("+ (virusData["GR"].total_recovered*100/virusData["GR"].total_cases).toFixed() + "%)"},
-            title: {
-              text:
-                "<span style='font-size:1.2em; color:green'>Αναρρώσαντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
-            },
-            delta: {position: "right"},
-            /*delta: { position: "top", reference: reference, relative: true },*/
-            domain: {row:2, column: 0}
+          xaxis: {
+            tickangle: -45
+          },
+          yaxis: {
+            title: ' Ποσοστό θνησιμότητας (%) '
+          },
+          images: [{
+            name: 'watermark_1',
+            source: "http://83.212.112.51/coronavirusmap/logo.png",
+            xref: "paper",
+            yref: "paper",
+            x: 0.4,//0.4
+            y: 1.0,//0.9
+            sizex: 0.7,//0.7
+            sizey: 0.7,//0.7
+            // sizing: "stretch",
+            opacity: 0.05,
+            layer: "below"
           }]
-          Plotly.newPlot('dataDiv', data, layout);
+    };
+
+    Plotly.newPlot('compPlot4', data, layout);
+
+    greece_ratio =  (virusData["GR"].total_recovered *100 / virusData["GR"].total_cases);
+    usa_ratio = (virusData["US"].total_recovered *100 / virusData["US"].total_cases);
+    germany_ratio = (virusData["DE"].total_recovered *100 / virusData["DE"].total_cases);
+    spain_ratio = (virusData["ES"].total_recovered *100 / virusData["ES"].total_cases);
+    italy_ratio = (virusData["IT"].total_recovered *100 / virusData["IT"].total_cases);
+    france_ratio = (virusData["FR"].total_recovered *100 / virusData["FR"].total_cases);
+    uk_ratio = (virusData["GB"].total_recovered *100 / virusData["GB"].total_cases);
+    russia_ratio = (virusData["RU"].total_recovered *100 / virusData["RU"].total_cases);
+    cz_ratio = (virusData["CZ"].total_recovered *100 / virusData["CZ"].total_cases);
+    romania_ratio = (virusData["RO"].total_recovered *100 / virusData["RO"].total_cases);
+    ukraine_ratio = (virusData["UA"].total_recovered *100 / virusData["UA"].total_cases);
+    poland_ratio = (virusData["PL"].total_recovered *100 / virusData["PL"].total_cases);
+
+    var data = [
+        {
+          x: [greece_expenditure,usa_expenditure,germany_expenditure,italy_expenditure,france_expenditure,uk_expenditure,russia_expenditure,cz_expenditure,romania_expenditure,ukraine_expenditure,poland_expenditure],
+          y: [greece_ratio,usa_ratio,germany_ratio,italy_ratio,france_ratio,uk_ratio,russia_ratio,cz_ratio,romania_ratio,ukraine_ratio,poland_ratio],
+          //y: [1/greece_ratio,1/usa_ratio,1/germany_ratio,1/italy_ratio,1/france_ratio,1/uk_ratio,1/russia_ratio,1/cz_ratio,1/romania_ratio,1/ukraine_ratio,1/poland_ratio],
+          mode: 'markers+text',
+          type: 'scatter',
+          textposition: 'auto',
+          hoverinfo: 'none',
+          text: ['Ελλάδα','ΗΠΑ','Γερμανία','Ιταλία','Γαλλία','Αγγλία','Ρωσία','Τσεχία','Ρουμανία','Ουκρανία','Πολωνία'],
+          textposition: 'top center',
+          marker: { size: 20 }
+        }
+
+      ];
+    var layout = {
+          width: window.innerWidth-250,
+          height: 600,
+          margin: {
+            l: 50,
+            r: 50,
+            b: 80,
+            t: 100,
+            pad: 4
+          },
+          title: {
+            text: "Απόδοση υγειονομικού συστήματος ανά χώρα "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+            font: {
+              size: 20
+            }
+          },
+          xaxis: {
+            title: 'Κατά κεφαλή δαπάνες για την υγεία (2016)'
+          },
+          yaxis: {
+            title: 'Ποσοστό ίασης (%)'
+          },
+          images: [{
+            name: 'watermark_1',
+            source: "http://83.212.112.51/coronavirusmap/logo.png",
+            xref: "paper",
+            yref: "paper",
+            x: 0.4,//0.4
+            y: 0.8,//0.9
+            sizex: 0.7,//0.7
+            sizey: 0.7,//0.7
+            // sizing: "stretch",
+            opacity: 0.05,
+            layer: "below"
+          }]
+    };
+
+    Plotly.newPlot('compPlot5', data, layout);
+
+    t_data = [];
+    var gr = 0;
+    for (key in virusData) {
+      if (virusData.hasOwnProperty(key)){
+        if(key=="GR"){
+          gr = parseInt(virusData[key].total_cases_per_mil, 10);
+        }
+        if(parseInt(virusData[key].total_cases_per_mil, 10)!=-99999){
+          t_data.push(parseInt(virusData[key].total_cases_per_mil, 10));
+        }
+      }
+    }
+
+    var status;
+    if( gr < getMean(t_data) ) {
+      status = ("Η Ελλάδα είναι κάτω από το μέσο όρο");
+    } else { status = ("Η Ελλάδα είναι πάνω από το μέσο όρο"); }
+
+    var trace = {
+        x: t_data,
+        type: 'histogram',
+        histnorm: 'percent'
+      };
+    var data = [trace];
+    var layout = {
+        width: window.innerWidth-250,
+        height: 500,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 80,
+          pad: 4
+        },
+        //barmode: 'stack',
+        title: {
+          text: "Ιστόγραμμα κρουσμάτων των χωρών " + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+          font: {
+            size: 20
+          }
+        },
+        annotations: [{
+          text: "Μέση τιμή: "  + getMean(t_data).toFixed(2) + "<br>Διάμεσος: " + median(t_data).toFixed(2) + "<br>Τυπική απόκλιση: " + getSD(t_data).toFixed(2) + "<br>" + status,
+            font: {
+            size: 13,
+            color: 'rgb(116, 101, 130)',
+          },
+          showarrow: false,
+          align: 'center',
+          x: 0.5,
+          y: 1,
+          xref: 'paper',
+          yref: 'paper',
+        }],
+        xaxis: {
+          title: 'Κρούσματα ανά 1,000,000 πληθυσμού'
+        },
+        yaxis: {
+          title: 'Ποσοστό (%)'
+        },
+        images: [{
+          name: 'watermark_1',
+          source: "http://83.212.112.51/coronavirusmap/logo.png",
+          xref: "paper",
+          yref: "paper",
+          x: 0.4,//0.4
+          y: 0.8,//0.9
+          sizex: 0.7,//0.7
+          sizey: 0.7,//0.7
+          // sizing: "stretch",
+          opacity: 0.05,
+          layer: "below"
+        }],
+        legend: {
+          x: 0,
+          xanchor: 'left',
+          y: 1
+        }
+    };
+    Plotly.newPlot('plot3', data, layout);
+
+    weekly_data1=weeklyGR1();
+    weekly_data2=weeklyGR2();
+    static__clinical_data1=[5,15,40,92,139,158,148,147,102,93,50,35,28,18,10,5,4,1,2,2,1]; //lab only
+    static_data1=[32,49,45,52,72,62,92,81,63,49,39,40,28,22,9,10,7,5,12,2,3];
+    error = [13,20,15,14,15,25,28,19,17,12,14,11,9,8,5,5,4,4,5,2,2];
+    static_data2=[0,3,3,14,19,17,17,17,20,8,3,5,3,5,6,4,1,4,2,2]; //deaths proved only
+
+    var data = [
+      {
+        y: weekly_data1,
+        name: 'COVID-19 cases',
+        type: 'bar'
+      },
+      {
+        y: static_data1.map(x => (x*10434536) /1000),
+        name: 'Common Infuenza cases',
+        type: 'bar',
+        error_y: {
+          type: 'data',
+          array: error.map(x => (x*10434536) /1000),
+          visible: true
+        }
+      },
+      {
+        y: weekly_data2,
+        name: 'COVID-19 deaths',
+        type: 'bar',
+        xaxis: 'x2',
+        yaxis: 'y2'
+      },
+      {
+        y: static_data2,
+        name: 'Common Infuenza deaths',
+        type: 'bar',
+        error_y: {
+          type: 'data',
+          array: static_data2.map(x => x * 6.96), // calculate actual ... 696% more error
+          arrayminus: static_data2.map(x => x * 0),
+          visible: true
+        },
+        xaxis: 'x2',
+        yaxis: 'y2'
+      }
+    ];
+    var layout = {
+        width: window.innerWidth-250,
+        height: 600,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 230,
+          pad: 4
+        },
+        //barmode: 'stack',
+        title: {
+          text: "Σύγκριση κορονοϊού (2020) με κοινή γρίπη (2019) "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear()+"",
+          font: {
+            size: 20
+          }
+        },
+        xaxis: {
+          title: 'Εβδομάδα'
+        },
+        xaxis2: {
+          title: 'Εβδομάδα'
+        },
+        yaxis:  {
+          title: 'Αρθιμός ανθρώπων',
+          //range: [0, 2000000]
+        },
+        yaxis2:  {
+          title: 'Αρθιμός ανθρώπων',
+          //range: [0, 300]
+        },
+        images: [{
+          name: 'watermark_1',
+          source: "http://83.212.112.51/coronavirusmap/logo.png",
+          xref: "paper",
+          yref: "paper",
+          x: 0.4,//0.4
+          y: 0.8,//0.9
+          sizex: 0.7,//0.7
+          sizey: 0.7,//0.7
+          // sizing: "stretch",
+          opacity: 0.05,
+          layer: "below"
+        }],
+        legend: {
+          x: 0,
+          xanchor: 'left',
+          y: 1
+        },
+        annotations: [{
+          text: "Αριστερά: Εβδομαδιαία εκτίμηση αριθμού κρουσμάτων γριπώδους συνδρομής (με ενσωμάτωση σφάλματος*) έναντι κρουσμάτων COVID-19<br>Δεξιά: Αριθμός θανάτων (σε ΜΕΘ & εκτός ΜΕΘ) ανά εβδομάδα, σε ασθενείς με εργαστηριακά επιβεβαιωμένη γρίπη (με ενσωμάτωση σφάλματος**) έναντι αριθμού θανάτων ανά εβδομάδα λόγω COVID-19<br><br>*Το σφάλμα προσδιορίζεται από την ετήσια έκθεση του ΕΟΔΥ<br>**Το σφάλμα προσδιορίζεται ως εξής: 1071 εκτιμώμενοι θάνατοι / 154 θάνατοι από εργαστηριακά επιβεβαιωμένη γρίπη = 696% προσαύξηση σφάλματος",
+            font: {
+            size: 13,
+            color: 'rgb(116, 101, 130)'
+          },
+          showarrow: false,
+          align: 'center',
+          x: 0.5,
+          //y: 1,
+
+          y: 1,
+          yanchor: 'bottom',
+
+          xref: 'paper',
+          yref: 'paper',
+        }],
+        grid: {rows: 1, columns: 2, pattern: 'independent'}
+    };
+
+    Plotly.newPlot('plot4', data, layout, {staticPlot: false});
+
+    var frames = [];
 
 
-          var plot_div = document.createElement("div");
-          plot_div.id = "plot";
-          div.appendChild(plot_div);
+      weekly_data = [];
+      total_data = [];
+      dates = [];
 
-          var plot_div = document.createElement("div");
-          plot_div.id = "plot2";
-          div.appendChild(plot_div);
+      //init array
+      for(var i=0; i<y_cases.length; i++){
+        weekly_data.push(0);
+        total_data.push(0);
+        dates.push(x_total[i]);
+      }
+      //moving avg
+      for(var i=0; i<weekly_data.length; i++){
+        //alert(weekly_data[i]);
+        /*f(i%7==0){
+          weekly_data[i]=y_cases[i];
+        } else {
+          weekly_data[i]=weekly_data[i-1]+y_cases[i];
+        }*/
+        for(var d=0; d<4; d++){
+          weekly_data[i] += y_cases[i+3-d];
+          total_data[i] += y_total[i+3-d];
+        }
+        for(var d=0; d<3; d++){
+          weekly_data[i] += y_cases[i+d-3];
+          total_data[i] += y_total[i+d-3];
+        }
+        weekly_data[i] = parseInt(weekly_data[i]/7,10);
+        total_data[i] = parseInt(total_data[i]/7,10);
+      }
 
-          var plot_div = document.createElement("div");
-          plot_div.id = "plot4";
-          div.appendChild(plot_div);
+    // LLS
+    var s1 =0;
+    var s2 =0;
+    var s3 =0;
+    var s4 =0;
+    var n =total_data.length-7;
+     //for (var i=3; i<total_data.length-4; i++){alert(total_data[i]);}
+     for (var i=3;i<total_data.length-4; i++){
+       //if(!isNaN(total_data[i]) && !isNaN(weekly_data[i])){
+         s1 += (total_data[i]*weekly_data[i]);
+         s2 += total_data[i];
+         s3 += weekly_data[i];
+         s4 += Math.pow(total_data[i],2);
+       //}
+     }
+     m = ( (n*s1) - (s2*s3) ) / (n*s4 - Math.pow(s2,2)) ; // m festivalscope
+     c = weekly_data[10]-m*total_data[10]; //y-intercept
+     //y = m*x+c
 
+     //RMSE
+     var rmse = 0
+     for (var i=3; i<n-4; i++){
+       var y_pred = c + m * total_data[i];
+       rmse += Math.pow((weekly_data[i] - y_pred),2);
+     }
+     rmse = Math.sqrt(rmse/n);
+
+
+     var linex =[];
+     var liney =[];
+      var n = y_total.length;
+      for (var i = 0; i < n; i++) {
+        liney.push(m*total_data[i]+c);
+        linex.push(total_data[i]);
+      }
+
+      var n = y_total.length;
+      for (var i = 0; i < n; i++) {
+        frames[i] = {data: [{x: [], y: [], text: []},{x: [], y: [], text: []}]}
+
+        frames[i].data[0].x = total_data.slice(0, i+1);
+        frames[i].data[0].y = weekly_data.slice(0, i+1);
+        frames[i].data[0].text = dates.slice(0, i+1);
+
+        frames[i].data[1].x = linex.slice(0, i+1);
+        frames[i].data[1].y = liney.slice(0, i+1);
+      }
+      var trace1 = {
+        type: "scatter",
+        mode: "lines",
+        name: 'Greece',
+        //fill: 'tozeroy',
+        //fill: 'tonexty',
+        x: frames[0].data[0].x,
+        y: frames[0].data[0].y,
+        //text: frames[1].data[0].text,
+        line: {color: 'grey'}
+      };
+      var trace2 = {
+        type: 'scatter',
+        mode: "lines",
+        name: 'Linear Least Squares Regression Fitting',
+        fill: 'tonexty',
+        x: frames[0].data[1].x,
+        y: frames[0].data[1].y,
+        //text: frames[1].data[0].text,
+        line: {color: 'red'}
+      };
+      /*var trace2 = {
+        type: "scatter",
+        mode: "lines",
+        name: 'AAPL High',
+        x: table[0],
+        y: table[1],
+        //text: frames[1].data[0].text,
+        line: {color: 'red'}
+      };*/
+      var data = [trace1, trace2];
+
+    var layout = {
+      title: 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Κλικ στο έναρξη!)',
+      font: {
+        size: 14
+      },
+      margin: { t: 150, r: 55, l: 55, b: 50 },
+      height: 600,
+      width: 1100,
+      xaxis: {
+        title: 'Κινούμενος εβδομαδιαίος μέσος όρος συνολικών κρουσμάτων',
+        //type: 'log',
+        //range: [0,4]
+        range: [0, virusData["GR"].total_cases]
+        //autorange: true
+        //range: [frames[n-1].data[0].x[0],
+        //      frames[n-1].data[0].x[n-1]],
+        //      type: 'lol'
+      },
+      yaxis: {
+        //range: [-1,2],
+        title: 'Κινούμενος εβδομαδιαίος μέσος όρος νέων κρουσμάτων',
+        range: [0,120],
+        //type: 'log',
+        //autorange: true
+      },
+      annotations: [{
+        text: "RMSE: "+rmse.toFixed(2),
+          font: {
+          size: 13,
+          color: 'rgb(116, 101, 130)',
+        },
+        showarrow: false,
+        align: 'center',
+        x: 0.5,
+        y: 1,
+        xref: 'paper',
+        yref: 'paper',
+      }],
+      //hovermode: 'closest',
+      images: [{
+        name: 'watermark_1',
+        source: "http://83.212.112.51/coronavirusmap/logo.png",
+        xref: "paper",
+        yref: "paper",
+        x: 0.4,//0.4
+        y: 0.8,//0.9
+        sizex: 0.7,//0.7
+        sizey: 0.7,//0.7
+        // sizing: "stretch",
+        opacity: 0.05,
+        layer: "below"
+      }],
+      legend: {
+        orientation: 'h',
+        x: 0.5,
+        y: 1.2,
+        xanchor: 'center'
+      },
+      updatemenus: [
+        {
+          buttons: [{
+          method: "animate",
+          args: [null, {
+            fromcurrent: true,
+            transition: {
+              duration: 0,
+            },
+            frame: {
+              duration: 100,
+              redraw: false
+            }
+          }],
+          label: "Έναρξη"
+        }, {
+          method: "animate",
+          args: [
+            [null],
+            {
+              mode: "immediate",
+              transition: {
+                duration: 0
+              },
+              frame: {
+                duration: 0,
+                redraw: false
+              }
+            }
+          ],
+          label: "Παύση"
+        }],
+          x: 0.5,
+          y: 0,
+          yanchor: "top",
+          xanchor: "center",
+          showactive: false,
+          direction: "left",
+          type: "buttons",
+          pad: {"t": 87, "r": 10},
+        },
+        {
+        buttons: [{
+            args: [{'visible': [true, true]},
+                         {'title': 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Γραμμική κλίμακα)',
+                          'xaxis': {'type': 'linear'},
+                          'yaxis': {'type': 'linear'}
+                        }
+                        ],
+            //args: ['type', 'linear'],
+            label:'Linear',
+            method:'update'
+        },
+        {
+            args: [{'visible': [true, true]},
+                         {'title': 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Λογαριθμική κλίμακα)',
+                          'xaxis': {'type': 'log'},
+                          'yaxis': {'type': 'log'}
+                        }
+                        ],
+            //args: ['type', 'log'],
+            label: 'Log',
+            method: 'update'
+        }],
+        direction: 'down',
+            pad: {'r': 10, 't': 10},
+            showactive: true,
+            type: 'dropdown',
+            x: 0.78,
+            xanchor: 'left',
+            y: 1.2,
+            yanchor: 'top'
+
+        }]
+    };
+
+    Plotly.newPlot('greeceTrend', data, layout).then(function() {
+      Plotly.addFrames('greeceTrend', frames);
+    });
 
   }
+
+  function doBeforeShow(){
+    document.getElementById("krousmata").innerHTML=virusData["GR"].total_cases;
+    document.getElementById("thanontes").innerHTML=virusData["GR"].total_deaths;
+    document.getElementById("anarrosantes").innerHTML=virusData["GR"].total_recovered;
+
+    document.getElementById("krousmata_all").innerHTML=world.total_cases;
+    document.getElementById("thanontes_all").innerHTML=world.total_deaths;
+    document.getElementById("anarrosantes_all").innerHTML=world.total_recovered;
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      document.getElementsByClassName(".jvectormap-zoomin")[0].style.lineHeight = "80px";
+      document.getElementsByClassName(".jvectormap-zoomout")[0].style.lineHeight = "80px";
+
+      document.getElementsByClassName(".jvectormap-zoomin")[0].style.width = "80px";
+      document.getElementsByClassName(".jvectormap-zoomout")[0].style.width = "80px";
+
+      document.getElementsByClassName(".jvectormap-zoomin")[0].style.height = "80px";
+      document.getElementsByClassName(".jvectormap-zoomout")[0].style.height = "80px";
+
+      document.getElementsByClassName(".jvectormap-zoomin")[0].style.top = "10px";
+      document.getElementsByClassName(".jvectormap-zoomout")[0].style.top = "120px";
+
+      document.getElementsByClassName(".jvectormap-zoomout")[0].style.fontSize = "x-large";
+    }
+  }
+
+  function drawGrData() {
+      // get the reference for the body
+      var div = document.getElementById('greek-data');
+
+      var main_container = document.createElement("div");
+      main_container.id = "main-container";
+
+      //get yesterday position on array
+      var pos = -1;
+      var today = new Date();
+      var yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+      for(var i=0; i<x_total.length; i++){
+        if(x_total[i].getDate()==yesterday.getDate() && x_total[i].getMonth()==yesterday.getMonth() && x_total[i].getFullYear()==yesterday.getFullYear()){
+          pos = i;
+          break;
+        }
+      }
+
+      var div2 = document.createElement("div");
+      div2.id = "dataDiv";
+      div.appendChild(div2);
+
+      var reference1 = y_total[pos] // yesterday's reference
+      var reference2 = y_total_deaths[pos] // yesterday's reference
+      var layout = {
+        width:  (window.innerWidth-$(".tab").innerWidth()),
+        height: 700,
+        margin: { t: 100, r: 25, l: 25, b: 50 },
+        grid: { rows: 3, columns: 1, pattern: "independent" }
+      };
+      var data = [{
+        type: "indicator",
+        mode: "number+delta",
+        value: virusData["GR"].total_cases,
+        title: {
+          text:
+            "<span style='font-size:1.2em; color:lightblue'>Συνολικά κρούσματα</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+        },
+        delta: { position: "right", reference: reference1/*, relative: true */},
+        domain: {row:0, column: 0}
+      },
+      {
+        type: "indicator",
+        mode: "number+delta",
+        value: virusData["GR"].total_deaths,
+        number: { suffix: " ("+ (virusData["GR"].total_deaths*100/virusData["GR"].total_cases).toFixed() + "%)"},
+        title: {
+          text:
+            "<span style='font-size:1.2em; color:red'>Θανόντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+        },
+        delta: { position: "right", reference: reference2/*, relative: true */},
+        domain: {row:1, column: 0}
+      },
+      {
+        type: "indicator",
+        mode: "number+delta",
+        value: virusData["GR"].total_recovered,
+        number: { suffix: " ("+ (virusData["GR"].total_recovered*100/virusData["GR"].total_cases).toFixed() + "%)"},
+        title: {
+          text:
+            "<span style='font-size:1.2em; color:green'>Αναρρώσαντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+        },
+        delta: {position: "right"},
+        /*delta: { position: "top", reference: reference, relative: true },*/
+        domain: {row:2, column: 0}
+      }]
+      Plotly.newPlot('dataDiv', data, layout);
+
+      var plot_div = document.createElement("div");
+      plot_div.id = "plot";
+      div.appendChild(plot_div);
+
+      var plot_div = document.createElement("div");
+      plot_div.id = "plot2";
+      div.appendChild(plot_div);
+
+      var plot_div = document.createElement("div");
+      plot_div.id = "plot4";
+      div.appendChild(plot_div);
+  }
+
+  function drawInfo() {
+    var options = [
+            set0 = ['#Μένουμε_σπίτι αποφεύγοντας τις άσκοπες μετακινήσεις','Αποφεύγουμε τις επαφές με ανθρώπους ( συγχρωτισμός ) και αντικείμενα','Αποφυγή επαφής με άτομα που έχουν συμπτώματα λοίμωξης του αναπνευστικού συστήματος','Εφαρμογή κανόνων υγιεινής με συχνό πλύσιμο των χεριών','Αν έχουμε συμπτώματα προσπαθούμε να απομονωθούμε ( καραντίνα ) και επικοινωνούμε με τον ιατρό μας','Όταν βήχουμε η φταρνιζόμαστε, φροντίζουμε να μην διασπείρουμε τα σταγονίδια καλύπτοντας το στόμα και την μύτη με τα χέρια μας ή με χαρτομάνδηλα','Αναβολή ταξιδιών και μαζικών εκδηλώσεων','Αποφυγή συγχρωτισμού και επισκέψεων σε χώρους υπηρεσιών υγείας','Εαν παρουσιάσουμε συμπτώματα, μένουμε σπίτι και επικοινωνούμε με τον θεράποντα ιατρό μας','Η χρήση μάσκας εμποδίζει την μετάδοση του ιού από τους ασθενείς σε υγιείς και πρέπει να χρησιμοποιείται από τους νοσούντες, τους επαγγελματίες υγείας και άτομα που φροντίζουν ασθενείς με κορωνοϊό','Απαιτείται πειθαρχία και συμμόρφωση με τα μέτρα που επιβλήθηκαν, όπως επίσης υπομονή και αισιοδοξία','Η υπερβολή, ο πανικός και η υστερία είναι κακοί σύμβουλοι και οδηγούν στην παράνοια'],
+            set1 = ['Πρόκειται για έναν ιό RNA που προήλθε από μετάλλαξη του κορωνοιού, ο οποίος προκάλεσε την επιδημία του 2003 με το σύνδρομο της οξείας αναπνευστικής ανεπάρκειας SARS ( Severe Acute Respiratory Syndrome )','Οι κορωνοϊοί αποτελούν ομάδα ιών που προκαλούν λοιμώξεις του αναπνευστικού συστήματος σε ανθρώπους και ζώα.','Το στέλεχος covid-19 εμφανίστηκε τον Δεκέμβριο του 2019 στην πόλη Wuhan της Κίνας και απομονώθηκε στις 9 Ιανουαρίου του 2020.','Στην περιοχή αυτή υπάρχουν πολλά εργαστήρια βιολογικών ερευνών.','Ο κορωνοϊός μεταδίδεται μέσω σταγονιδίων κατά την ομιλία - τον βήχα ή το πτάρνισμα','Ο χρόνος_επώασης, δηλαδή το διάστημα από την μόλυνση μέχρις την εμφάνιση των συμπτωμάτων, μπορεί να είναι 14 ημέρες. Συνήθως όμως ανέρχεται σε 5 ημέρες.','Τα συμπτώματα είναι ίδια με εκείνα του κοινού κρυολογήματος:','Πυρετός - καταβολή - μυαλγίες - καταρροή - άλγος στον φάρυγγα ( πονόλαιμος ) - βήχας και στις σοβαρές περιπτώσεις δυσκολία στην αναπνοή ( δύσπνοια ).','Οι περισσότεροι άνθρωποι που θα μολυνθούν θα παρουσιάσουν ήπια συμπτωματολογία ή δεν θα έχουν καμμία εκδήλωση ( ασυμπτωματικοί ).','Ιδιαίτερο κίνδυνο όταν νοσήσουν έχουν οι ευπαθείς ομάδες :','Ηλικιωμένοι άνω των 75 ετών','Άτομα με υποκείμενη νόσο , όπως υπέρταση - σακχαρώδη διαβήτη - πνευμονοπάθεια - ανοσοκαταστολή - καρδιαγγειακά νοσήματα - κακοήθειες και τέλος παχύσαρκοι.']
+        ];
+
+    var para = document.createElement("h4");
+    para.innerHTML = 'Τα μέτρα που λαμβάνουμε για την αποφυγή της μετάδοσης είναι: ';
+    document.getElementById('info').appendChild(para);
+    document.getElementById('info').appendChild(makeUL(options[0]));
+    var para = document.createElement("h4");
+    para.innerHTML = '- Δρ. Απόστολος Ζέρβας';
+    document.getElementById('info').appendChild(para);
+
+    var para = document.createElement("h4");
+    para.innerHTML = 'Coronavirus (COVID-19): ';
+    document.getElementById('coronavirus').appendChild(para);
+    document.getElementById('coronavirus').appendChild(makeUL(options[1]));
+    var para = document.createElement("h4");
+    para.innerHTML = '- Δρ. Απόστολος Ζέρβας';
+    document.getElementById('coronavirus').appendChild(para);
+
+  }
+
   function makeUL(array) {
       // Create the list element:
       var list = document.createElement('ul');
@@ -5731,38 +5482,8 @@
 
       return max;
   }
-/*
-  function getMaxActive(virusData){
-      var max=-1;
-      for (let key in virusData) {
-          if(parseInt(virusData[key].active_cases, 10) > max){
-              max = virusData[key].active_cases;
-          }
-      }
-      return max;
-  }
-  function getMaxRecovered(virusData){
-      var max=-1;
-      for (let key in virusData) {
-          if(parseInt(virusData[key].total_recovered, 10) > max){
-              max = virusData[key].total_recovered;
-          }
-      }
-      return max;
-  }
-  function getMaxDeaths(virusData){
-      var max=-1;
-      for (let key in virusData) {
-          if(parseInt(virusData[key].total_deaths, 10) > max){
-              max = virusData[key].total_deaths;
-          }
-      }
-      return max;
-  }
-*/
 
-  function ISO8601_week_no(dt)
-  {
+  function ISO8601_week_no(dt) {
      var tdt = new Date(dt.valueOf());
      var dayn = (dt.getDay() + 6) % 7;
      tdt.setDate(tdt.getDate() - dayn + 3);
@@ -5775,7 +5496,7 @@
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
   }
 
-  function weeklyGR1(){
+  function weeklyGR1() {
     weekly_data = []
     //init array
     for(var i=0; i<ISO8601_week_no(new Date()); i++){
@@ -5791,7 +5512,7 @@
     return weekly_data;
   }
 
-  function weeklyGR2(){
+  function weeklyGR2() {
     weekly_data = []
     //init array
     for(var i=0; i<ISO8601_week_no(new Date()); i++){

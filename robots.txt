@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://83.212.112.51/coronavirusmap/sitemap.xml
