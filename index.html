@@ -213,9 +213,21 @@
   </script>
   <div style="display:none;" id="contentDiv" class="animate-bottom">
 
-      <div id="world-map" class="tabcontent"></div>
-
+      <div id="world-map" class="tabcontent">
+        <div id="logo"><img src="logo.png" height="180" width="180" /></div>
+        <div id="infoi2" style="display: block;">
+          <span id="krousmata_all"></span> Κρούσματα<br>
+          <span id="anarrosantes_all"></span> Αναρρώσαντες<br>
+          <span id="thanontes_all"></span> Θανόντες<br>
+        </div>
+      </div>
       <div id="greek-map" class="tabcontent">
+        <div id="logo"><img src="logo.png" height="180" width="180" /></div>
+        <div id="infoi" style="display: block;">
+          <span id="krousmata"></span> Κρούσματα<br>
+          <span id="anarrosantes"></span> Αναρρώσαντες<br>
+          <span id="thanontes"></span> Θανόντες<br>
+      </div>
 
       </div>
       <div id="daily-plots" class="tabcontent" style="text-align: center;">
@@ -485,90 +497,90 @@
           <br>
           <div class="open" id="flip1">ΠΑΡΑΣΤΑΣΕΙΣ</div>
           <div class="box" id="panel1">
-            <a target="_blank" href="https://poreiatheatre.com/">✔️ΘΕΑΤΡΟ ΠΟΡΕΙΑ – Δωρεάν Παραστάσεις</a><br>
-            <a target="_blank" href="http://www.nt-archive.gr/theaters.aspx?company=10">✔️ΕΘΝΙΚΟ ΘΕΑΤΡΟ – Παιδικές Παραστάσεις</a><br>
-            <a target="_blank" href="https://www.thessalonikiartsandculture.gr/kosmos/art-salad/7-1-theatrikes-parastaseis-poy-mporeis-na-parakoloythiseis-apo-to-spiti/">✔️7+1 ΘΕΑΤΡΙΚΕΣ ΠΑΡΑΣΤΑΣΕΙΣ (που μπορείς να παρακολουθήσεις από το σπίτι)</a><br>
-            <a target="_blank" href="https://roadartist.blogspot.com/2020/03/12.html?m=1">✔️12 Θεατρικές παραστάσεις</a><br>
-            <a target="_blank" href="https://www.nationaltheatre.org.uk/at-home">🆕Εθνικό Θέατρο Αγγλίας</a><br>
-            <a target="_blank" href="https://e-didaskalia.blogspot.com/2020/03/karagkiozis.html?m=1">✔️Online θεατρικές παραστάσεις του ΚΑΡΑΓΚΙΟΖΗ</a><br>
-            <a target="_blank" href="https://www.infokids.gr/i-karmen-rouggeri-xarizei-sta-paidi/">✔️Το Βαλς με τα Παραμύθια! της Κάρμεν Ρουγκέρη</a><br>
-            <a target="_blank" href="https://www.elculture.gr/blog/article/operes-online-teatro-di-san-carlo/">✔️ΌΠΕΡΕΣ (online από το Teatro di San Carlo της Νάπολης)</a><br>
-            <a target="_blank" href="https://www.monopoli.gr/2020/03/20/promotional-items/theater-promo-items/379194/broadwayhd-ta-miouzikal-tou-broadway-dorean-stin-othoni-sas/">✔️ΜΙΟΥΖΙΚΑΛ - Τα μιούζικαλ του Broadway</a><br>
-            <a target="_blank" href="https://www.monopoli.gr/2020/03/23/istories/art-culture-sub/379597/kathe-vrady-stis-9-oi-megales-orxistres-tis-eyropis-sto-facebook/">✔️ΟΡΧΗΣΤΡΕΣ (Κάθε βράδυ στις 9: Οι μεγάλες ορχήστρες της Ευρώπης)</a><br>
-            <a target="_blank" href="https://www.digitalconcerthall.com/en/home">✔️Η Φιλαρμονική του Βερολίνου</a>
+            <a target="_blank" href="https://poreiatheatre.com/">ΘΕΑΤΡΟ ΠΟΡΕΙΑ – Δωρεάν Παραστάσεις</a><br>
+            <a target="_blank" href="http://www.nt-archive.gr/theaters.aspx?company=10">ΕΘΝΙΚΟ ΘΕΑΤΡΟ – Παιδικές Παραστάσεις</a><br>
+            <a target="_blank" href="https://www.thessalonikiartsandculture.gr/kosmos/art-salad/7-1-theatrikes-parastaseis-poy-mporeis-na-parakoloythiseis-apo-to-spiti/">7+1 ΘΕΑΤΡΙΚΕΣ ΠΑΡΑΣΤΑΣΕΙΣ (που μπορείς να παρακολουθήσεις από το σπίτι)</a><br>
+            <a target="_blank" href="https://roadartist.blogspot.com/2020/03/12.html?m=1">12 Θεατρικές παραστάσεις</a><br>
+            <a target="_blank" href="https://www.nationaltheatre.org.uk/at-home">Εθνικό Θέατρο Αγγλίας</a><br>
+            <a target="_blank" href="https://e-didaskalia.blogspot.com/2020/03/karagkiozis.html?m=1">Online θεατρικές παραστάσεις του ΚΑΡΑΓΚΙΟΖΗ</a><br>
+            <a target="_blank" href="https://www.infokids.gr/i-karmen-rouggeri-xarizei-sta-paidi/">Το Βαλς με τα Παραμύθια! της Κάρμεν Ρουγκέρη</a><br>
+            <a target="_blank" href="https://www.elculture.gr/blog/article/operes-online-teatro-di-san-carlo/">ΌΠΕΡΕΣ (online από το Teatro di San Carlo της Νάπολης)</a><br>
+            <a target="_blank" href="https://www.monopoli.gr/2020/03/20/promotional-items/theater-promo-items/379194/broadwayhd-ta-miouzikal-tou-broadway-dorean-stin-othoni-sas/">ΜΙΟΥΖΙΚΑΛ - Τα μιούζικαλ του Broadway</a><br>
+            <a target="_blank" href="https://www.monopoli.gr/2020/03/23/istories/art-culture-sub/379597/kathe-vrady-stis-9-oi-megales-orxistres-tis-eyropis-sto-facebook/">ΟΡΧΗΣΤΡΕΣ (Κάθε βράδυ στις 9: Οι μεγάλες ορχήστρες της Ευρώπης)</a><br>
+            <a target="_blank" href="https://www.digitalconcerthall.com/en/home">Η Φιλαρμονική του Βερολίνου</a>
           </div>
 
           <div class="open" id="flip2">ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ</div>
           <div class="box" id="panel2">
-            <a target="_blank" href="https://www.enallaktikos.gr/Article/7705/deite-35-tainies-poy-kerdisan-oskar-online-kai-dwrean-edw">✔️35 ΔΩΡΕΑΝ ΤΑΙΝΙΕΣ ΠΟΥ ΚΕΡΔΙΣΑΝ ΟΣΚΑΡ</a><br>
-            <a target="_blank" href="https://webtv.ert.gr/shows/to-sinema-sto-spiti-sas/">✔️ONLINE ΤΑΙΝΙΕΣ ΤΗΣ ΕΡΤ</a><br>
-            <a target="_blank" href="https://www.culturenow.gr/4-tainies-toy-antrei-tarkofski-dorean-sto-youtube-me-agglikoys-ypotitloys/">✔️4 ταινίες του ΑΝΤΡΕΙ ΤΑΡΚΟΦΣΚΙ (δωρεάν με αγγλικούς υπότιτλους)</a><br>
-            <a target="_blank" href="https://tvxs.gr/news/sinema/menoymespiti-dorean-sto-diadiktyo-10-brabeymenes-mikroy-mikoys-tainies-spoydaion-skinoth">✔️10 βραβευμένες ΜΙΚΡΟΥ ΜΗΚΟΥΣ ΤΑΙΝΙΕΣ σπουδαίων σκηνοθετών</a><br>
-            <a target="_blank" href="https://www.festivalscope.com/all/films/list">✔️Festival Scope - ΑΝΕΞΑΡΤΗΤΟΣ ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ με αγγλικούς υπότιτλους.</a><br>
-            <a target="_blank" href="http://www.openculture.com/freemoviesonline">✔️OpenCulture, 1000 ΤΑΙΝΙΕΣ του κλασικού σινεμά</a><br>
-            <a target="_blank" href="https://blogs.sch.gr/dertv/2020/03/22/vlepoyme-ekpaideytiki-tileorasi-sto-diadiktyo/">✔️Εκπαιδευτική Τηλεόραση</a><br>
+            <a target="_blank" href="https://www.enallaktikos.gr/Article/7705/deite-35-tainies-poy-kerdisan-oskar-online-kai-dwrean-edw">35 ΔΩΡΕΑΝ ΤΑΙΝΙΕΣ ΠΟΥ ΚΕΡΔΙΣΑΝ ΟΣΚΑΡ</a><br>
+            <a target="_blank" href="https://webtv.ert.gr/shows/to-sinema-sto-spiti-sas/">ONLINE ΤΑΙΝΙΕΣ ΤΗΣ ΕΡΤ</a><br>
+            <a target="_blank" href="https://www.culturenow.gr/4-tainies-toy-antrei-tarkofski-dorean-sto-youtube-me-agglikoys-ypotitloys/">4 ταινίες του ΑΝΤΡΕΙ ΤΑΡΚΟΦΣΚΙ (δωρεάν με αγγλικούς υπότιτλους)</a><br>
+            <a target="_blank" href="https://tvxs.gr/news/sinema/menoymespiti-dorean-sto-diadiktyo-10-brabeymenes-mikroy-mikoys-tainies-spoydaion-skinoth">10 βραβευμένες ΜΙΚΡΟΥ ΜΗΚΟΥΣ ΤΑΙΝΙΕΣ σπουδαίων σκηνοθετών</a><br>
+            <a target="_blank" href="https://www.festivalscope.com/all/films/list">Festival Scope - ΑΝΕΞΑΡΤΗΤΟΣ ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ με αγγλικούς υπότιτλους.</a><br>
+            <a target="_blank" href="http://www.openculture.com/freemoviesonline">OpenCulture, 1000 ΤΑΙΝΙΕΣ του κλασικού σινεμά</a><br>
+            <a target="_blank" href="https://blogs.sch.gr/dertv/2020/03/22/vlepoyme-ekpaideytiki-tileorasi-sto-diadiktyo/">Εκπαιδευτική Τηλεόραση</a><br>
           </div>
 
           <div class="open" id="flip3">NTOKΙMANΤΕΡ</div>
           <div class="box" id="panel3">
-            <a target="_blank" href="https://www.youtube.com/user/HellenicCosmos/videos">✔️ΙΔΡΥΜΑ ΜΕΙΖΟΝΟΣ ΕΛΛΗΝΙΣΜΟΥ</a><br>
-            <a target="_blank" href="https://greekdocumentaries2.blogspot.com/">✔️ΔΩΡΕΑΝ Ντοκιμαντέρ (με Ελληνικούς Υπότιτλους)</a><br>
-            <a target="_blank" href="https://www.idfa.nl/en/collection/documentaries">✔️IDFA Ντοκιμαντέρ 200 δωρεάν ταινίες</a><br>
+            <a target="_blank" href="https://www.youtube.com/user/HellenicCosmos/videos">ΙΔΡΥΜΑ ΜΕΙΖΟΝΟΣ ΕΛΛΗΝΙΣΜΟΥ</a><br>
+            <a target="_blank" href="https://greekdocumentaries2.blogspot.com/">ΔΩΡΕΑΝ Ντοκιμαντέρ (με Ελληνικούς Υπότιτλους)</a><br>
+            <a target="_blank" href="https://www.idfa.nl/en/collection/documentaries">IDFA Ντοκιμαντέρ 200 δωρεάν ταινίες</a><br>
           </div>
 
           <div class="open" id="flip4">ΒΙΒΛΙΑ</div>
           <div class="box" id="panel4">
-            <a target="_blank" href="https://www.openbook.gr/">✔️OPEN BOOK</a><br>
-            <a target="_blank" href="https://www.gutenberg.org">✔️GUTENBERG PROJECT</a><br>
-            <a target="_blank" href="https://free-ebooks.gr/">✔️FREE-EBOOKS</a><br>
-            <a target="_blank" href="https://plastelini.xyz/e-book-παραμύθια/">✔️ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
-            <a target="_blank" href="https://www.nlg.gr/collection/ilektroniko-anagnostirio/">✔️ΕΘΝΙΚΗ ΒΙΒΛΙΟΘΗΚΗ ΤΗΣ ΕΛΛΑΔΟΣ - Ηλεκτρονική Βιβλιοθήκη</a><br>
-            <a target="_blank" href="https://www.helppost.gr/free/ebooks/paidika-paramithia-istories-online/">✔️ΠΑΙΔΙΚΑ ΠΑΡΑΜΥΘΙΑ</a><br>
-            <a target="_blank" href="http://www.mikrosanagnostis.gr/istoria_list.asp">✔️ ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
+            <a target="_blank" href="https://www.openbook.gr/">OPEN BOOK</a><br>
+            <a target="_blank" href="https://www.gutenberg.org">GUTENBERG PROJECT</a><br>
+            <a target="_blank" href="https://free-ebooks.gr/">FREE-EBOOKS</a><br>
+            <a target="_blank" href="https://plastelini.xyz/e-book-παραμύθια/">ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
+            <a target="_blank" href="https://www.nlg.gr/collection/ilektroniko-anagnostirio/">ΕΘΝΙΚΗ ΒΙΒΛΙΟΘΗΚΗ ΤΗΣ ΕΛΛΑΔΟΣ - Ηλεκτρονική Βιβλιοθήκη</a><br>
+            <a target="_blank" href="https://www.helppost.gr/free/ebooks/paidika-paramithia-istories-online/">ΠΑΙΔΙΚΑ ΠΑΡΑΜΥΘΙΑ</a><br>
+            <a target="_blank" href="http://www.mikrosanagnostis.gr/istoria_list.asp"> ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
           </div>
 
           <div class="open" id="flip5">ΜΟΥΣΕΙΑ</div>
           <div class="box" id="panel5">
-            <a target="_blank" href="https://artsandculture.google.com/">✔️GOOGLE ARTS & CULTURE (Περιέχει πολλές συλλογές μουσείων)</a><br>
-            <a target="_blank" href="https://www.namuseum.gr/collections/">✔️ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ – Αθήνα</a><br>
-            <a target="_blank" href="https://www.louvre.fr/en/visites-en-ligne">✔️ΛΟΥΒΡΟΣ Παρίσι</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/partner/musee-dorsay-paris?hl=en">✔️Musée d’Orsay, Παρίσι</a><br>
-            <a target="_blank" href="https://www.britishmuseum.org/collection">✔️ΒΡΕΤΑΝΙΚΟ Μουσείο, Λονδίνο</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/partner/tate-modern">✔️Μουσείο Tate Modern, Λονδίνο</a><br>
-            <a target="_blank" href="https://www.metmuseum.org/">✔️ΜΕΤ, Νέα Υόρκη</a><br>
-            <a target="_blank" href="https://www.nga.gov/index.html">✔️ΕΘΝΙΚΗ ΠΙΝΑΚΟΘΗΚΗ, Ουάσιγκτον</a><br>
-            <a target="_blank" href="https://www.museodelprado.es/en/the-collection/art-works">✔️Μουσείο ΠΡΑΔΟ, Μαδρίτη</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/exhibit/appearances-can-be-deceiving%C2%A0/6gICPDLcNAzkJA">✔️Μουσείο ΦΡΙΝΤΑ ΚΑΛΟ, Πόλη του Μεξικού</a><br>
-            <a target="_blank" href="http://www.museivaticani.va/content/museivaticani/en.html">✔️Μουσεία του ΒΑΤΙΚΑΝΟΥ, Ρώμη</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/story/cQVh5Rbqa2Q3dg">✔️Πινακοθήκη ΟΥΦΙΤΣΙ, Φλωρεντία</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/exhibit/which-books-did-vincent-van-gogh-read/">✔️Μουσείο ΒΑΝ ΓΚΟΓΚ, Αμστερνταμ</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/">✔️Μουσείο ΓΚΟΥΓΚΕΝΧΑΙΜ, Μπιλμπάο</a><br>
-            <a target="_blank" href="https://www.youtube.com/watch?v=49YeFsx1rIw">✔️Μουσείο ΕΡΜΙΤΑΖ, Αγία Πετρούπολη.</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/">GOOGLE ARTS & CULTURE (Περιέχει πολλές συλλογές μουσείων)</a><br>
+            <a target="_blank" href="https://www.namuseum.gr/collections/">ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ – Αθήνα</a><br>
+            <a target="_blank" href="https://www.louvre.fr/en/visites-en-ligne">ΛΟΥΒΡΟΣ Παρίσι</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/partner/musee-dorsay-paris?hl=en">Musée d’Orsay, Παρίσι</a><br>
+            <a target="_blank" href="https://www.britishmuseum.org/collection">ΒΡΕΤΑΝΙΚΟ Μουσείο, Λονδίνο</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/partner/tate-modern">Μουσείο Tate Modern, Λονδίνο</a><br>
+            <a target="_blank" href="https://www.metmuseum.org/">ΜΕΤ, Νέα Υόρκη</a><br>
+            <a target="_blank" href="https://www.nga.gov/index.html">ΕΘΝΙΚΗ ΠΙΝΑΚΟΘΗΚΗ, Ουάσιγκτον</a><br>
+            <a target="_blank" href="https://www.museodelprado.es/en/the-collection/art-works">Μουσείο ΠΡΑΔΟ, Μαδρίτη</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/exhibit/appearances-can-be-deceiving%C2%A0/6gICPDLcNAzkJA">Μουσείο ΦΡΙΝΤΑ ΚΑΛΟ, Πόλη του Μεξικού</a><br>
+            <a target="_blank" href="http://www.museivaticani.va/content/museivaticani/en.html">Μουσεία του ΒΑΤΙΚΑΝΟΥ, Ρώμη</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/story/cQVh5Rbqa2Q3dg">Πινακοθήκη ΟΥΦΙΤΣΙ, Φλωρεντία</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/exhibit/which-books-did-vincent-van-gogh-read/">Μουσείο ΒΑΝ ΓΚΟΓΚ, Αμστερνταμ</a><br>
+            <a target="_blank" href="https://artsandculture.google.com/">Μουσείο ΓΚΟΥΓΚΕΝΧΑΙΜ, Μπιλμπάο</a><br>
+            <a target="_blank" href="https://www.youtube.com/watch?v=49YeFsx1rIw">Μουσείο ΕΡΜΙΤΑΖ, Αγία Πετρούπολη.</a><br>
           </div>
 
           <div class="open" id="flip6">ΞΕΝΕΣ ΓΛΩΣΣΕΣ</div>
           <div class="box" id="panel6">
-            <a target="_blank" href="https://www.duolingo.com/">✔️Εκμάθηση ΞΕΝΩΝ ΓΛΩΣΣΩΝ</a><br>
+            <a target="_blank" href="https://www.duolingo.com/">Εκμάθηση ΞΕΝΩΝ ΓΛΩΣΣΩΝ</a><br>
           </div>
 
           <div class="open" id="flip7">ΔΩΡΕΑΝ ΜΑΘΗΜΑΤΑ</div>
           <div class="box" id="panel7">
-            <a target="_blank" href="https://www.freecodecamp.org/news/ivy-league-free-online-courses-a0d7ae675869/">✔️450 IVY LEAGUE COURSES</a><br>
-            <a target="_blank" href="https://www.coursera.org/">✔️COURSERA</a><br>
-            <a target="_blank" href="http://www.openculture.com/2019/02/download-free-coloring-books-from-113-museums.html">✔️OPEN CULTURE</a><br>
-            <a target="_blank" href="https://theartflipschool.com/course/ζωγραφικη-για-χαλαρωση-mindful-painting/">🆕ΔΙΑΔΙΚΤΥΑΚΟ ΣΕΜΙΝΑΡΙΟ - ΖΩΓΡΑΦΙΚΗ ΓΙΑ ΧΑΛΑΡΩΣΗ</a><br>
+            <a target="_blank" href="https://www.freecodecamp.org/news/ivy-league-free-online-courses-a0d7ae675869/">450 IVY LEAGUE COURSES</a><br>
+            <a target="_blank" href="https://www.coursera.org/">COURSERA</a><br>
+            <a target="_blank" href="http://www.openculture.com/2019/02/download-free-coloring-books-from-113-museums.html">OPEN CULTURE</a><br>
+            <a target="_blank" href="https://theartflipschool.com/course/ζωγραφικη-για-χαλαρωση-mindful-painting/">ΔΙΑΔΙΚΤΥΑΚΟ ΣΕΜΙΝΑΡΙΟ - ΖΩΓΡΑΦΙΚΗ ΓΙΑ ΧΑΛΑΡΩΣΗ</a><br>
           </div>
 
           <div class="open" id="flip8">ΓΥΜΝΑΣΤΙΚΗ</div>
           <div class="box" id="panel8">
-            <a target="_blank" href="https://www.monopoli.gr/2020/03/14/istories/epikaira/378189/menoume-spiti-kai-gymnazomaste-online/">🆕Γυμναζόμαστε… online</a><br>
-            <a target="_blank" href="https://www.psychografimata.com/δωρεαν-ασκήσεις-χαλάρωσης/">🆕ΔΩΡΕΑΝ ασκήσεις χαλάρωσης</a><br>
+            <a target="_blank" href="https://www.monopoli.gr/2020/03/14/istories/epikaira/378189/menoume-spiti-kai-gymnazomaste-online/">Γυμναζόμαστε… online</a><br>
+            <a target="_blank" href="https://www.psychografimata.com/δωρεαν-ασκήσεις-χαλάρωσης/">ΔΩΡΕΑΝ ασκήσεις χαλάρωσης</a><br>
           </div>
 
           <div class="open" id="flip9">ΨΥΧΟΛΟΓΙΑ</div>
           <div class="box" id="panel9">
-            <a target="_blank" href="http://psych.gr/deltio-typoy-tis-ellinikis-psychiatrikis-etaireias-gia-ton-covid-19/">🆕Δωρεάν Ψυχιατρική κάλυψη από την Ελληνική Ψυχιατρική Εταιρεία</a><br>
-            <a target="_blank" href="https://www.psychografimata.com/τηλεφωνική-γραμμή-ψυχοκοινωνικής-υπ/">🆕Τηλεφωνική γραμμή Ψυχοκοινωνικής Υποστήριξης για τον κορωνοϊό από το ΕΚΠΑ</a><br>
+            <a target="_blank" href="http://psych.gr/deltio-typoy-tis-ellinikis-psychiatrikis-etaireias-gia-ton-covid-19/">Δωρεάν Ψυχιατρική κάλυψη από την Ελληνική Ψυχιατρική Εταιρεία</a><br>
+            <a target="_blank" href="https://www.psychografimata.com/τηλεφωνική-γραμμή-ψυχοκοινωνικής-υπ/">Τηλεφωνική γραμμή Ψυχοκοινωνικής Υποστήριξης για τον κορωνοϊό από το ΕΚΠΑ</a><br>
           </div>
 
           <script>
@@ -744,6 +756,7 @@
       })
     });
 
+    var world={};
     var x_cases=[];
     var y_cases=[];
     var x_hospitalized=[];
@@ -1534,7 +1547,16 @@
                     item.total_cases_per_mil = 0;
                  }
                  if(key=="country"){
-
+                     if(val=="World"){
+                         world.total_cases = item.total_cases;
+                         world.new_cases = item.new_cases;
+                         world.new_deaths = item.new_deaths;
+                         world.active_cases = item.active_cases;
+                         world.serious_cases = item.serious_cases;
+                         world.total_deaths = item.total_deaths;
+                         world.total_recovered = item.total_recovered;
+                         world.total_cases_per_mil = item.total_cases_per_mil;
+                     }
                      if(val=="China"){
                          virusData["CN"].total_cases = item.total_cases;
                          virusData["CN"].new_cases = item.new_cases;
@@ -3465,6 +3487,16 @@
                          virusData["LA"].total_recovered = item.total_recovered;
                          virusData["LA"].total_cases_per_mil = item.total_cases_per_mil;
                      }
+                     if(val=="Yemen"){
+                         virusData["YE"].total_cases = item.total_cases;
+                         virusData["YE"].new_cases = item.new_cases;
+                         virusData["YE"].new_deaths = item.new_deaths;
+                         virusData["YE"].active_cases = item.active_cases;
+                         virusData["YE"].serious_cases = item.serious_cases;
+                         virusData["YE"].total_deaths = item.total_deaths;
+                         virusData["YE"].total_recovered = item.total_recovered;
+                         virusData["YE"].total_cases_per_mil = item.total_cases_per_mil;
+                     }
 
                      //N/A info on map
                      //Grenada
@@ -3570,7 +3602,7 @@
                    "BN": virusData["BN"].total_cases,      //Brunei
                    "BO": virusData["BO"].total_cases,      //Bolivia
                    "JP": virusData["JP"].total_cases,      //Japan
-                   //"BI": virusData["BI"].total_cases,      //Burundi
+                   "BI": virusData["BI"].total_cases,      //Burundi
                    "BJ": virusData["BJ"].total_cases,      //Benin
                    "BT": virusData["BT"].total_cases,      //Bhutan
                    "JM": virusData["JM"].total_cases,      //Jamaica
@@ -3698,7 +3730,7 @@
                    "DJ": virusData["DJ"].total_cases,      //Djibouti
                    "DK": virusData["DK"].total_cases,      //Denmark
                    "DE": virusData["DE"].total_cases,      //Germany
-                   //"YE": virusData[""].total_cases,      //Yemen - N/A
+                   "YE": virusData["YE"].total_cases,      //Yemen
                    "DZ": virusData["DZ"].total_cases,      //Algeria
                    "US": virusData["US"].total_cases,      //United States
                    "UY": virusData["UY"].total_cases,      //Uruguay
@@ -3762,6 +3794,9 @@
                }
            },
            onRegionTipShow: function(e, el, code){
+               if(countriesGR[code]!=null) {
+                 el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="png100px/'+code.toLowerCase()+'.png" height="15"> '+countriesGR[code]+'</div>');
+               }
                if(virusData[code]!=null || typeof(virusData[code]) !== 'undefined'){
                  //el.html()
                    el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="png100px/'+code.toLowerCase()+'.png" height="15"> '+countriesGR[code]+'</h3><p><b>Δεδομένα</b><br>Συνολικά κρούσματα: '+virusData[code].total_cases+'<br> Αναρρώσαντες: '+virusData[code].total_recovered+' <br> Σύνολο θανάτων: '+virusData[code].total_deaths+ '</p></div>');
@@ -3778,6 +3813,13 @@
            onRegionClick: function (event, code) {
              if(code=="GR"){
                document.getElementById("gr-map").click();
+             }
+           },
+           onViewportChange: function (event, scale) {
+             if(scale>2) {
+               document.getElementById('infoi2').style.display="none";
+             } else {
+               document.getElementById('infoi2').style.display="block";
              }
            }
          });
@@ -4260,8 +4302,8 @@
         weekly_data1=weeklyGR1();
         weekly_data2=weeklyGR2();
         static__clinical_data1=[5,15,40,92,139,158,148,147,102,93,50,35,28,18,10,5,4,1,2,2,1]; //lab only
-        static_data1=[32,49,45,52,72,62,92,81,63,49,39,40,28,22,9];
-        error = [13,20,15,14,15,25,28,19,17,12,14,11,9,8,5];
+        static_data1=[32,49,45,52,72,62,92,81,63,49,39,40,28,22,9,10,7,5,12,2,3];
+        error = [13,20,15,14,15,25,28,19,17,12,14,11,9,8,5,5,4,4,5,2,2];
         static_data2=[0,3,3,14,19,17,17,17,20,8,3,5,3,5,6,4,1,4,2,2]; //deaths proved only
 
 
@@ -4377,6 +4419,13 @@
         test();
         showPage();
 
+        document.getElementById("krousmata").innerHTML=virusData["GR"].total_cases;
+        document.getElementById("thanontes").innerHTML=virusData["GR"].total_deaths;
+        document.getElementById("anarrosantes").innerHTML=virusData["GR"].total_recovered;
+
+        document.getElementById("krousmata_all").innerHTML=world.total_cases;
+        document.getElementById("thanontes_all").innerHTML=world.total_deaths;
+        document.getElementById("anarrosantes_all").innerHTML=world.total_recovered;
 
                   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                    document.getElementsByClassName(".jvectormap-zoomin")[0].style.lineHeight = "80px";
@@ -4745,9 +4794,6 @@
   function drawTable() {
           // get the reference for the body
           var div = document.getElementById('greek-data');
-
-
-
 
 /*
           var tbl = document.createElement("table");
