@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="el">
 <head>
-  <title>COVID-19 in greece</title>
-  <meta name="author" content="Achilleas Papakonstantinou">
-  <meta name="description" content="Live updates on coronavirus (COVID-19) outbreak">
-  <meta name="keywords" content="coronavirus, covid19, greece, coronavirusingreece, outbreak, pandemic, greek, daily, updates, info, information, infographics, statistics, scientific, analysis, cases, deaths, recovered, critical, percentage, prognosis, forecasting, κορονοϊός, πανδημία, 2020, εξελίξεις, νέα, ειδήσεις, χρήσιμες, πληροφορίες, στατιστικά, ανάλυση, καθημερινά, καθημερινή, πληροφόροηση, επιστημονικά, επιστημονική, νεκροί, θάνατοι, αναρρώσαντες, κρίσιμα, ποσοστά, προγνωστικά, μένουμε_σπίτι">
+  <meta charset="UTF-8"/>
+  <title>Ενημέρωση Ελλήνων πολιτών για τον κορονοϊό (COVID-19)</title>
+  <meta name="author" content="Achilleas Papakonstantinou" />
+  <meta name="description" content="Live updates on coronavirus (COVID-19) outbreak" />
+  <meta name="keywords" content="coronavirus, covid19, greece, coronavirusingreece, outbreak, pandemic, greek, daily, updates, info, information, infographics, statistics, scientific, analysis, cases, deaths, recovered, critical, percentage, prognosis, forecasting, κορονοϊός, πανδημία, 2020, εξελίξεις, νέα, ειδήσεις, χρήσιμες, πληροφορίες, στατιστικά, ανάλυση, καθημερινά, καθημερινή, πληροφόροηση, επιστημονικά, επιστημονική, νεκροί, θάνατοι, αναρρώσαντες, κρίσιμα, ποσοστά, προγνωστικά, μένουμε_σπίτι" />
   <meta name="google-site-verification" content="ujpdXepwcjwWfhs18QZaqRgZl4Uuv2rDaotW4CfdhQo" />
-  <meta charset="UTF-8">
-
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <link rel="stylesheet" href="assets/jquery-jvectormap-2.0.5.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="assets/style.css" type="text/css">
@@ -5404,19 +5403,19 @@
             set1 = ['Πρόκειται για έναν ιό RNA που προήλθε από μετάλλαξη του κορωνοιού, ο οποίος προκάλεσε την επιδημία του 2003 με το σύνδρομο της οξείας αναπνευστικής ανεπάρκειας SARS ( Severe Acute Respiratory Syndrome )','Οι κορωνοϊοί αποτελούν ομάδα ιών που προκαλούν λοιμώξεις του αναπνευστικού συστήματος σε ανθρώπους και ζώα.','Το στέλεχος covid-19 εμφανίστηκε τον Δεκέμβριο του 2019 στην πόλη Wuhan της Κίνας και απομονώθηκε στις 9 Ιανουαρίου του 2020.','Στην περιοχή αυτή υπάρχουν πολλά εργαστήρια βιολογικών ερευνών.','Ο κορωνοϊός μεταδίδεται μέσω σταγονιδίων κατά την ομιλία - τον βήχα ή το πτάρνισμα','Ο χρόνος_επώασης, δηλαδή το διάστημα από την μόλυνση μέχρις την εμφάνιση των συμπτωμάτων, μπορεί να είναι 14 ημέρες. Συνήθως όμως ανέρχεται σε 5 ημέρες.','Τα συμπτώματα είναι ίδια με εκείνα του κοινού κρυολογήματος:','Πυρετός - καταβολή - μυαλγίες - καταρροή - άλγος στον φάρυγγα ( πονόλαιμος ) - βήχας και στις σοβαρές περιπτώσεις δυσκολία στην αναπνοή ( δύσπνοια ).','Οι περισσότεροι άνθρωποι που θα μολυνθούν θα παρουσιάσουν ήπια συμπτωματολογία ή δεν θα έχουν καμμία εκδήλωση ( ασυμπτωματικοί ).','Ιδιαίτερο κίνδυνο όταν νοσήσουν έχουν οι ευπαθείς ομάδες :','Ηλικιωμένοι άνω των 75 ετών','Άτομα με υποκείμενη νόσο , όπως υπέρταση - σακχαρώδη διαβήτη - πνευμονοπάθεια - ανοσοκαταστολή - καρδιαγγειακά νοσήματα - κακοήθειες και τέλος παχύσαρκοι.']
         ];
 
-    var para = document.createElement("h4");
+    var para = document.createElement("h1");
     para.innerHTML = 'Τα μέτρα που λαμβάνουμε για την αποφυγή της μετάδοσης είναι: ';
     document.getElementById('info').appendChild(para);
     document.getElementById('info').appendChild(makeUL(options[0]));
-    var para = document.createElement("h4");
+    var para = document.createElement("h3");
     para.innerHTML = '- Δρ. Απόστολος Ζέρβας';
     document.getElementById('info').appendChild(para);
 
-    var para = document.createElement("h4");
+    var para = document.createElement("h1");
     para.innerHTML = 'Coronavirus (COVID-19): ';
     document.getElementById('coronavirus').appendChild(para);
     document.getElementById('coronavirus').appendChild(makeUL(options[1]));
-    var para = document.createElement("h4");
+    var para = document.createElement("h3");
     para.innerHTML = '- Δρ. Απόστολος Ζέρβας';
     document.getElementById('coronavirus').appendChild(para);
 
