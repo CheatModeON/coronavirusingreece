@@ -161,7 +161,6 @@
 
     </script>
 
-
   <div class="tab">
     <div id="text"><img src="logo.png" alt="" style="width:100%; opacity: 0.7;"><!--h3> COVID-19:<br> Ελληνική Ενημέρωση </h3--></div>
     <button id="home" class="tablinks" onClick="openTab(event, 'digi_home')">Ψηφιακό Σπίτι</button>
@@ -186,8 +185,12 @@
     </div>
   </div>
 
-  <div id="loader_text" style="text-align: center;">Φορτώνεται ο παγκόσμιος χάρτης <br>και η βάση δεδομένων κρουσμάτων με COVID-19</div>
-  <div id="loader"></div>
+  <div id="load">
+    <div id="loader_text" style="text-align: center;">
+      Φορτώνεται ο παγκόσμιος χάρτης <br>και η βάση δεδομένων κρουσμάτων με COVID-19
+    </div>
+    <div id="loader"></div>
+  </div>
 
   <script>
     function toggle() {
@@ -4480,7 +4483,6 @@
     });
 
   </script>
-
 
   <script>
   // FUNCTIONS
