@@ -135,7 +135,7 @@ var virusData = {
 	"DJ": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Djibouti
 	"DK": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Denmark
 	"DE": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Germany
-	//"YE": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Yemen - N/A
+	"YE": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Yemen
 	"DZ": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Algeria
 	"US": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //United States
 	"UY": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999},      //Uruguay
@@ -352,7 +352,7 @@ var jvmCountries = {
   "VE": {name: "Venezuela", latLng: [8, -66]},
   "VN": {name: "Vietnam", latLng: [16, 106]},
   //"EH": {name: "W. Sahara", latLng: [24.5, -13]},
-  //"YE": {name: "Yemen", latLng: [15, 48]},
+  "YE": {name: "Yemen", latLng: [15, 48]},
   "ZM": {name: "Zambia", latLng: [-15, 30]},
   "ZW": {name: "Zimbabwe", latLng: [-20, 30]}
 };
@@ -3866,6 +3866,7 @@ var countriesGR = {
   "NI":	"Νικαράγουα",
   "NU":	"Νιούε",
   "NO":	"Νορβηγία",
+	"SS": "Νότιο Σουδάν",
   "DM":	"Ντομίνικα / Δομίνικα",
   "ZA":	"Νότια Αφρική",
   "KR":	"Νότια Κορέα",
@@ -3885,7 +3886,7 @@ var countriesGR = {
   "PE":	"Περού",
   "PL":	"Πολωνία",
   "PT":	"Πορτογαλία",
-  "PR":	"Πουέρτο Ρίκο Πόρτο Ρίκο",
+  "PR":	"Πουέρτο Ρίκο / Πόρτο Ρίκο",
   "CV":	"Πράσινο Ακρωτήριο",
   "MK":	"Πρώην Γιουγκοσλαβική Δημοκρατία της Μακεδονίας",
   "RE":	"Ρεϋνιόν Ρεουνιόν",
@@ -3904,6 +3905,7 @@ var countriesGR = {
   "SK":	"Σλοβακία",
   "SI":	"Σλοβενία",
   "SO":	"Σομαλία",
+	"XS": "Σομαλιλάνδη",
   "SZ":	"Σουαζιλάνδη",
   "SD":	"Σουδάν",
   "SE":	"Σουηδία",
