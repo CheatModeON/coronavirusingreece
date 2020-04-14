@@ -4565,6 +4565,7 @@
         name: 'Συνολικά κρούσματα',
         type: 'scatter',
         mode: "lines",
+        fill: 'tozeroy'
       },
       {
         x: x_total,
@@ -4886,10 +4887,12 @@
     var trace = {
         x: t_data,
         type: 'histogram',
-        histnorm: 'percent'
+        histnorm: 'percent',
+        /*xbins: {'end':10000, 'size':2000, 'start': 0}*/
       };
     var data = [trace];
     var layout = {
+        log_y: true,
         width: window.innerWidth-250,
         height: 500,
         margin: {
