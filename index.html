@@ -5097,7 +5097,7 @@
         total_data[i] = parseInt(total_data[i]/7,10);
       }
 
-    // LLS
+    // LLS (for linear fitting)
     var s1 =0;
     var s2 =0;
     var s3 =0;
@@ -5112,11 +5112,17 @@
          s4 += Math.pow(total_data[i],2);
        //}
      }
-     m = ( (n*s1) - (s2*s3) ) / (n*s4 - Math.pow(s2,2)) ; // m festivalscope
+     m = ( (n*s1) - (s2*s3) ) / (n*s4 - Math.pow(s2,2)) ; // m slope
      c = weekly_data[10]-m*total_data[10]; //y-intercept
      //y = m*x+c
 
-     //RMSE
+     // or use the following for min-max linear fitting
+     //m=0.071; // hardcoded solved for min max (for linear fitting)
+     //c=4;     // hardcoded solved for min max (for linear fitting)
+
+     // LLS end
+
+     // RMSE LLS
      var rmse = 0
      for (var i=3; i<n-4; i++){
        var y_pred = c + m * total_data[i];
@@ -5124,59 +5130,90 @@
      }
      rmse = Math.sqrt(rmse/n);
 
+     // LLS exp (for log-log fitting) based on https://archive.lib.msu.edu/crcmath/math/math/l/l144.htm
+     s1=0;
+     s2=0;
+     s3=0;
+     s4=0;
+     var n =total_data.length-7;
+      //for (var i=3; i<total_data.length-4; i++){alert(total_data[i]);}
+    for (var i=3;i<total_data.length-4; i++){
+      s1 += Math.log(total_data[i]) * Math.log(weekly_data[i]);
+      s2 += Math.log(total_data[i]);
+      s3 += Math.log(weekly_data[i]);
+      s4 += Math.pow(Math.log(total_data[i]),2);
+    }
+    b=((n*s1)-(s2*s3))/((n*s4)-Math.pow(s2,2));
+    a=(s3-b*s2)/n;
+    // LLS exp end
 
+    // RMSE LLS exp
+    var rmse = 0
+    for (var i=3; i<n-4; i++){
+      var y_pred = Math.exp(a)*Math.pow(total_data[i],b)
+      rmse += Math.pow((weekly_data[i] - y_pred),2);
+    }
+    rmse = Math.sqrt(rmse/n);
+
+     m=Math.log(93)/Math.log(247.6);  // hardcoded min - max fitting (for log-log) based on http://mathforum.org/library/drmath/view/69930.html
+     c=1/Math.pow(5,m);               // hardcoded min - max fitting (for log-log) based on http://mathforum.org/library/drmath/view/69930.html
+
+     // create the reference line (based on)
      var linex =[];
      var liney =[];
-      var n = y_total.length;
-      for (var i = 0; i < n; i++) {
-        liney.push(m*total_data[i]+c);
-        linex.push(total_data[i]);
-      }
+     var n = y_total.length;
+     for (var i = 0; i < n; i++) {
+       liney.push(Math.exp(a)*Math.pow(total_data[i],b));    //LLS exp (for log-log fitting)
+       //liney.push(c*Math.pow(total_data[i],m));              // min-max fitting (for log-log)
+       //liney.push(m*total_data[i]+c);                         // LLS (for linear fitting)
 
-      var n = y_total.length;
-      for (var i = 0; i < n; i++) {
-        frames[i] = {data: [{x: [], y: [], text: []},{x: [], y: [], text: []}]}
+       linex.push(total_data[i]);           // this is common for all 3 cases
+     }
 
-        frames[i].data[0].x = total_data.slice(0, i+1);
-        frames[i].data[0].y = weekly_data.slice(0, i+1);
-        frames[i].data[0].text = dates.slice(0, i+1);
+     var n = y_total.length;
+     for (var i = 0; i < n; i++) {
+      frames[i] = {data: [{x: [], y: [], text: []},{x: [], y: [], text: []}]}
 
-        frames[i].data[1].x = linex.slice(0, i+1);
-        frames[i].data[1].y = liney.slice(0, i+1);
-      }
-      var trace1 = {
-        type: "scatter",
-        mode: "lines",
-        name: 'Greece',
-        //fill: 'tozeroy',
-        //fill: 'tonexty',
-        x: frames[0].data[0].x,
-        y: frames[0].data[0].y,
-        //text: frames[1].data[0].text,
-        line: {color: 'grey'}
-      };
-      var trace2 = {
-        type: 'scatter',
-        mode: "lines",
-        name: 'Linear Least Squares Regression Fitting',
-        fill: 'tonexty',
-        x: frames[0].data[1].x,
-        y: frames[0].data[1].y,
-        //text: frames[1].data[0].text,
-        line: {color: 'red'}
-      };
-      /*var trace2 = {
-        type: "scatter",
-        mode: "lines",
-        name: 'AAPL High',
-        x: table[0],
-        y: table[1],
-        //text: frames[1].data[0].text,
-        line: {color: 'red'}
-      };*/
-      var data = [trace1, trace2];
+      frames[i].data[0].x = total_data.slice(0, i+1);
+      frames[i].data[0].y = weekly_data.slice(0, i+1);
+      frames[i].data[0].text = dates.slice(0, i+1);
 
-    var layout = {
+      frames[i].data[1].x = linex.slice(0, i+1);
+      frames[i].data[1].y = liney.slice(0, i+1);
+     }
+     var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'Greece',
+      //fill: 'tozeroy',
+      //fill: 'tonexty',
+      x: frames[0].data[0].x,
+      y: frames[0].data[0].y,
+      //text: frames[1].data[0].text,
+      line: {color: 'grey'}
+     };
+     var trace2 = {
+      type: 'scatter',
+      mode: "lines",
+      name: 'Εκθετική συνάρτηση (για σημεία min-max)',
+      fill: 'tonexty',
+      x: frames[0].data[1].x,
+      y: frames[0].data[1].y,
+      //text: frames[1].data[0].text,
+      line: {color: 'red'}
+     };
+     /*var trace2 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'AAPL High',
+      x: table[0],
+      y: table[1],
+      //text: frames[1].data[0].text,
+      line: {color: 'red'}
+    };*/
+     var data = [trace1, trace2];
+
+     var layout = {
       title: 'Σύγκριση εβδομαδιαίων κρουσμάτων έναντι του συνόλου (Κλικ στο έναρξη!)',
       font: {
         size: 14
@@ -5202,7 +5239,7 @@
         //autorange: true
       },
       annotations: [{
-        text: "RMSE: "+rmse.toFixed(2),
+        text: "RMSE: "+rmse.toFixed(2)+"Rate: "+m,
           font: {
           size: 13,
           color: 'rgb(116, 101, 130)',
@@ -5308,12 +5345,11 @@
             yanchor: 'top'
 
         }]
-    };
+     };
 
-    Plotly.newPlot('greeceTrend', data, layout).then(function() {
+     Plotly.newPlot('greeceTrend', data, layout).then(function() {
       Plotly.addFrames('greeceTrend', frames);
     });
-
   }
 
   function doBeforeShow(){
