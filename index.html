@@ -750,6 +750,9 @@
       })
     });
 
+    var gr_yesterday_total = 0;
+    var gr_yesterday_deaths = 0;
+    var gr_yesterday_recovered = 0;
     var world={};
     var x_cases=[];
     var y_cases=[];
@@ -767,654 +770,652 @@
     var growth_deaths=[0];
     $( document ).ready(function() {
       var data;
-      	$.ajax({
-      	  type: "GET",
-      	  url: "https://raw.githubusercontent.com/iMEdD-Lab/open-data/master/COVID-19/greece.csv",
-      	  dataType: "text",
-      	  success: function(response)
-      	  {
-            var items = $.csv.toObjects(response);
+    	$.ajax({
+    	  type: "GET",
+    	  url: "https://raw.githubusercontent.com/iMEdD-Lab/open-data/master/COVID-19/greece.csv",
+    	  dataType: "text",
+    	  success: function(response) {
+          var items = $.csv.toObjects(response);
 
-            greek_data_cases["6"] = 0;
-            greek_data_hospitalized["6"] = 0;
-            greek_data_dead["6"] = 0;
-            greek_data_critical["6"] = 0;
-            greek_data_recovered["6"] = 0;
-            greek_data_notes["6"] = 0;
+          greek_data_cases["6"] = 0;
+          greek_data_hospitalized["6"] = 0;
+          greek_data_dead["6"] = 0;
+          greek_data_critical["6"] = 0;
+          greek_data_recovered["6"] = 0;
+          greek_data_notes["6"] = 0;
 
-            for(var i = 0; i < items.length; i++) {
-                var obj = items[i];
-                if(obj.cases == ""){
-                  obj.cases = 0;
-                }
-                if(obj.hospitalized == ""){
-                  obj.hospitalized = 0;
-                }
-                if(obj.dead == ""){
-                  obj.dead = 0;
-                }
-                if(obj.critical == ""){
-                  obj.critical = 0;
-                }
-                if(obj.recovered == ""){
-                  obj.recovered = 0;
-                }
-                if(obj.lat == ""){
-                  obj.lat = 0;
-                }
-                if(obj.lng == ""){
-                  obj.lng = 0;
-                }
+          for(var i = 0; i < items.length; i++) {
+              var obj = items[i];
+              if(obj.cases == ""){
+                obj.cases = 0;
+              }
+              if(obj.hospitalized == ""){
+                obj.hospitalized = 0;
+              }
+              if(obj.dead == ""){
+                obj.dead = 0;
+              }
+              if(obj.critical == ""){
+                obj.critical = 0;
+              }
+              if(obj.recovered == ""){
+                obj.recovered = 0;
+              }
+              if(obj.lat == ""){
+                obj.lat = 0;
+              }
+              if(obj.lng == ""){
+                obj.lng = 0;
+              }
 
-                if(obj.county_normalized == "ΔΡΑΜΑΣ"){
-                    greek_data_cases["1"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["1"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["1"] = parseInt(obj.dead, 10);
-                    greek_data_critical["1"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["1"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["1"] = obj.notes;
-                    //greek_data_latlon["1"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["1"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["1"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΕΒΡΟΥ"){
-                    greek_data_cases["2"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["2"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["2"] = parseInt(obj.dead, 10);
-                    greek_data_critical["2"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["2"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["2"] = obj.notes;
-                    //greek_data_latlon["2"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["2"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["2"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΑΒΑΛΑΣ"){
-                    greek_data_cases["3"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["3"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["3"] = parseInt(obj.dead, 10);
-                    greek_data_critical["3"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["3"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["3"] = obj.notes;
-                    //greek_data_latlon["3"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["3"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["3"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΡΟΔΟΠΗΣ"){
-                    greek_data_cases["4"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["4"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["4"] = parseInt(obj.dead, 10);
-                    greek_data_critical["4"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["4"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["4"] = obj.notes;
-                    //greek_data_latlon["4"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["4"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["4"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΞΑΝΘΗΣ"){
-                    greek_data_cases["5"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["5"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["5"] = parseInt(obj.dead, 10);
-                    greek_data_critical["5"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["5"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["5"] = obj.notes;
-                    //greek_data_latlon["5"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["5"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["5"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΑΘΗΝΩΝ"){
-                    greek_data_cases["6"] += parseInt(obj.cases, 10);
-                    greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
-                    greek_data_dead["6"] += parseInt(obj.dead, 10);
-                    greek_data_critical["6"] += parseInt(obj.critical, 10);
-                    greek_data_recovered["6"] += parseInt(obj.recovered, 10);
-                    greek_data_notes["6"] += obj.notes;
-                    //greek_data_latlon["6"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["6"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["6"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΔΥΤΙΚΗΣ ΑΤΤΙΚΗΣ"){
-                    greek_data_cases["6"] += parseInt(obj.cases, 10);
-                    greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
-                    greek_data_dead["6"] += parseInt(obj.dead, 10);
-                    greek_data_critical["6"] += parseInt(obj.critical, 10);
-                    greek_data_recovered["6"] += parseInt(obj.recovered, 10);
-                    greek_data_notes["6"] = obj.notes;
-                }
-                if(obj.county_normalized == "ΠΕΙΡΑΙΩΣ ΚΑΙ ΝΗΣΩΝ"){
-                    greek_data_cases["6"] += parseInt(obj.cases, 10);
-                    greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
-                    greek_data_dead["6"] += parseInt(obj.dead, 10);
-                    greek_data_critical["6"] += parseInt(obj.critical, 10);
-                    greek_data_recovered["6"] += parseInt(obj.recovered, 10);
-                    greek_data_notes["6"] += obj.notes;
-                }
-                if(obj.county_normalized == "ΑΝΑΤΟΛΙΚΗΣ ΑΤΤΙΚΗΣ"){
-                    greek_data_cases["6"] += parseInt(obj.cases, 10);
-                    greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
-                    greek_data_dead["6"] += parseInt(obj.dead, 10);
-                    greek_data_critical["6"] += parseInt(obj.critical, 10);
-                    greek_data_recovered["6"] += parseInt(obj.recovered, 10);
-                    greek_data_notes["6"] += obj.notes;
-                }
-                if(obj.county_normalized == "ΑΓΙΟ ΟΡΟΣ"){
-                    greek_data_cases["7"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["7"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["7"] = parseInt(obj.dead, 10);
-                    greek_data_critical["7"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["7"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["7"] = obj.notes;
-                    //greek_data_latlon["7"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["7"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["7"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΑΧΑΪΑΣ"){
-                    greek_data_cases["8"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["8"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["8"] = parseInt(obj.dead, 10);
-                    greek_data_critical["8"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["8"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["8"] = obj.notes;
-                    //greek_data_latlon["8"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["8"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["8"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΑΧΑΪΑΣ"){
-                    greek_data_cases["9"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["9"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["9"] = parseInt(obj.dead, 10);
-                    greek_data_critical["9"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["9"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["9"] = obj.notes;
-                    //greek_data_latlon["9"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["9"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["9"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΗΛΕΙΑΣ"){
-                    greek_data_cases["10"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["10"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["10"] = parseInt(obj.dead, 10);
-                    greek_data_critical["10"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["10"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["10"] = obj.notes;
-                    //greek_data_latlon["10"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["10"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["10"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΦΛΩΡΙΝΑΣ"){
-                    greek_data_cases["11"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["11"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["11"] = parseInt(obj.dead, 10);
-                    greek_data_critical["11"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["11"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["11"] = obj.notes;
-                    //greek_data_latlon["11"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["11"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["11"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΓΡΕΒΕΝΩΝ"){
-                    greek_data_cases["12"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["12"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["12"] = parseInt(obj.dead, 10);
-                    greek_data_critical["12"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["12"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["12"] = obj.notes;
-                    //greek_data_latlon["12"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["12"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["12"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΑΣΤΟΡΙΑΣ"){
-                    greek_data_cases["13"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["13"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["13"] = parseInt(obj.dead, 10);
-                    greek_data_critical["13"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["13"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["13"] = obj.notes;
-                    //greek_data_latlon["13"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["13"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["13"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΟΖΑΝΗΣ"){
-                    greek_data_cases["14"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["14"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["14"] = parseInt(obj.dead, 10);
-                    greek_data_critical["14"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["14"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["14"] = obj.notes;
-                    //greek_data_latlon["14"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["14"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["14"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΕΡΚΥΡΑΣ"){
-                    greek_data_cases["15"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["15"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["15"] = parseInt(obj.dead, 10);
-                    greek_data_critical["15"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["15"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["15"] = obj.notes;
-                    //greek_data_latlon["15"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["15"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["15"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΕΦΑΛΛΟΝΙΑΣ"){
-                    greek_data_cases["16"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["16"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["16"] = parseInt(obj.dead, 10);
-                    greek_data_critical["16"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["16"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["16"] = obj.notes;
-                    //greek_data_latlon["16"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["16"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["16"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΛΕΥΚΑΔΑΣ"){
-                    greek_data_cases["17"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["17"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["17"] = parseInt(obj.dead, 10);
-                    greek_data_critical["17"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["17"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["17"] = obj.notes;
-                    //greek_data_latlon["17"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["17"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["17"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΖΑΚΥΝΘΟΥ"){
-                    greek_data_cases["18"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["18"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["18"] = parseInt(obj.dead, 10);
-                    greek_data_critical["18"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["18"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["18"] = obj.notes;
-                    //greek_data_latlon["18"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["18"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["18"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΑΡΤΑΣ"){
-                    greek_data_cases["19"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["19"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["19"] = parseInt(obj.dead, 10);
-                    greek_data_critical["19"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["19"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["19"] = obj.notes;
-                    //greek_data_latlon["19"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["19"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["19"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΙΩΑΝΝΙΝΩΝ"){
-                    greek_data_cases["20"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["20"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["20"] = parseInt(obj.dead, 10);
-                    greek_data_critical["20"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["20"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["20"] = obj.notes;
-                    //greek_data_latlon["20"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["20"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["20"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΠΡΕΒΕΖΑΣ"){
-                    greek_data_cases["21"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["21"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["21"] = parseInt(obj.dead, 10);
-                    greek_data_critical["21"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["21"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["21"] = obj.notes;
-                    //greek_data_latlon["21"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["21"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["21"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΘΕΣΠΡΩΤΙΑΣ"){
-                    greek_data_cases["22"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["22"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["22"] = parseInt(obj.dead, 10);
-                    greek_data_critical["22"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["22"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["22"] = obj.notes;
-                    //greek_data_latlon["22"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["22"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["22"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΗΜΑΘΙΑΣ"){
-                    greek_data_cases["23"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["23"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["23"] = parseInt(obj.dead, 10);
-                    greek_data_critical["23"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["23"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["23"] = obj.notes;
-                    //greek_data_latlon["23"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["23"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["23"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΧΑΛΚΙΔΙΚΗΣ"){
-                    greek_data_cases["24"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["24"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["24"] = parseInt(obj.dead, 10);
-                    greek_data_critical["24"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["24"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["24"] = obj.notes;
-                    //greek_data_latlon["24"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["24"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["24"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΙΛΚΙΣ"){
-                    greek_data_cases["25"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["25"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["25"] = parseInt(obj.dead, 10);
-                    greek_data_critical["25"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["25"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["25"] = obj.notes;
-                    //greek_data_latlon["25"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["25"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["25"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΠΕΛΛΑΣ"){
-                    greek_data_cases["26"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["26"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["26"] = parseInt(obj.dead, 10);
-                    greek_data_critical["26"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["26"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["26"] = obj.notes;
-                    //greek_data_latlon["26"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["26"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["26"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΠΙΕΡΙΑΣ"){
-                    greek_data_cases["27"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["27"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["27"] = parseInt(obj.dead, 10);
-                    greek_data_critical["27"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["27"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["27"] = obj.notes;
-                    //greek_data_latlon["27"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["27"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["27"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΣΕΡΡΩΝ"){
-                    greek_data_cases["28"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["28"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["28"] = parseInt(obj.dead, 10);
-                    greek_data_critical["28"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["28"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["28"] = obj.notes;
-                    //greek_data_latlon["28"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["28"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["28"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΘΕΣΣΑΛΟΝΙΚΗΣ"){
-                    greek_data_cases["29"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["29"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["29"] = parseInt(obj.dead, 10);
-                    greek_data_critical["29"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["29"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["29"] = obj.notes;
-                    //greek_data_latlon["29"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["29"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["29"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΗΡΑΚΛΕΙΟΥ"){
-                    greek_data_cases["30"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["30"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["30"] = parseInt(obj.dead, 10);
-                    greek_data_critical["30"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["30"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["30"] = obj.notes;
-                    //greek_data_latlon["30"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["30"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["30"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΧΑΝΙΩΝ"){
-                    greek_data_cases["31"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["31"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["31"] = parseInt(obj.dead, 10);
-                    greek_data_critical["31"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["31"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["31"] = obj.notes;
-                    //greek_data_latlon["31"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["31"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["31"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΛΑΣΙΘΙΟΥ"){
-                    greek_data_cases["32"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["32"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["32"] = parseInt(obj.dead, 10);
-                    greek_data_critical["32"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["32"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["32"] = obj.notes;
-                    //greek_data_latlon["32"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["32"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["32"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΡΕΘΥΜΝΟΥ"){
-                    greek_data_cases["33"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["33"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["33"] = parseInt(obj.dead, 10);
-                    greek_data_critical["33"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["33"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["33"] = obj.notes;
-                    //greek_data_latlon["33"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["33"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["33"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΥΚΛΑΔΩΝ"){
-                    greek_data_cases["34"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["34"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["34"] = parseInt(obj.dead, 10);
-                    greek_data_critical["34"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["34"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["34"] = obj.notes;
-                    //greek_data_latlon["34"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["34"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["34"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΔΩΔΕΚΑΝΗΣΩΝ"){
-                    greek_data_cases["35"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["35"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["35"] = parseInt(obj.dead, 10);
-                    greek_data_critical["35"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["35"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["35"] = obj.notes;
-                    //greek_data_latlon["35"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["35"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["35"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΑΡΚΑΔΙΑΣ"){
-                    greek_data_cases["36"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["36"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["36"] = parseInt(obj.dead, 10);
-                    greek_data_critical["36"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["36"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["36"] = obj.notes;
-                    //greek_data_latlon["36"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["36"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["36"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΑΡΓΟΛΙΔΑΣ"){
-                    greek_data_cases["37"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["37"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["37"] = parseInt(obj.dead, 10);
-                    greek_data_critical["37"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["37"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["37"] = obj.notes;
-                    //greek_data_latlon["37"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["37"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["37"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΟΡΙΝΘΟΥ"){
-                    greek_data_cases["38"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["38"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["38"] = parseInt(obj.dead, 10);
-                    greek_data_critical["38"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["38"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["38"] = obj.notes;
-                    //greek_data_latlon["38"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["38"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["38"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΛΑΚΩΝΙΑΣ"){
-                    greek_data_cases["39"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["39"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["39"] = parseInt(obj.dead, 10);
-                    greek_data_critical["39"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["39"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["39"] = obj.notes;
-                    //greek_data_latlon["39"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["39"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["39"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΜΕΣΣΗΝΙΑΣ"){
-                    greek_data_cases["40"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["40"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["40"] = parseInt(obj.dead, 10);
-                    greek_data_critical["40"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["40"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["40"] = obj.notes;
-                    //greek_data_latlon["40"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["40"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["40"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΒΟΙΩΤΙΑΣ"){
-                    greek_data_cases["41"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["41"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["41"] = parseInt(obj.dead, 10);
-                    greek_data_critical["41"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["41"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["41"] = obj.notes;
-                    //greek_data_latlon["41"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["41"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["41"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΕΥΒΟΙΑΣ"){
-                    greek_data_cases["42"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["42"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["42"] = parseInt(obj.dead, 10);
-                    greek_data_critical["42"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["42"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["42"] = obj.notes;
-                    //greek_data_latlon["42"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["42"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["42"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΕΥΡΥΤΑΝΙΑΣ"){
-                    greek_data_cases["43"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["43"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["43"] = parseInt(obj.dead, 10);
-                    greek_data_critical["43"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["43"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["43"] = obj.notes;
-                    //greek_data_latlon["43"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["43"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["43"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΦΩΚΙΔΑΣ"){
-                    greek_data_cases["44"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["44"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["44"] = parseInt(obj.dead, 10);
-                    greek_data_critical["44"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["44"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["44"] = obj.notes;
-                    //greek_data_latlon["44"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["44"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["44"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΦΘΙΩΤΙΔΑΣ"){
-                    greek_data_cases["45"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["45"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["45"] = parseInt(obj.dead, 10);
-                    greek_data_critical["45"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["45"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["45"] = obj.notes;
-                    //greek_data_latlon["45"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["45"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["45"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΚΑΡΔΙΤΣΑΣ"){
-                    greek_data_cases["46"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["46"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["46"] = parseInt(obj.dead, 10);
-                    greek_data_critical["46"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["46"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["46"] = obj.notes;
-                    //greek_data_latlon["46"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["46"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["46"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΛΑΡΙΣΑΣ"){
-                    greek_data_cases["47"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["47"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["47"] = parseInt(obj.dead, 10);
-                    greek_data_critical["47"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["47"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["47"] = obj.notes;
-                    //greek_data_latlon["47"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["47"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["47"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΜΑΓΝΗΣΙΑΣ"){
-                    greek_data_cases["48"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["48"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["48"] = parseInt(obj.dead, 10);
-                    greek_data_critical["48"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["48"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["48"] = obj.notes;
-                    //greek_data_latlon["48"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["48"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["48"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΤΡΙΚΑΛΩΝ"){
-                    greek_data_cases["49"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["49"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["49"] = parseInt(obj.dead, 10);
-                    greek_data_critical["49"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["49"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["49"] = obj.notes;
-                    //greek_data_latlon["49"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["49"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["49"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΧΙΟΥ"){
-                    greek_data_cases["50"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["50"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["50"] = parseInt(obj.dead, 10);
-                    greek_data_critical["50"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["50"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["50"] = obj.notes;
-                    //greek_data_latlon["50"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["50"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["50"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΛΕΣΒΟΥ"){
-                    greek_data_cases["51"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["51"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["51"] = parseInt(obj.dead, 10);
-                    greek_data_critical["51"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["51"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["51"] = obj.notes;
-                    //greek_data_latlon["51"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["51"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["51"].latLng[1] = parseFloat(obj.lng);
-                }
-                if(obj.county_normalized == "ΣΑΜΟΥ"){
-                    greek_data_cases["52"] = parseInt(obj.cases, 10);
-                    greek_data_hospitalized["52"] = parseInt(obj.hospitalized, 10);
-                    greek_data_dead["52"] = parseInt(obj.dead, 10);
-                    greek_data_critical["52"] = parseInt(obj.critical, 10);
-                    greek_data_recovered["52"] = parseInt(obj.recovered, 10);
-                    greek_data_notes["52"] = obj.notes;
-                    //greek_data_latlon["52"].name = obj.Πρωτεύουσα;
-                    //greek_data_latlon["52"].latLng[0] = parseFloat(obj.lat);
-                    //greek_data_latlon["52"].latLng[1] = parseFloat(obj.lng);
-                }
+              if(obj.county_normalized == "ΔΡΑΜΑΣ"){
+                  greek_data_cases["1"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["1"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["1"] = parseInt(obj.dead, 10);
+                  greek_data_critical["1"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["1"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["1"] = obj.notes;
+                  //greek_data_latlon["1"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["1"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["1"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΕΒΡΟΥ"){
+                  greek_data_cases["2"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["2"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["2"] = parseInt(obj.dead, 10);
+                  greek_data_critical["2"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["2"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["2"] = obj.notes;
+                  //greek_data_latlon["2"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["2"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["2"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΑΒΑΛΑΣ"){
+                  greek_data_cases["3"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["3"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["3"] = parseInt(obj.dead, 10);
+                  greek_data_critical["3"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["3"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["3"] = obj.notes;
+                  //greek_data_latlon["3"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["3"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["3"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΡΟΔΟΠΗΣ"){
+                  greek_data_cases["4"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["4"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["4"] = parseInt(obj.dead, 10);
+                  greek_data_critical["4"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["4"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["4"] = obj.notes;
+                  //greek_data_latlon["4"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["4"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["4"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΞΑΝΘΗΣ"){
+                  greek_data_cases["5"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["5"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["5"] = parseInt(obj.dead, 10);
+                  greek_data_critical["5"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["5"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["5"] = obj.notes;
+                  //greek_data_latlon["5"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["5"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["5"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΑΘΗΝΩΝ"){
+                  greek_data_cases["6"] += parseInt(obj.cases, 10);
+                  greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
+                  greek_data_dead["6"] += parseInt(obj.dead, 10);
+                  greek_data_critical["6"] += parseInt(obj.critical, 10);
+                  greek_data_recovered["6"] += parseInt(obj.recovered, 10);
+                  greek_data_notes["6"] += obj.notes;
+                  //greek_data_latlon["6"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["6"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["6"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΔΥΤΙΚΗΣ ΑΤΤΙΚΗΣ"){
+                  greek_data_cases["6"] += parseInt(obj.cases, 10);
+                  greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
+                  greek_data_dead["6"] += parseInt(obj.dead, 10);
+                  greek_data_critical["6"] += parseInt(obj.critical, 10);
+                  greek_data_recovered["6"] += parseInt(obj.recovered, 10);
+                  greek_data_notes["6"] = obj.notes;
+              }
+              if(obj.county_normalized == "ΠΕΙΡΑΙΩΣ ΚΑΙ ΝΗΣΩΝ"){
+                  greek_data_cases["6"] += parseInt(obj.cases, 10);
+                  greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
+                  greek_data_dead["6"] += parseInt(obj.dead, 10);
+                  greek_data_critical["6"] += parseInt(obj.critical, 10);
+                  greek_data_recovered["6"] += parseInt(obj.recovered, 10);
+                  greek_data_notes["6"] += obj.notes;
+              }
+              if(obj.county_normalized == "ΑΝΑΤΟΛΙΚΗΣ ΑΤΤΙΚΗΣ"){
+                  greek_data_cases["6"] += parseInt(obj.cases, 10);
+                  greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
+                  greek_data_dead["6"] += parseInt(obj.dead, 10);
+                  greek_data_critical["6"] += parseInt(obj.critical, 10);
+                  greek_data_recovered["6"] += parseInt(obj.recovered, 10);
+                  greek_data_notes["6"] += obj.notes;
+              }
+              if(obj.county_normalized == "ΑΓΙΟ ΟΡΟΣ"){
+                  greek_data_cases["7"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["7"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["7"] = parseInt(obj.dead, 10);
+                  greek_data_critical["7"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["7"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["7"] = obj.notes;
+                  //greek_data_latlon["7"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["7"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["7"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΑΧΑΪΑΣ"){
+                  greek_data_cases["8"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["8"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["8"] = parseInt(obj.dead, 10);
+                  greek_data_critical["8"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["8"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["8"] = obj.notes;
+                  //greek_data_latlon["8"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["8"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["8"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΑΧΑΪΑΣ"){
+                  greek_data_cases["9"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["9"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["9"] = parseInt(obj.dead, 10);
+                  greek_data_critical["9"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["9"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["9"] = obj.notes;
+                  //greek_data_latlon["9"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["9"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["9"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΗΛΕΙΑΣ"){
+                  greek_data_cases["10"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["10"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["10"] = parseInt(obj.dead, 10);
+                  greek_data_critical["10"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["10"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["10"] = obj.notes;
+                  //greek_data_latlon["10"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["10"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["10"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΦΛΩΡΙΝΑΣ"){
+                  greek_data_cases["11"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["11"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["11"] = parseInt(obj.dead, 10);
+                  greek_data_critical["11"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["11"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["11"] = obj.notes;
+                  //greek_data_latlon["11"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["11"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["11"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΓΡΕΒΕΝΩΝ"){
+                  greek_data_cases["12"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["12"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["12"] = parseInt(obj.dead, 10);
+                  greek_data_critical["12"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["12"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["12"] = obj.notes;
+                  //greek_data_latlon["12"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["12"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["12"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΑΣΤΟΡΙΑΣ"){
+                  greek_data_cases["13"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["13"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["13"] = parseInt(obj.dead, 10);
+                  greek_data_critical["13"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["13"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["13"] = obj.notes;
+                  //greek_data_latlon["13"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["13"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["13"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΟΖΑΝΗΣ"){
+                  greek_data_cases["14"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["14"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["14"] = parseInt(obj.dead, 10);
+                  greek_data_critical["14"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["14"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["14"] = obj.notes;
+                  //greek_data_latlon["14"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["14"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["14"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΕΡΚΥΡΑΣ"){
+                  greek_data_cases["15"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["15"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["15"] = parseInt(obj.dead, 10);
+                  greek_data_critical["15"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["15"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["15"] = obj.notes;
+                  //greek_data_latlon["15"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["15"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["15"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΕΦΑΛΛΟΝΙΑΣ"){
+                  greek_data_cases["16"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["16"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["16"] = parseInt(obj.dead, 10);
+                  greek_data_critical["16"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["16"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["16"] = obj.notes;
+                  //greek_data_latlon["16"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["16"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["16"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΛΕΥΚΑΔΑΣ"){
+                  greek_data_cases["17"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["17"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["17"] = parseInt(obj.dead, 10);
+                  greek_data_critical["17"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["17"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["17"] = obj.notes;
+                  //greek_data_latlon["17"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["17"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["17"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΖΑΚΥΝΘΟΥ"){
+                  greek_data_cases["18"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["18"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["18"] = parseInt(obj.dead, 10);
+                  greek_data_critical["18"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["18"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["18"] = obj.notes;
+                  //greek_data_latlon["18"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["18"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["18"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΑΡΤΑΣ"){
+                  greek_data_cases["19"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["19"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["19"] = parseInt(obj.dead, 10);
+                  greek_data_critical["19"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["19"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["19"] = obj.notes;
+                  //greek_data_latlon["19"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["19"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["19"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΙΩΑΝΝΙΝΩΝ"){
+                  greek_data_cases["20"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["20"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["20"] = parseInt(obj.dead, 10);
+                  greek_data_critical["20"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["20"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["20"] = obj.notes;
+                  //greek_data_latlon["20"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["20"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["20"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΠΡΕΒΕΖΑΣ"){
+                  greek_data_cases["21"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["21"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["21"] = parseInt(obj.dead, 10);
+                  greek_data_critical["21"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["21"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["21"] = obj.notes;
+                  //greek_data_latlon["21"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["21"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["21"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΘΕΣΠΡΩΤΙΑΣ"){
+                  greek_data_cases["22"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["22"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["22"] = parseInt(obj.dead, 10);
+                  greek_data_critical["22"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["22"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["22"] = obj.notes;
+                  //greek_data_latlon["22"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["22"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["22"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΗΜΑΘΙΑΣ"){
+                  greek_data_cases["23"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["23"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["23"] = parseInt(obj.dead, 10);
+                  greek_data_critical["23"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["23"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["23"] = obj.notes;
+                  //greek_data_latlon["23"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["23"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["23"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΧΑΛΚΙΔΙΚΗΣ"){
+                  greek_data_cases["24"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["24"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["24"] = parseInt(obj.dead, 10);
+                  greek_data_critical["24"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["24"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["24"] = obj.notes;
+                  //greek_data_latlon["24"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["24"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["24"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΙΛΚΙΣ"){
+                  greek_data_cases["25"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["25"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["25"] = parseInt(obj.dead, 10);
+                  greek_data_critical["25"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["25"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["25"] = obj.notes;
+                  //greek_data_latlon["25"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["25"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["25"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΠΕΛΛΑΣ"){
+                  greek_data_cases["26"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["26"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["26"] = parseInt(obj.dead, 10);
+                  greek_data_critical["26"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["26"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["26"] = obj.notes;
+                  //greek_data_latlon["26"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["26"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["26"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΠΙΕΡΙΑΣ"){
+                  greek_data_cases["27"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["27"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["27"] = parseInt(obj.dead, 10);
+                  greek_data_critical["27"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["27"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["27"] = obj.notes;
+                  //greek_data_latlon["27"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["27"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["27"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΣΕΡΡΩΝ"){
+                  greek_data_cases["28"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["28"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["28"] = parseInt(obj.dead, 10);
+                  greek_data_critical["28"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["28"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["28"] = obj.notes;
+                  //greek_data_latlon["28"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["28"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["28"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΘΕΣΣΑΛΟΝΙΚΗΣ"){
+                  greek_data_cases["29"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["29"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["29"] = parseInt(obj.dead, 10);
+                  greek_data_critical["29"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["29"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["29"] = obj.notes;
+                  //greek_data_latlon["29"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["29"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["29"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΗΡΑΚΛΕΙΟΥ"){
+                  greek_data_cases["30"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["30"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["30"] = parseInt(obj.dead, 10);
+                  greek_data_critical["30"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["30"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["30"] = obj.notes;
+                  //greek_data_latlon["30"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["30"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["30"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΧΑΝΙΩΝ"){
+                  greek_data_cases["31"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["31"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["31"] = parseInt(obj.dead, 10);
+                  greek_data_critical["31"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["31"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["31"] = obj.notes;
+                  //greek_data_latlon["31"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["31"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["31"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΛΑΣΙΘΙΟΥ"){
+                  greek_data_cases["32"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["32"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["32"] = parseInt(obj.dead, 10);
+                  greek_data_critical["32"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["32"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["32"] = obj.notes;
+                  //greek_data_latlon["32"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["32"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["32"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΡΕΘΥΜΝΟΥ"){
+                  greek_data_cases["33"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["33"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["33"] = parseInt(obj.dead, 10);
+                  greek_data_critical["33"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["33"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["33"] = obj.notes;
+                  //greek_data_latlon["33"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["33"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["33"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΥΚΛΑΔΩΝ"){
+                  greek_data_cases["34"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["34"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["34"] = parseInt(obj.dead, 10);
+                  greek_data_critical["34"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["34"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["34"] = obj.notes;
+                  //greek_data_latlon["34"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["34"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["34"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΔΩΔΕΚΑΝΗΣΩΝ"){
+                  greek_data_cases["35"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["35"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["35"] = parseInt(obj.dead, 10);
+                  greek_data_critical["35"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["35"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["35"] = obj.notes;
+                  //greek_data_latlon["35"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["35"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["35"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΑΡΚΑΔΙΑΣ"){
+                  greek_data_cases["36"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["36"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["36"] = parseInt(obj.dead, 10);
+                  greek_data_critical["36"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["36"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["36"] = obj.notes;
+                  //greek_data_latlon["36"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["36"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["36"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΑΡΓΟΛΙΔΑΣ"){
+                  greek_data_cases["37"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["37"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["37"] = parseInt(obj.dead, 10);
+                  greek_data_critical["37"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["37"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["37"] = obj.notes;
+                  //greek_data_latlon["37"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["37"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["37"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΟΡΙΝΘΟΥ"){
+                  greek_data_cases["38"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["38"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["38"] = parseInt(obj.dead, 10);
+                  greek_data_critical["38"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["38"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["38"] = obj.notes;
+                  //greek_data_latlon["38"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["38"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["38"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΛΑΚΩΝΙΑΣ"){
+                  greek_data_cases["39"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["39"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["39"] = parseInt(obj.dead, 10);
+                  greek_data_critical["39"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["39"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["39"] = obj.notes;
+                  //greek_data_latlon["39"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["39"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["39"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΜΕΣΣΗΝΙΑΣ"){
+                  greek_data_cases["40"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["40"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["40"] = parseInt(obj.dead, 10);
+                  greek_data_critical["40"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["40"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["40"] = obj.notes;
+                  //greek_data_latlon["40"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["40"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["40"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΒΟΙΩΤΙΑΣ"){
+                  greek_data_cases["41"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["41"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["41"] = parseInt(obj.dead, 10);
+                  greek_data_critical["41"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["41"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["41"] = obj.notes;
+                  //greek_data_latlon["41"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["41"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["41"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΕΥΒΟΙΑΣ"){
+                  greek_data_cases["42"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["42"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["42"] = parseInt(obj.dead, 10);
+                  greek_data_critical["42"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["42"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["42"] = obj.notes;
+                  //greek_data_latlon["42"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["42"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["42"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΕΥΡΥΤΑΝΙΑΣ"){
+                  greek_data_cases["43"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["43"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["43"] = parseInt(obj.dead, 10);
+                  greek_data_critical["43"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["43"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["43"] = obj.notes;
+                  //greek_data_latlon["43"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["43"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["43"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΦΩΚΙΔΑΣ"){
+                  greek_data_cases["44"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["44"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["44"] = parseInt(obj.dead, 10);
+                  greek_data_critical["44"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["44"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["44"] = obj.notes;
+                  //greek_data_latlon["44"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["44"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["44"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΦΘΙΩΤΙΔΑΣ"){
+                  greek_data_cases["45"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["45"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["45"] = parseInt(obj.dead, 10);
+                  greek_data_critical["45"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["45"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["45"] = obj.notes;
+                  //greek_data_latlon["45"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["45"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["45"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΚΑΡΔΙΤΣΑΣ"){
+                  greek_data_cases["46"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["46"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["46"] = parseInt(obj.dead, 10);
+                  greek_data_critical["46"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["46"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["46"] = obj.notes;
+                  //greek_data_latlon["46"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["46"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["46"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΛΑΡΙΣΑΣ"){
+                  greek_data_cases["47"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["47"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["47"] = parseInt(obj.dead, 10);
+                  greek_data_critical["47"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["47"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["47"] = obj.notes;
+                  //greek_data_latlon["47"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["47"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["47"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΜΑΓΝΗΣΙΑΣ"){
+                  greek_data_cases["48"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["48"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["48"] = parseInt(obj.dead, 10);
+                  greek_data_critical["48"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["48"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["48"] = obj.notes;
+                  //greek_data_latlon["48"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["48"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["48"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΤΡΙΚΑΛΩΝ"){
+                  greek_data_cases["49"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["49"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["49"] = parseInt(obj.dead, 10);
+                  greek_data_critical["49"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["49"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["49"] = obj.notes;
+                  //greek_data_latlon["49"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["49"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["49"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΧΙΟΥ"){
+                  greek_data_cases["50"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["50"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["50"] = parseInt(obj.dead, 10);
+                  greek_data_critical["50"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["50"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["50"] = obj.notes;
+                  //greek_data_latlon["50"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["50"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["50"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΛΕΣΒΟΥ"){
+                  greek_data_cases["51"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["51"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["51"] = parseInt(obj.dead, 10);
+                  greek_data_critical["51"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["51"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["51"] = obj.notes;
+                  //greek_data_latlon["51"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["51"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["51"].latLng[1] = parseFloat(obj.lng);
+              }
+              if(obj.county_normalized == "ΣΑΜΟΥ"){
+                  greek_data_cases["52"] = parseInt(obj.cases, 10);
+                  greek_data_hospitalized["52"] = parseInt(obj.hospitalized, 10);
+                  greek_data_dead["52"] = parseInt(obj.dead, 10);
+                  greek_data_critical["52"] = parseInt(obj.critical, 10);
+                  greek_data_recovered["52"] = parseInt(obj.recovered, 10);
+                  greek_data_notes["52"] = obj.notes;
+                  //greek_data_latlon["52"].name = obj.Πρωτεύουσα;
+                  //greek_data_latlon["52"].latLng[0] = parseFloat(obj.lat);
+                  //greek_data_latlon["52"].latLng[1] = parseFloat(obj.lng);
+              }
 
-            }
-      	  },
-          complete: function () {
           }
-      	});
+    	  },
+        complete: function () {
+        }
+    	});
 
-        $.ajax({
+      $.ajax({
       	  type: "GET",
       	  url: "https://raw.githubusercontent.com/iMEdD-Lab/open-data/master/COVID-19/greeceTimeline.csv",
       	  dataType: "text",
-      	  success: function(response)
-      	  {
+      	  success: function(response) {
             var items = $.csv.toObjects(response);
             for(var i = 0; i < items.length; i++) {
                 var obj = items[i];
@@ -1437,9 +1438,14 @@
                 if(obj.Status=="deaths"){
                   Object.keys(obj).forEach(function(key) {
                     if(count>2){
-                        x_deaths.push(new Date(key));
-                        y_deaths.push(parseInt(obj[key], 10));
-                        //alert(key + ': ' + obj[key]);
+                        if(obj[key]=="") {
+                          x_deaths.push(new Date(key));
+                          y_deaths.push(0);
+                        } else {
+                          x_deaths.push(new Date(key));
+                          y_deaths.push(parseInt(obj[key], 10));
+                          //alert(key + ': ' + obj[key]);
+                        }
                     }
                     count += 1;
                   });
@@ -1506,9 +1512,23 @@
                 growth_deaths.push((y_deaths[i]-y_deaths[i-1])*100 / y_deaths[i-1].toFixed(2));
               }
             }
-
           }
       	});
+
+      $.getJSON( "https://coron-api.azurewebsites.net/api/v2/yesterday", function( data ) {
+        data.forEach(function(item, index, array) {
+          $.each( item, function( key, val ){
+            if(key=="country"){
+              if(val=="Greece"){
+                  gr_yesterday_total = item.total_cases;
+                  gr_yesterday_deaths = item.total_deaths;
+                  gr_yesterday_recovered = item.total_recovered;
+              }
+            }
+          });
+        })
+      });
+
     });
 
     $(function(){
@@ -4690,18 +4710,18 @@
 
     Plotly.newPlot('plot2', data, layout, {staticPlot: false});
 
-    var greek_pop = 10423054;
-    var usa_pop = 331002651;
-    var germ_pop = 83783942;
-    var spain_poo = 46754778;
-    var italy_pop = 60461826;
-    var france_pop = 65273511;
-    var uk_pop = 67886011;
-    var russia_pop = 145934462;
-    var cz_pop = 10708981;
-    var romania_pop = 19237691;
-    var ukraine_pop = 43733762;
-    var poland_pop = 37846611;
+    var greek_pop = (virusData["GR"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //10423054;
+    var usa_pop = (virusData["US"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //331002651;
+    var germ_pop = (virusData["DE"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //83783942;
+    var spain_poo = (virusData["ES"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //46754778;
+    var italy_pop = (virusData["IT"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //60461826;
+    var france_pop = (virusData["FR"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //65273511;
+    var uk_pop = (virusData["GR"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //67886011;
+    var russia_pop = (virusData["RU"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //145934462;
+    var cz_pop = (virusData["CZ"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //10708981;
+    var romania_pop = (virusData["RO"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //19237691;
+    var ukraine_pop = (virusData["UA"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //43733762;
+    var poland_pop = (virusData["PL"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //37846611;
 
     var greece_expenditure = 2223;
     var usa_expenditure = 9892;
@@ -5342,8 +5362,11 @@
       div2.id = "dataDiv";
       div.appendChild(div2);
 
-      var reference1 = y_total[pos] // yesterday's reference
-      var reference2 = y_total_deaths[pos] // yesterday's reference
+      var reference1 = y_total[pos]; // yesterday's reference
+      var reference2 = y_total_deaths[pos]; // yesterday's reference
+      var reference1 = gr_yesterday_total; //fixed yesterday's reference-using yesterday from worldometers
+      var reference2 = gr_yesterday_deaths; //fixed yesterday's reference-using yesterday from worldometers
+      var reference3 = gr_yesterday_recovered; //fixed yesterday's reference-using yesterday from worldometers
       var layout = {
         width:  (window.innerWidth-$(".tab").innerWidth()),
         height: 700,
@@ -5360,32 +5383,31 @@
         },
         delta: { position: "right", reference: reference1/*, relative: true */},
         domain: {row:0, column: 0}
-      },
-      {
-        type: "indicator",
-        mode: "number+delta",
-        value: virusData["GR"].total_deaths,
-        number: { suffix: " ("+ (virusData["GR"].total_deaths*100/virusData["GR"].total_cases).toFixed() + "%)"},
-        title: {
-          text:
-            "<span style='font-size:1.2em; color:red'>Θανόντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
         },
-        delta: { position: "right", reference: reference2/*, relative: true */},
-        domain: {row:1, column: 0}
-      },
-      {
-        type: "indicator",
-        mode: "number+delta",
-        value: virusData["GR"].total_recovered,
-        number: { suffix: " ("+ (virusData["GR"].total_recovered*100/virusData["GR"].total_cases).toFixed() + "%)"},
-        title: {
-          text:
-            "<span style='font-size:1.2em; color:green'>Αναρρώσαντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+        {
+          type: "indicator",
+          mode: "number+delta",
+          value: virusData["GR"].total_deaths,
+          number: { suffix: " ("+ (virusData["GR"].total_deaths*100/virusData["GR"].total_cases).toFixed() + "%)"},
+          title: {
+            text:
+              "<span style='font-size:1.2em; color:red'>Θανόντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+          },
+          delta: { position: "right", reference: reference2/*, relative: true */},
+          domain: {row:1, column: 0}
         },
-        delta: {position: "right"},
-        /*delta: { position: "top", reference: reference, relative: true },*/
-        domain: {row:2, column: 0}
-      }]
+        {
+          type: "indicator",
+          mode: "number+delta",
+          value: virusData["GR"].total_recovered,
+          number: { suffix: " ("+ (virusData["GR"].total_recovered*100/virusData["GR"].total_cases).toFixed() + "%)"},
+          title: {
+            text:
+              "<span style='font-size:1.2em; color:green'>Αναρρώσαντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+          },
+          delta: { position: "right", reference: reference3/*, relative: true */},
+          domain: {row:2, column: 0}
+        }]
       Plotly.newPlot('dataDiv', data, layout);
 
       var plot_div = document.createElement("div");
