@@ -6,23 +6,12 @@
   <meta name="author" content="Achilleas Papakonstantinou" />
   <meta name="description" content="Live updates on coronavirus (COVID-19) outbreak" />
   <meta name="keywords" content="coronavirus, covid19, greece, coronavirusingreece, outbreak, pandemic, greek, daily, updates, info, information, infographics, statistics, scientific, analysis, cases, deaths, recovered, critical, percentage, prognosis, forecasting, κορονοϊός, πανδημία, 2020, εξελίξεις, νέα, ειδήσεις, χρήσιμες, πληροφορίες, στατιστικά, ανάλυση, καθημερινά, καθημερινή, πληροφόροηση, επιστημονικά, επιστημονική, νεκροί, θάνατοι, αναρρώσαντες, κρίσιμα, ποσοστά, προγνωστικά, μένουμε_σπίτι, alive, connected, covid, culture, online, open, staying, έχει, αγγλικούς, αμερική, αναγκαία, αναρρώσαντες, αναρρώσει, ανρθώπους, αποστασιοποίηση, ασία, αυτή, αυτούς, αφήγηση, αφρική, βάση, γιατί, γονέων, δεδομένων, δημιουργήθηκε, διαγράμματα, διαγραμματα, διεύθυνση, δυνατή, δωρεάν, δωρεαν, είναι, εθνικη, ελλάδα, ελλάδας, ελλήνων, ελλαδα, ενημέρωση, ενημερώνεται, ευρώπη, ηλεκτρονική, ημερήσια, ημερησια, θανόντες, θεατρικές, θεατρο, ιστότοπος, κίνηση, καθημερινά, κατοικίας, κενό, κινηματογραφος, κοινωνική, κορονοϊο, κορονοϊό, κρουσμάτων, κρούσματα, λονδίνο, μένω, μέσα, μέτρα, μέχρι, μετάβαση, μετρα, μουσείο, ντοκιμαντέρ, ονοματεπώνυμο, παγκόσμιος, παρίσι, παραμυθια, παραστάσεις, παραστασεις, πεθάνει, πολιτών, πολλές, προληψης, προσβληθεί, πρόληψης, σήμερα, σπίτι, σπιτι, στην, στις, στους, στόχο, σχετικά, σχετικα, ταινίες, ταινιες, τους, τωρα, υπότιτλους, φορτώνεται, χάρτης, ψηφιακο, ψηφιακό, ψυχιατρική, ωκεανία, όπου" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="ujpdXepwcjwWfhs18QZaqRgZl4Uuv2rDaotW4CfdhQo" />
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <link rel="stylesheet" href="assets/jquery-jvectormap-2.0.5.css" type="text/css" media="screen"/>
-  <link rel="stylesheet" href="assets/style.css" type="text/css">
-  <script src="assets/jquery-1.8.2.js"></script>
-  <!--script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script-->
-  <script src="assets/jquery-jvectormap-2.0.5.min.js"></script>
-  <script src="assets/jquery-jvectormap-world-mill-en.js"></script>
 
-  <script src="assets/dataformat.js" type="text/javascript"></script>
-  <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-  <script language="javascript" type="text/javascript" src="assets/SocialDistancingSimulator.js"></script>
-  <!--link href="assets/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/-->
-  <script type="text/javascript" src="assets/maps/jquery.vmap.greece2.js" charset="utf-8"></script>
-  <script type="text/javascript" src="assets/jquery-jvectormap-world-merc.js" charset="utf-8"></script>
-
-  <script src="assets/jquery-csv.js"></script>
+  <link rel="stylesheet" href="../assets/style_m.css" type="text/css">
+  <script src="../assets/dataformat.js" type="text/javascript"></script>
+  <script src="../assets/jquery-csv.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
   <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -40,29 +29,15 @@
       var first_time=1;
 
       function begin() {
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          //window.location.replace("http://www.coronavirusingreece.eu/m/");
-        }
-
-        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && first_time == 1){
-            alert("Ο Firefox δεν υποστηρίζεται.");
-            first_time = 0;
-        }
-
-
-        var buttons = document.getElementsByClassName("tablinks");
-        for (i = 0; i < buttons.length; i++) {
-            buttons[i].disabled = true;
-        }
-        //myVar = setTimeout(showPage, 3000);
 
       }
 
       function showPage() {
+        /*
         var buttons = document.getElementsByClassName("tablinks");
         for (i = 0; i < buttons.length; i++) {
             buttons[i].disabled = false;
-        }
+        }*/
         document.getElementById("loader").style.display = "none";
         document.getElementById("loader_text").style.display = "none";
         document.getElementById("contentDiv").style.display = "block";
@@ -139,65 +114,212 @@
          //height:  window.innerHeight-50
         })
 
-
-        var location = getUrlVars()["location"];
-        if(location==null){
-          document.getElementById("home").click();
-        } else if (location=="plots"){
-          document.getElementById("the-plots").click();
-        } else if (location=="grdata"){
-          document.getElementById("gr-data").click();
-        } else if (location=="grmap"){
-          document.getElementById("gr-map").click();
-        } else if (location=="worldmap"){
-          document.getElementById("all-map").click();
-        } else if (location=="info"){
-          document.getElementById("gen-info").click();
-        } else if (location=="coronavirus"){
-          document.getElementById("coronavirus-info").click();
-        } else if (location=="socialdistance"){
-          document.getElementById("social-distance").click();
-        } else {
-          document.getElementById("home").click();
-        }
-
       }
 
     </script>
 
-  <div class="tab">
-    <div id="text"><img src="logo.png" alt="" style="width:100%; opacity: 0.7;"><!--h3> COVID-19:<br> Ελληνική Ενημέρωση </h3--></div>
+  <!--div class="tab">
+    <div id="text"><img src="logo.png" alt="" style="width:100%; opacity: 0.7;"></div>
     <button id="home" class="tablinks" onClick="openTab(event, 'digi_home')">Ψηφιακό Σπίτι</button>
     <button id="all-map" class="tablinks" onClick="openTab(event, 'world-map')">Παγκόσμιος Χάρτης COVID-19</button>
     <button id="gr-map" class="tablinks" onClick="openTab(event, 'greek-map')">Χάρτης Ελλάδας COVID-19</button>
     <button id="the-plots" class="tablinks" onClick="openTab(event, 'daily-plots')">Ημερήσια διαγράμματα</button>
-    <!--button class="tablinks" onClick="openTab(event, 'density')">Στον Κόσμο</button-->
     <button id="gr-data" class="tablinks" onClick="openTab(event, 'greek-data')">Ελλάδα ΤΩΡΑ</button>
     <button id="gen-info"class="tablinks" onClick="openTab(event, 'info')">Μέτρα πρόληψης</button>
     <button id="coronavirus-info"class="tablinks" onClick="openTab(event, 'coronavirus')">Σχετικά με τον Κορονοϊό</button>
     <button id="social-distance"class="tablinks" onClick="openTab(event, 'socialDistancing')">Γιατί μένω μέσα;</button>
     <div id="telegram">
       <iframe id="webroundbuttonwidget2" file="webroundbuttonwidget" src="https://telegrambutton.com/webroundbuttonwidget.php?chat_id=coronavirusingreece&showchatid=true&showmembercount=true&showmembercount=true&color=&pulse=true&textcolor=white&shadowval=&textval=ΖΩΝΤΑΝΗ ΕΝΗΜΕΡΩΣΗ" border="1" style="border:20px;height: 80px;width: 80px;"></iframe>
-
-      <!--table class="telegram_t">
-      <tr><td class="l">
-      <iframe id="webroundbuttonwidget2" file="webroundbuttonwidget" src="https://telegrambutton.com/webroundbuttonwidget.php?chat_id=coronavirusingreece&showchatid=true&showmembercount=true&showmembercount=true&color=&pulse=true&textcolor=white&shadowval=&textval=ΖΩΝΤΑΝΗ ΕΝΗΜΕΡΩΣΗ" border="1" style="border:20px;height: 60px;width: 60px;"></iframe>
-      </td>
-      <td class="r"><a href="https://t.me/coronavirusingreece" target="_blank">Ληψη Live ειδοποιήσεων μέσω Telegram</a></td>
-      </tr>
-      </table-->
     </div>
-  </div>
+  </div-->
 
-  <div id="load">
+  <!--div id="load">
     <div id="loader_text" style="text-align: center;">
       Φορτώνεται ο παγκόσμιος χάρτης <br>και η βάση δεδομένων κρουσμάτων με COVID-19
     </div>
     <div id="loader"></div>
+  </div-->
+  <div id="navigation" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <a href="index.html">HOME</a>
+      <a href="worldmap.html">WORLD</a>
+      <a href="greekmap.html">GREECE</a>
+      <a href="greekdata.html">GREEK DATA</a>
+      <a href="dailyplots.html">DAILY PLOTS</a>
+      <a href="info.html">INFO</a>
+      <a href="coronavirus.html">CORONAVIRUS</a>
+      <a href="socialdistancing.html">SOCIAL DISTANCING</a>
+    </div>
   </div>
 
-  <div style="display:none;" id="contentDiv" class="animate-bottom">
+  <div id="navBtn"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></div>
 
+  <script>
+  function openNav() {
+    document.getElementById("navigation").style.width = "100%";
+  }
+
+  function closeNav() {
+    document.getElementById("navigation").style.width = "0%";
+  }
+  </script>
+
+  <div id="contentDiv" class="animate-bottom">
+    <div id="digi_home" style="text-align: center;">
+      <div id="info-img"></div>
+      <div class="bg-text">ΨΗΦΙΑΚΟ ΣΠΙΤΙ</div>
+      <div id="links">
+        <h1><i>“Staying connected... Staying alive...”</i></h1>
+        <p> Το <span style="font-size: 18px;"> <b>coronavirusingreece.eu</b></span> δημιουργήθηκε με στόχο την ενημέρωση των Ελλήνων πολιτών σχετικά με το νέο κορονοϊό (COVID-19).
+        <br> Ο ιστότοπος ενημερώνεται καθημερινά με νέα δεδομένα, γραφήματα, χάρτες, πληροφορίες. </p>
+        <p> Σε αυτή την ενότητα θα βρεις τα πάντα για να αντιμετωπίσεις την κρίση, την απομόνωση, τη βαρεμάρα και την κλεισούρα που προκάλεσε η πανδημία του ιού COVID-19. </p>
+        <p> Από το 1989, το <a target="_blank" href="https://el.wikipedia.org/wiki/Διαδίκτυο">διαδίκτυο</a> χτίζει τις βιβλιοθήκες του για να μπορέσεις εσύ να επιβιώσεις πολλές μέρες κλεισμένος μέσα. </p>
+        <br>
+        <div class="open" id="flip1">ΠΑΡΑΣΤΑΣΕΙΣ</div>
+        <div class="box" id="panel1">
+          <a target="_blank" href="https://poreiatheatre.com/">ΘΕΑΤΡΟ ΠΟΡΕΙΑ – Δωρεάν Παραστάσεις</a><br>
+          <a target="_blank" href="http://www.nt-archive.gr/theaters.aspx?company=10">ΕΘΝΙΚΟ ΘΕΑΤΡΟ – Παιδικές Παραστάσεις</a><br>
+          <a target="_blank" href="https://www.thessalonikiartsandculture.gr/kosmos/art-salad/7-1-theatrikes-parastaseis-poy-mporeis-na-parakoloythiseis-apo-to-spiti/">7+1 ΘΕΑΤΡΙΚΕΣ ΠΑΡΑΣΤΑΣΕΙΣ (που μπορείς να παρακολουθήσεις από το σπίτι)</a><br>
+          <a target="_blank" href="https://roadartist.blogspot.com/2020/03/12.html?m=1">12 Θεατρικές παραστάσεις</a><br>
+          <a target="_blank" href="https://www.nationaltheatre.org.uk/at-home">Εθνικό Θέατρο Αγγλίας</a><br>
+          <a target="_blank" href="https://e-didaskalia.blogspot.com/2020/03/karagkiozis.html?m=1">Online θεατρικές παραστάσεις του ΚΑΡΑΓΚΙΟΖΗ</a><br>
+          <a target="_blank" href="https://www.infokids.gr/i-karmen-rouggeri-xarizei-sta-paidi/">Το Βαλς με τα Παραμύθια! της Κάρμεν Ρουγκέρη</a><br>
+          <a target="_blank" href="https://www.elculture.gr/blog/article/operes-online-teatro-di-san-carlo/">ΌΠΕΡΕΣ (online από το Teatro di San Carlo της Νάπολης)</a><br>
+          <a target="_blank" href="https://www.monopoli.gr/2020/03/20/promotional-items/theater-promo-items/379194/broadwayhd-ta-miouzikal-tou-broadway-dorean-stin-othoni-sas/">ΜΙΟΥΖΙΚΑΛ - Τα μιούζικαλ του Broadway</a><br>
+          <a target="_blank" href="https://www.monopoli.gr/2020/03/23/istories/art-culture-sub/379597/kathe-vrady-stis-9-oi-megales-orxistres-tis-eyropis-sto-facebook/">ΟΡΧΗΣΤΡΕΣ (Κάθε βράδυ στις 9: Οι μεγάλες ορχήστρες της Ευρώπης)</a><br>
+          <a target="_blank" href="https://www.digitalconcerthall.com/en/home">Η Φιλαρμονική του Βερολίνου</a>
+        </div>
+
+        <div class="open" id="flip2">ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ</div>
+        <div class="box" id="panel2">
+          <a target="_blank" href="https://www.enallaktikos.gr/Article/7705/deite-35-tainies-poy-kerdisan-oskar-online-kai-dwrean-edw">35 ΔΩΡΕΑΝ ΤΑΙΝΙΕΣ ΠΟΥ ΚΕΡΔΙΣΑΝ ΟΣΚΑΡ</a><br>
+          <a target="_blank" href="https://webtv.ert.gr/shows/to-sinema-sto-spiti-sas/">ONLINE ΤΑΙΝΙΕΣ ΤΗΣ ΕΡΤ</a><br>
+          <a target="_blank" href="https://www.culturenow.gr/4-tainies-toy-antrei-tarkofski-dorean-sto-youtube-me-agglikoys-ypotitloys/">4 ταινίες του ΑΝΤΡΕΙ ΤΑΡΚΟΦΣΚΙ (δωρεάν με αγγλικούς υπότιτλους)</a><br>
+          <a target="_blank" href="https://tvxs.gr/news/sinema/menoymespiti-dorean-sto-diadiktyo-10-brabeymenes-mikroy-mikoys-tainies-spoydaion-skinoth">10 βραβευμένες ΜΙΚΡΟΥ ΜΗΚΟΥΣ ΤΑΙΝΙΕΣ σπουδαίων σκηνοθετών</a><br>
+          <a target="_blank" href="https://www.festivalscope.com/all/films/list">Festival Scope - ΑΝΕΞΑΡΤΗΤΟΣ ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ με αγγλικούς υπότιτλους.</a><br>
+          <a target="_blank" href="http://www.openculture.com/freemoviesonline">OpenCulture, 1000 ΤΑΙΝΙΕΣ του κλασικού σινεμά</a><br>
+          <a target="_blank" href="https://blogs.sch.gr/dertv/2020/03/22/vlepoyme-ekpaideytiki-tileorasi-sto-diadiktyo/">Εκπαιδευτική Τηλεόραση</a><br>
+        </div>
+
+        <div class="open" id="flip3">NTOKΙMANΤΕΡ</div>
+        <div class="box" id="panel3">
+          <a target="_blank" href="https://www.youtube.com/user/HellenicCosmos/videos">ΙΔΡΥΜΑ ΜΕΙΖΟΝΟΣ ΕΛΛΗΝΙΣΜΟΥ</a><br>
+          <a target="_blank" href="https://greekdocumentaries2.blogspot.com/">ΔΩΡΕΑΝ Ντοκιμαντέρ (με Ελληνικούς Υπότιτλους)</a><br>
+          <a target="_blank" href="https://www.idfa.nl/en/collection/documentaries">IDFA Ντοκιμαντέρ 200 δωρεάν ταινίες</a><br>
+        </div>
+
+        <div class="open" id="flip4">ΒΙΒΛΙΑ</div>
+        <div class="box" id="panel4">
+          <a target="_blank" href="https://www.openbook.gr/">OPEN BOOK</a><br>
+          <a target="_blank" href="https://www.gutenberg.org">GUTENBERG PROJECT</a><br>
+          <a target="_blank" href="https://free-ebooks.gr/">FREE-EBOOKS</a><br>
+          <a target="_blank" href="https://plastelini.xyz/e-book-παραμύθια/">ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
+          <a target="_blank" href="https://www.nlg.gr/collection/ilektroniko-anagnostirio/">ΕΘΝΙΚΗ ΒΙΒΛΙΟΘΗΚΗ ΤΗΣ ΕΛΛΑΔΟΣ - Ηλεκτρονική Βιβλιοθήκη</a><br>
+          <a target="_blank" href="https://www.helppost.gr/free/ebooks/paidika-paramithia-istories-online/">ΠΑΙΔΙΚΑ ΠΑΡΑΜΥΘΙΑ</a><br>
+          <a target="_blank" href="http://www.mikrosanagnostis.gr/istoria_list.asp"> ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
+        </div>
+
+        <div class="open" id="flip5">ΜΟΥΣΕΙΑ</div>
+        <div class="box" id="panel5">
+          <a target="_blank" href="https://artsandculture.google.com/">GOOGLE ARTS & CULTURE (Περιέχει πολλές συλλογές μουσείων)</a><br>
+          <a target="_blank" href="https://www.namuseum.gr/collections/">ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ – Αθήνα</a><br>
+          <a target="_blank" href="https://www.louvre.fr/en/visites-en-ligne">ΛΟΥΒΡΟΣ Παρίσι</a><br>
+          <a target="_blank" href="https://artsandculture.google.com/partner/musee-dorsay-paris?hl=en">Musée d’Orsay, Παρίσι</a><br>
+          <a target="_blank" href="https://www.britishmuseum.org/collection">ΒΡΕΤΑΝΙΚΟ Μουσείο, Λονδίνο</a><br>
+          <a target="_blank" href="https://artsandculture.google.com/partner/tate-modern">Μουσείο Tate Modern, Λονδίνο</a><br>
+          <a target="_blank" href="https://www.metmuseum.org/">ΜΕΤ, Νέα Υόρκη</a><br>
+          <a target="_blank" href="https://www.nga.gov/index.html">ΕΘΝΙΚΗ ΠΙΝΑΚΟΘΗΚΗ, Ουάσιγκτον</a><br>
+          <a target="_blank" href="https://www.museodelprado.es/en/the-collection/art-works">Μουσείο ΠΡΑΔΟ, Μαδρίτη</a><br>
+          <a target="_blank" href="https://artsandculture.google.com/exhibit/appearances-can-be-deceiving%C2%A0/6gICPDLcNAzkJA">Μουσείο ΦΡΙΝΤΑ ΚΑΛΟ, Πόλη του Μεξικού</a><br>
+          <a target="_blank" href="http://www.museivaticani.va/content/museivaticani/en.html">Μουσεία του ΒΑΤΙΚΑΝΟΥ, Ρώμη</a><br>
+          <a target="_blank" href="https://artsandculture.google.com/story/cQVh5Rbqa2Q3dg">Πινακοθήκη ΟΥΦΙΤΣΙ, Φλωρεντία</a><br>
+          <a target="_blank" href="https://artsandculture.google.com/exhibit/which-books-did-vincent-van-gogh-read/">Μουσείο ΒΑΝ ΓΚΟΓΚ, Αμστερνταμ</a><br>
+          <a target="_blank" href="https://artsandculture.google.com/">Μουσείο ΓΚΟΥΓΚΕΝΧΑΙΜ, Μπιλμπάο</a><br>
+          <a target="_blank" href="https://www.youtube.com/watch?v=49YeFsx1rIw">Μουσείο ΕΡΜΙΤΑΖ, Αγία Πετρούπολη.</a><br>
+        </div>
+
+        <div class="open" id="flip6">ΞΕΝΕΣ ΓΛΩΣΣΕΣ</div>
+        <div class="box" id="panel6">
+          <a target="_blank" href="https://www.duolingo.com/">Εκμάθηση ΞΕΝΩΝ ΓΛΩΣΣΩΝ</a><br>
+        </div>
+
+        <div class="open" id="flip7">ΔΩΡΕΑΝ ΜΑΘΗΜΑΤΑ</div>
+        <div class="box" id="panel7">
+          <a target="_blank" href="https://www.freecodecamp.org/news/ivy-league-free-online-courses-a0d7ae675869/">450 IVY LEAGUE COURSES</a><br>
+          <a target="_blank" href="https://www.coursera.org/">COURSERA</a><br>
+          <a target="_blank" href="http://www.openculture.com/2019/02/download-free-coloring-books-from-113-museums.html">OPEN CULTURE</a><br>
+          <a target="_blank" href="https://theartflipschool.com/course/ζωγραφικη-για-χαλαρωση-mindful-painting/">ΔΙΑΔΙΚΤΥΑΚΟ ΣΕΜΙΝΑΡΙΟ - ΖΩΓΡΑΦΙΚΗ ΓΙΑ ΧΑΛΑΡΩΣΗ</a><br>
+        </div>
+
+        <div class="open" id="flip8">ΓΥΜΝΑΣΤΙΚΗ</div>
+        <div class="box" id="panel8">
+          <a target="_blank" href="https://www.monopoli.gr/2020/03/14/istories/epikaira/378189/menoume-spiti-kai-gymnazomaste-online/">Γυμναζόμαστε… online</a><br>
+          <a target="_blank" href="https://www.psychografimata.com/δωρεαν-ασκήσεις-χαλάρωσης/">ΔΩΡΕΑΝ ασκήσεις χαλάρωσης</a><br>
+        </div>
+
+        <div class="open" id="flip9">ΨΥΧΟΛΟΓΙΑ</div>
+        <div class="box" id="panel9">
+          <a target="_blank" href="http://psych.gr/deltio-typoy-tis-ellinikis-psychiatrikis-etaireias-gia-ton-covid-19/">Δωρεάν Ψυχιατρική κάλυψη από την Ελληνική Ψυχιατρική Εταιρεία</a><br>
+          <a target="_blank" href="https://www.psychografimata.com/τηλεφωνική-γραμμή-ψυχοκοινωνικής-υπ/">Τηλεφωνική γραμμή Ψυχοκοινωνικής Υποστήριξης για τον κορωνοϊό από το ΕΚΠΑ</a><br>
+        </div>
+
+        <script>
+        $(document).ready(function(){
+          var open = $('.open'),
+              a = $('div').find('.open');
+
+          console.log(a.hasClass('active'));
+
+          open.click(function(e){
+              e.preventDefault();
+              var $this = $(this),
+                  speed = 500;
+              if($this.hasClass('active') === true) {
+                  $this.removeClass('active').next('.box').slideUp(speed);
+              } else if(a.hasClass('active') === false) {
+                  $this.addClass('active').next('.box').slideDown(speed);
+              } else {
+                  a.removeClass('active').next('.box').slideUp(speed);
+                  $this.addClass('active').next('.box').delay(speed).slideDown(speed);
+              }
+          });
+        });
+        </script>
+
+      </div>
+      <div style="text-align: right; margin: 10px 10px;">
+        <a target="_blank" href="https://www.facebook.com/ToDrastirioKatsiki/posts/2823405341077632?__tn__=K-R">*Πηγή</a>
+      </div>
+      <div id="icons">
+        <table>
+          <tr>
+              <td><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Who_logo.svg/1200px-Who_logo.svg.png" width="100"></a></td>
+              <td><a href="https://eody.gov.gr/neos-koronaios-covid-19/" target="_blank"><img src="https://eody.gov.gr/wp-content/themes/egritosTpl/images/eody-el.png" width="100"></a></td>
+              <td><a href="https://ethelontes.gov.gr/forma-ethelonton-gia-tin-antimetopisi/" target="_blank"><img src="https://content.myphone.gr/photo/full/76090/se-dokimastiki-leitoyrgia-gov-gr.jpg" width="100"></a></td><td><a href="http://covidsim.eu" target="_blank"><img src="http://covidsim.eu/assets/logotype_2.svg" width="100"></a></td>
+              <td><a href="https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset/data" target="_blank"><img src="https://s3.ap-south-1.amazonaws.com/techleer/175.png" width="100"></a></td>
+              <td><a href="https://data.humdata.org/dataset/novel-coronavirus-2019-ncov-cases" target="_blank"><img src="https://centre.humdata.org/wp-content/uploads/hdx_new_logo_spelled.png" width="100"></a></td>
+              <td style="font-size:1.6em;"><img src="https://cdn.onlinewebfonts.com/svg/img_86349.png" width="30px">1135</td>
+              <td style="font-size:1.6em;">
+                <div class="tooltip">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS7ZsFsQNIs2h0ox33DJZgVy50U4UN4_7jG9iqDW0l6kvvUWgc1" width="30px">
+                  13033
+                  <span class="tooltiptext">
+                    Το SMS πρέπει να είναι της μορφής: X κενό ονοματεπώνυμο και διεύθυνση κατοικίας όπου Χ ο λόγος εξόδου με τον αριθμό 1, 2, 3, 4, 5, 6 που αντιστοιχεί στις παρακάτω αιτιολογίες: <br>1) Μετάβαση σε φαρμακείο ή επίσκεψη στον γιατρό, εφόσον αυτό συνιστάται μετά από σχετική επικοινωνία. <br>2) Μετάβαση σε εν λειτουργία κατάστημα προμηθειών αγαθών πρώτης ανάγκης, όπου δεν είναι δυνατή η αποστολή τους. <br>3) Μετάβαση στην τράπεζα, στο μέτρο που δεν είναι δυνατή η ηλεκτρονική συναλλαγή. <br>4) Κίνηση για παροχή βοήθειας σε ανθρώπους που βρίσκονται σε ανάγκη. <br>5) Μετάβαση σε τελετή (π.χ. κηδεία, γάμος, βάφτιση) υπό τους όρους που προβλέπει ο νόμος ή μετάβαση διαζευγμένων γονέων ή γονέων που τελούν σε διάσταση που είναι αναγκαία για τη διασφάλιση της επικοινωνίας γονέων και τέκνων, σύμφωνα με τις κείμενες διατάξεις. <br>6) Σωματική άσκηση σε εξωτερικό χώρο ή κίνηση με κατοικίδιο ζώο, ατομικά ή ανά δύο άτομα, τηρώντας στην τελευταία αυτή περίπτωση την αναγκαία απόσταση 1,5 μέτρου. <br>Θα λαμβάνετε ως απάντηση:Μετακίνηση κενό X κενό ονοματεπώνυμο και διεύθυνση κατοικίας
+                  </span>
+               </div>
+               </td>
+          </tr>
+        </table>
+      </div>
+  </div>
+  </div>
+
+  <!--div style="display:none;" id="contentDiv" class="animate-bottom">
+      <div id="info" class="tabcontent">
+          <div id="info-img"></div>
+          <div class="bg-text">ΜΕΤΡΑ ΠΡΟΛΗΨΗΣ</div>
+      </div>
       <div id="world-map" class="tabcontent">
         <div id="logo"><img src="logo.png" height="180" width="180" /></div>
         <div id="infoi2" style="display: block;">
@@ -212,8 +334,7 @@
           <span id="krousmata"></span> Κρούσματα<br>
           <span id="anarrosantes"></span> Αναρρώσαντες<br>
           <span id="thanontes"></span> Θανόντες<br>
-      </div>
-
+        </div>
       </div>
       <div id="daily-plots" class="tabcontent" style="text-align: center;">
           <div id="info-img"></div>
@@ -456,168 +577,14 @@
 
               </script>
       </div>
-
       <div id="greek-data" class="tabcontent" style="text-align: center;">
         <div id="info-img"></div>
         <div class="bg-text">ΕΛΛΑΔΑ ΤΩΡΑ</div>
-      </div>
-      <div id="info" class="tabcontent">
-          <div id="info-img"></div>
-          <div class="bg-text">ΜΕΤΡΑ ΠΡΟΛΗΨΗΣ</div>
       </div>
       <div id="coronavirus" class="tabcontent">
           <div id="coronavirus-img"></div>
           <div class="bg-text">ΣΧΕΤΙΚΑ ΜΕ ΤΟΝ ΚΟΡΟΝΟΪΟ</div>
       </div>
-
-      <div id="digi_home" class="tabcontent" style="text-align: center;">
-        <div id="info-img"></div>
-        <div class="bg-text">ΨΗΦΙΑΚΟ ΣΠΙΤΙ</div>
-        <div id="links">
-          <h1><i>“Staying connected... Staying alive...”</i></h1>
-          <p> Το <span style="font-size: 18px;"> <b>coronavirusingreece.eu</b></span> δημιουργήθηκε με στόχο την ενημέρωση των Ελλήνων πολιτών σχετικά με το νέο κορονοϊό (COVID-19).
-          <br> Ο ιστότοπος ενημερώνεται καθημερινά με νέα δεδομένα, γραφήματα, χάρτες, πληροφορίες. </p>
-          <p> Σε αυτή την ενότητα θα βρεις τα πάντα για να αντιμετωπίσεις την κρίση, την απομόνωση, τη βαρεμάρα και την κλεισούρα που προκάλεσε η πανδημία του ιού COVID-19. </p>
-          <p> Από το 1989, το <a target="_blank" href="https://el.wikipedia.org/wiki/Διαδίκτυο">διαδίκτυο</a> χτίζει τις βιβλιοθήκες του για να μπορέσεις εσύ να επιβιώσεις πολλές μέρες κλεισμένος μέσα. </p>
-          <br>
-          <div class="open" id="flip1">ΠΑΡΑΣΤΑΣΕΙΣ</div>
-          <div class="box" id="panel1">
-            <a target="_blank" href="https://poreiatheatre.com/">ΘΕΑΤΡΟ ΠΟΡΕΙΑ – Δωρεάν Παραστάσεις</a><br>
-            <a target="_blank" href="http://www.nt-archive.gr/theaters.aspx?company=10">ΕΘΝΙΚΟ ΘΕΑΤΡΟ – Παιδικές Παραστάσεις</a><br>
-            <a target="_blank" href="https://www.thessalonikiartsandculture.gr/kosmos/art-salad/7-1-theatrikes-parastaseis-poy-mporeis-na-parakoloythiseis-apo-to-spiti/">7+1 ΘΕΑΤΡΙΚΕΣ ΠΑΡΑΣΤΑΣΕΙΣ (που μπορείς να παρακολουθήσεις από το σπίτι)</a><br>
-            <a target="_blank" href="https://roadartist.blogspot.com/2020/03/12.html?m=1">12 Θεατρικές παραστάσεις</a><br>
-            <a target="_blank" href="https://www.nationaltheatre.org.uk/at-home">Εθνικό Θέατρο Αγγλίας</a><br>
-            <a target="_blank" href="https://e-didaskalia.blogspot.com/2020/03/karagkiozis.html?m=1">Online θεατρικές παραστάσεις του ΚΑΡΑΓΚΙΟΖΗ</a><br>
-            <a target="_blank" href="https://www.infokids.gr/i-karmen-rouggeri-xarizei-sta-paidi/">Το Βαλς με τα Παραμύθια! της Κάρμεν Ρουγκέρη</a><br>
-            <a target="_blank" href="https://www.elculture.gr/blog/article/operes-online-teatro-di-san-carlo/">ΌΠΕΡΕΣ (online από το Teatro di San Carlo της Νάπολης)</a><br>
-            <a target="_blank" href="https://www.monopoli.gr/2020/03/20/promotional-items/theater-promo-items/379194/broadwayhd-ta-miouzikal-tou-broadway-dorean-stin-othoni-sas/">ΜΙΟΥΖΙΚΑΛ - Τα μιούζικαλ του Broadway</a><br>
-            <a target="_blank" href="https://www.monopoli.gr/2020/03/23/istories/art-culture-sub/379597/kathe-vrady-stis-9-oi-megales-orxistres-tis-eyropis-sto-facebook/">ΟΡΧΗΣΤΡΕΣ (Κάθε βράδυ στις 9: Οι μεγάλες ορχήστρες της Ευρώπης)</a><br>
-            <a target="_blank" href="https://www.digitalconcerthall.com/en/home">Η Φιλαρμονική του Βερολίνου</a>
-          </div>
-
-          <div class="open" id="flip2">ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ</div>
-          <div class="box" id="panel2">
-            <a target="_blank" href="https://www.enallaktikos.gr/Article/7705/deite-35-tainies-poy-kerdisan-oskar-online-kai-dwrean-edw">35 ΔΩΡΕΑΝ ΤΑΙΝΙΕΣ ΠΟΥ ΚΕΡΔΙΣΑΝ ΟΣΚΑΡ</a><br>
-            <a target="_blank" href="https://webtv.ert.gr/shows/to-sinema-sto-spiti-sas/">ONLINE ΤΑΙΝΙΕΣ ΤΗΣ ΕΡΤ</a><br>
-            <a target="_blank" href="https://www.culturenow.gr/4-tainies-toy-antrei-tarkofski-dorean-sto-youtube-me-agglikoys-ypotitloys/">4 ταινίες του ΑΝΤΡΕΙ ΤΑΡΚΟΦΣΚΙ (δωρεάν με αγγλικούς υπότιτλους)</a><br>
-            <a target="_blank" href="https://tvxs.gr/news/sinema/menoymespiti-dorean-sto-diadiktyo-10-brabeymenes-mikroy-mikoys-tainies-spoydaion-skinoth">10 βραβευμένες ΜΙΚΡΟΥ ΜΗΚΟΥΣ ΤΑΙΝΙΕΣ σπουδαίων σκηνοθετών</a><br>
-            <a target="_blank" href="https://www.festivalscope.com/all/films/list">Festival Scope - ΑΝΕΞΑΡΤΗΤΟΣ ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ με αγγλικούς υπότιτλους.</a><br>
-            <a target="_blank" href="http://www.openculture.com/freemoviesonline">OpenCulture, 1000 ΤΑΙΝΙΕΣ του κλασικού σινεμά</a><br>
-            <a target="_blank" href="https://blogs.sch.gr/dertv/2020/03/22/vlepoyme-ekpaideytiki-tileorasi-sto-diadiktyo/">Εκπαιδευτική Τηλεόραση</a><br>
-          </div>
-
-          <div class="open" id="flip3">NTOKΙMANΤΕΡ</div>
-          <div class="box" id="panel3">
-            <a target="_blank" href="https://www.youtube.com/user/HellenicCosmos/videos">ΙΔΡΥΜΑ ΜΕΙΖΟΝΟΣ ΕΛΛΗΝΙΣΜΟΥ</a><br>
-            <a target="_blank" href="https://greekdocumentaries2.blogspot.com/">ΔΩΡΕΑΝ Ντοκιμαντέρ (με Ελληνικούς Υπότιτλους)</a><br>
-            <a target="_blank" href="https://www.idfa.nl/en/collection/documentaries">IDFA Ντοκιμαντέρ 200 δωρεάν ταινίες</a><br>
-          </div>
-
-          <div class="open" id="flip4">ΒΙΒΛΙΑ</div>
-          <div class="box" id="panel4">
-            <a target="_blank" href="https://www.openbook.gr/">OPEN BOOK</a><br>
-            <a target="_blank" href="https://www.gutenberg.org">GUTENBERG PROJECT</a><br>
-            <a target="_blank" href="https://free-ebooks.gr/">FREE-EBOOKS</a><br>
-            <a target="_blank" href="https://plastelini.xyz/e-book-παραμύθια/">ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
-            <a target="_blank" href="https://www.nlg.gr/collection/ilektroniko-anagnostirio/">ΕΘΝΙΚΗ ΒΙΒΛΙΟΘΗΚΗ ΤΗΣ ΕΛΛΑΔΟΣ - Ηλεκτρονική Βιβλιοθήκη</a><br>
-            <a target="_blank" href="https://www.helppost.gr/free/ebooks/paidika-paramithia-istories-online/">ΠΑΙΔΙΚΑ ΠΑΡΑΜΥΘΙΑ</a><br>
-            <a target="_blank" href="http://www.mikrosanagnostis.gr/istoria_list.asp"> ΠΑΡΑΜΥΘΙΑ με αφήγηση</a><br>
-          </div>
-
-          <div class="open" id="flip5">ΜΟΥΣΕΙΑ</div>
-          <div class="box" id="panel5">
-            <a target="_blank" href="https://artsandculture.google.com/">GOOGLE ARTS & CULTURE (Περιέχει πολλές συλλογές μουσείων)</a><br>
-            <a target="_blank" href="https://www.namuseum.gr/collections/">ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ – Αθήνα</a><br>
-            <a target="_blank" href="https://www.louvre.fr/en/visites-en-ligne">ΛΟΥΒΡΟΣ Παρίσι</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/partner/musee-dorsay-paris?hl=en">Musée d’Orsay, Παρίσι</a><br>
-            <a target="_blank" href="https://www.britishmuseum.org/collection">ΒΡΕΤΑΝΙΚΟ Μουσείο, Λονδίνο</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/partner/tate-modern">Μουσείο Tate Modern, Λονδίνο</a><br>
-            <a target="_blank" href="https://www.metmuseum.org/">ΜΕΤ, Νέα Υόρκη</a><br>
-            <a target="_blank" href="https://www.nga.gov/index.html">ΕΘΝΙΚΗ ΠΙΝΑΚΟΘΗΚΗ, Ουάσιγκτον</a><br>
-            <a target="_blank" href="https://www.museodelprado.es/en/the-collection/art-works">Μουσείο ΠΡΑΔΟ, Μαδρίτη</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/exhibit/appearances-can-be-deceiving%C2%A0/6gICPDLcNAzkJA">Μουσείο ΦΡΙΝΤΑ ΚΑΛΟ, Πόλη του Μεξικού</a><br>
-            <a target="_blank" href="http://www.museivaticani.va/content/museivaticani/en.html">Μουσεία του ΒΑΤΙΚΑΝΟΥ, Ρώμη</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/story/cQVh5Rbqa2Q3dg">Πινακοθήκη ΟΥΦΙΤΣΙ, Φλωρεντία</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/exhibit/which-books-did-vincent-van-gogh-read/">Μουσείο ΒΑΝ ΓΚΟΓΚ, Αμστερνταμ</a><br>
-            <a target="_blank" href="https://artsandculture.google.com/">Μουσείο ΓΚΟΥΓΚΕΝΧΑΙΜ, Μπιλμπάο</a><br>
-            <a target="_blank" href="https://www.youtube.com/watch?v=49YeFsx1rIw">Μουσείο ΕΡΜΙΤΑΖ, Αγία Πετρούπολη.</a><br>
-          </div>
-
-          <div class="open" id="flip6">ΞΕΝΕΣ ΓΛΩΣΣΕΣ</div>
-          <div class="box" id="panel6">
-            <a target="_blank" href="https://www.duolingo.com/">Εκμάθηση ΞΕΝΩΝ ΓΛΩΣΣΩΝ</a><br>
-          </div>
-
-          <div class="open" id="flip7">ΔΩΡΕΑΝ ΜΑΘΗΜΑΤΑ</div>
-          <div class="box" id="panel7">
-            <a target="_blank" href="https://www.freecodecamp.org/news/ivy-league-free-online-courses-a0d7ae675869/">450 IVY LEAGUE COURSES</a><br>
-            <a target="_blank" href="https://www.coursera.org/">COURSERA</a><br>
-            <a target="_blank" href="http://www.openculture.com/2019/02/download-free-coloring-books-from-113-museums.html">OPEN CULTURE</a><br>
-            <a target="_blank" href="https://theartflipschool.com/course/ζωγραφικη-για-χαλαρωση-mindful-painting/">ΔΙΑΔΙΚΤΥΑΚΟ ΣΕΜΙΝΑΡΙΟ - ΖΩΓΡΑΦΙΚΗ ΓΙΑ ΧΑΛΑΡΩΣΗ</a><br>
-          </div>
-
-          <div class="open" id="flip8">ΓΥΜΝΑΣΤΙΚΗ</div>
-          <div class="box" id="panel8">
-            <a target="_blank" href="https://www.monopoli.gr/2020/03/14/istories/epikaira/378189/menoume-spiti-kai-gymnazomaste-online/">Γυμναζόμαστε… online</a><br>
-            <a target="_blank" href="https://www.psychografimata.com/δωρεαν-ασκήσεις-χαλάρωσης/">ΔΩΡΕΑΝ ασκήσεις χαλάρωσης</a><br>
-          </div>
-
-          <div class="open" id="flip9">ΨΥΧΟΛΟΓΙΑ</div>
-          <div class="box" id="panel9">
-            <a target="_blank" href="http://psych.gr/deltio-typoy-tis-ellinikis-psychiatrikis-etaireias-gia-ton-covid-19/">Δωρεάν Ψυχιατρική κάλυψη από την Ελληνική Ψυχιατρική Εταιρεία</a><br>
-            <a target="_blank" href="https://www.psychografimata.com/τηλεφωνική-γραμμή-ψυχοκοινωνικής-υπ/">Τηλεφωνική γραμμή Ψυχοκοινωνικής Υποστήριξης για τον κορωνοϊό από το ΕΚΠΑ</a><br>
-          </div>
-
-          <script>
-          $(document).ready(function(){
-            var open = $('.open'),
-                a = $('div').find('.open');
-
-            console.log(a.hasClass('active'));
-
-            open.click(function(e){
-                e.preventDefault();
-                var $this = $(this),
-                    speed = 500;
-                if($this.hasClass('active') === true) {
-                    $this.removeClass('active').next('.box').slideUp(speed);
-                } else if(a.hasClass('active') === false) {
-                    $this.addClass('active').next('.box').slideDown(speed);
-                } else {
-                    a.removeClass('active').next('.box').slideUp(speed);
-                    $this.addClass('active').next('.box').delay(speed).slideDown(speed);
-                }
-            });
-          });
-          </script>
-
-        </div>
-        <div style="text-align: right; margin: 10px 10px;">
-          <a target="_blank" href="https://www.facebook.com/ToDrastirioKatsiki/posts/2823405341077632?__tn__=K-R">*Πηγή</a>
-        </div>
-        <div id="icons">
-          <table>
-            <tr>
-                <td><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Who_logo.svg/1200px-Who_logo.svg.png" width="100"></a></td>
-                <td><a href="https://eody.gov.gr/neos-koronaios-covid-19/" target="_blank"><img src="https://eody.gov.gr/wp-content/themes/egritosTpl/images/eody-el.png" width="100"></a></td>
-                <td><a href="https://ethelontes.gov.gr/forma-ethelonton-gia-tin-antimetopisi/" target="_blank"><img src="https://content.myphone.gr/photo/full/76090/se-dokimastiki-leitoyrgia-gov-gr.jpg" width="100"></a></td><td><a href="http://covidsim.eu" target="_blank"><img src="http://covidsim.eu/assets/logotype_2.svg" width="100"></a></td>
-                <td><a href="https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset/data" target="_blank"><img src="https://s3.ap-south-1.amazonaws.com/techleer/175.png" width="100"></a></td>
-                <td><a href="https://data.humdata.org/dataset/novel-coronavirus-2019-ncov-cases" target="_blank"><img src="https://centre.humdata.org/wp-content/uploads/hdx_new_logo_spelled.png" width="100"></a></td>
-                <td style="font-size:1.6em;"><img src="https://cdn.onlinewebfonts.com/svg/img_86349.png" width="30px">1135</td>
-                <td style="font-size:1.6em;">
-                  <div class="tooltip">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS7ZsFsQNIs2h0ox33DJZgVy50U4UN4_7jG9iqDW0l6kvvUWgc1" width="30px">
-                    13033
-                    <span class="tooltiptext">
-                      Το SMS πρέπει να είναι της μορφής: X κενό ονοματεπώνυμο και διεύθυνση κατοικίας όπου Χ ο λόγος εξόδου με τον αριθμό 1, 2, 3, 4, 5, 6 που αντιστοιχεί στις παρακάτω αιτιολογίες: <br>1) Μετάβαση σε φαρμακείο ή επίσκεψη στον γιατρό, εφόσον αυτό συνιστάται μετά από σχετική επικοινωνία. <br>2) Μετάβαση σε εν λειτουργία κατάστημα προμηθειών αγαθών πρώτης ανάγκης, όπου δεν είναι δυνατή η αποστολή τους. <br>3) Μετάβαση στην τράπεζα, στο μέτρο που δεν είναι δυνατή η ηλεκτρονική συναλλαγή. <br>4) Κίνηση για παροχή βοήθειας σε ανθρώπους που βρίσκονται σε ανάγκη. <br>5) Μετάβαση σε τελετή (π.χ. κηδεία, γάμος, βάφτιση) υπό τους όρους που προβλέπει ο νόμος ή μετάβαση διαζευγμένων γονέων ή γονέων που τελούν σε διάσταση που είναι αναγκαία για τη διασφάλιση της επικοινωνίας γονέων και τέκνων, σύμφωνα με τις κείμενες διατάξεις. <br>6) Σωματική άσκηση σε εξωτερικό χώρο ή κίνηση με κατοικίδιο ζώο, ατομικά ή ανά δύο άτομα, τηρώντας στην τελευταία αυτή περίπτωση την αναγκαία απόσταση 1,5 μέτρου. <br>Θα λαμβάνετε ως απάντηση:Μετακίνηση κενό X κενό ονοματεπώνυμο και διεύθυνση κατοικίας
-                    </span>
-                 </div>
-                 </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
       <div id="socialDistancing" class="tabcontent" style="text-align: center;">
         <table>
           <tr>
@@ -676,7 +643,7 @@
         </table>
       </div>
 
-  </div>
+  </div-->
 
   <script>
     $(window).resize(function() {
@@ -5589,40 +5556,6 @@
           vars[key] = value;
       });
       return vars;
-  }
-
-  // Functionality on TABS click
-  function openTab(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-
-    // update all map objects
-    var mapObject = $('#world-map').vectorMap('get', 'mapObject');
-    mapObject.updateSize();
-    var mapObject = $('#greek-map').vectorMap('get', 'mapObject');
-    mapObject.updateSize();
-    //var mapObject2 = $('#world-map2').vectorMap('get', 'mapObject');
-    //mapObject2.updateSize();
-    //var mapObject3 = $('#world-map3').vectorMap('get', 'mapObject');
-    //mapObject3.updateSize();
-    //var mapObject4 = $('#world-map4').vectorMap('get', 'mapObject');
-    //mapObject4.updateSize();
   }
 
   </script>
