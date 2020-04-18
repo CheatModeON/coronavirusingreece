@@ -135,7 +135,7 @@
     var growth_deaths=[0];
 
     $(function(){
-      $.getJSON( "https://coron-api.azurewebsites.net/api/v1/stats").success(function(data)  {
+      $.getJSON( "https://coron-api.herokuapp.com/api/v1/stats").success(function(data)  {
         data.forEach(function(item, index, array) {
           $.each( item, function( key, val ) {
                  if(item.active_cases=="No Data" || item.active_cases==""){

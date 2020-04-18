@@ -972,7 +972,7 @@
     });
 
     $(function(){
-      $.getJSON( "https://coron-api.azurewebsites.net/api/v1/stats").success(function( data ) {
+      $.getJSON( "https://coron-api.herokuapp.com/api/v1/stats").success(function( data ) {
         //var items = [];
         data.forEach(function(item, index, array) {
           $.each( item, function( key, val ) {

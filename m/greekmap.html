@@ -137,7 +137,7 @@
       var data;
       $.ajax({
     	  type: "GET",
-    	  url: "https://coron-api.azurewebsites.net/api/v1/stats?country=Greece",
+    	  url: "https://coron-api.herokuapp.com/api/v1/stats?country=Greece",
     	  dataType: "json",
     	  success: function(response) {
           gr_total=response.total_cases;
