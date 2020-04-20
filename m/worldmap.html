@@ -2986,7 +2986,7 @@
            },
            onMarkerTipShow: function(e, el, code){
                if(stats[code]!=null || typeof(stats[code]) !== 'undefined'){
-                   el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="png100px/'+code.toLowerCase()+'.png" height="15px"> '+countriesGR[code]+'</h3><p><b>Πυκνότητα κρουσμάτων</b><br>Το '+(stats[code]*100/factor).toFixed(4)+'% του πληθυσμού νοσεί/έχει νοσήσει <br>' + virusData[code].total_cases_per_mil + ' κρούσματα ανά 1,000,000 ατόμα.<br>Ένας στους '+ (populationFinal[code]/virusData[code].total_cases).toFixed()+' ανθρώπους έχει νοσήσει.</p></div>');
+                   el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="../png100px/'+code.toLowerCase()+'.png" height="15px"> '+countriesGR[code]+'</h3><p><b>Πυκνότητα κρουσμάτων</b><br>Το '+(stats[code]*100/factor).toFixed(4)+'% του πληθυσμού νοσεί/έχει νοσήσει <br>' + virusData[code].total_cases_per_mil + ' κρούσματα ανά 1,000,000 ατόμα.<br>Ένας στους '+ (populationFinal[code]/virusData[code].total_cases).toFixed()+' ανθρώπους έχει νοσήσει.</p></div>');
                    if(code=="GR"){
                      el.html(el.html()+'<div style="margin-left:15px; margin-right:15px;"><p>Κάντε κλικ για να δείτε περισσότερα δεδομένα...</p></div>');
                    }
@@ -2994,11 +2994,11 @@
            },
            onRegionTipShow: function(e, el, code){
                if(countriesGR[code]!=null) {
-                 el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="png100px/'+code.toLowerCase()+'.png" height="15"> '+countriesGR[code]+'</div>');
+                 el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="../png100px/'+code.toLowerCase()+'.png" height="15"> '+countriesGR[code]+'</div>');
                }
                if(virusData[code]!=null || typeof(virusData[code]) !== 'undefined'){
                  //el.html()
-                   el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="png100px/'+code.toLowerCase()+'.png" height="15"> '+countriesGR[code]+'</h3><p><b>Δεδομένα</b><br>Συνολικά κρούσματα: '+virusData[code].total_cases+'<br> Αναρρώσαντες: '+virusData[code].total_recovered+' <br> Σύνολο θανάτων: '+virusData[code].total_deaths+ '</p></div>');
+                   el.html('<div style="margin-left:15px; margin-right:15px;"><h3><img src="../png100px/'+code.toLowerCase()+'.png" height="15"> '+countriesGR[code]+'</h3><p><b>Δεδομένα</b><br>Συνολικά κρούσματα: '+virusData[code].total_cases+'<br> Αναρρώσαντες: '+virusData[code].total_recovered+' <br> Σύνολο θανάτων: '+virusData[code].total_deaths+ '</p></div>');
                    if(code=="GR"){
                      el.html(el.html()+'<div style="margin-left:15px; margin-right:15px;"><p>Κάντε κλικ για να μεταβείτε στον χάρτη της Ελλάδας...</p></div>');
                    }
@@ -3017,7 +3017,7 @@
              }
            },
            onViewportChange: function (event, scale) {
-             if(scale>2) {
+             if(scale>1) {
                document.getElementById('infoi2').style.display="none";
              } else {
                document.getElementById('infoi2').style.display="block";
@@ -3047,9 +3047,16 @@
     document.getElementById("anarrosantes_all").innerHTML=world.total_recovered + " Αναρρώσαντες";
     var img = document.createElement('img');
     img.src =  '../logo.png';
-    img.height = 180;
-    img.width = 180;
+    img.height = 80;
+    img.width = 80;
     document.getElementById('logo').appendChild(img);
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      $('#infoi2').css('top', 0);
+      $('#infoi2').css('font-size', 12);
+      $('#infoi2').css('left', (window.innerWidth / 2) - (document.getElementById('infoi2').offsetWidth/2));
+    }
+
 /*
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       document.getElementsByClassName(".jvectormap-zoomin")[0].style.lineHeight = "80px";

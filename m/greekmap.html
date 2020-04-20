@@ -167,6 +167,13 @@
              onRegionTipShow: function (e, el, code) {
                el.html('<div style="margin-left:10px; margin-right:10px;"><h3>'+greek_data[code].name+'</h3><p>Κρούσματα: '+greek_data_cases[code]+' ('+(greek_data_cases[code]*100/gr_total).toFixed(2)+'%)<br>Νοσηλεύονται: '+greek_data_hospitalized[code]+/*'<br>Κρίσιμα: '+greek_data_critical[code]+'<br>Αναρρώσαντες: '+greek_data_recovered[code]+*/'<br>Θανόντες: '+greek_data_dead[code]+'</p></div>');
 
+             },
+             onViewportChange: function (event, scale) {
+               if(scale>1) {
+                 document.getElementById('infoi').style.display="none";
+               } else {
+                 document.getElementById('infoi').style.display="block";
+               }
              }
            });
            doBeforeShow();
@@ -977,9 +984,15 @@
     document.getElementById("anarrosantes").innerHTML=gr_recovered + " Αναρρώσαντες";
     var img = document.createElement('img');
     img.src =  '../logo.png';
-    img.height = 180;
-    img.width = 180;
+    img.height = 80;
+    img.width = 80;
     document.getElementById('logo').appendChild(img);
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      $('#infoi').css('top', 0);
+      $('#infoi').css('font-size', 12);
+      $('#infoi').css('left', (window.innerWidth / 2) - (document.getElementById('infoi').offsetWidth/2));
+    }
 /*
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       document.getElementsByClassName(".jvectormap-zoomin")[0].style.lineHeight = "80px";

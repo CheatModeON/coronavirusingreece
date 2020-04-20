@@ -18,19 +18,15 @@
       #infoi,#infoi2 {
         color: white;
         opacity: 0.6;
-        font-size: 35px;
-        padding-left: 20px;
+        font-size: 1.8em;
+        padding: 10px 10px 10px 10px;
         /*height:30%;*/
         position: absolute;
         bottom: 0;
         left: 0;
-        z-index: 10;
+        z-index: 2;
         text-shadow: 5px 5px 10px #000000;
       }
-      #infoi2 {
-        font-size: 35px;
-      }
-
       .float{
       	position:fixed;
       	width:60px;
@@ -243,6 +239,14 @@
         /*text-shadow: 0 1px 0px #000;*/
         z-index: 1;
         height: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #footer-text {
+
+        font-size:0.4em;
       }
       #navBtn {
         margin-left: 20px;
@@ -276,6 +280,12 @@
       }
       .jvectormap-legend-icons {
         color: black;
+      }
+      .jvectormap-zoomin, .jvectormap-zoomout {
+        font-size: 30px;
+      }
+      .jvectormap-tip {
+        z-index: 20;
       }
       #load {
         position: absolute; margin-left: auto;margin-right: auto;left: 0;right: 0;
@@ -465,13 +475,13 @@ div#ball-graph {
   top: 15%;
   width: 100%;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .overlay a {
   padding: 8px;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 1.4em;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -484,7 +494,7 @@ div#ball-graph {
 .overlay .closebtn {
   position: absolute;
   top: 20px;
-  right: 45px;
+  right: 30px;
   font-size: 60px;
 }
 
@@ -622,4 +632,33 @@ div#ball-graph {
 }
 .slick-arrow.slick-hidden {
     display: none;
+}
+
+
+
+
+
+.container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
 }
