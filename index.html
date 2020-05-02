@@ -1506,18 +1506,10 @@
           }
       	});
 
-      $.getJSON( "https://coron-api.herokuapp.com/api/v2/yesterday", function( data ) {
-        data.forEach(function(item, index, array) {
-          $.each( item, function( key, val ){
-            if(key=="country"){
-              if(val=="Greece"){
-                  gr_yesterday_total = item.total_cases;
-                  gr_yesterday_deaths = item.total_deaths;
-                  gr_yesterday_recovered = item.total_recovered;
-              }
-            }
-          });
-        })
+      $.getJSON( "https://coron-api.herokuapp.com/api/v2/yesterday?country=Greece", function( data ) {
+        gr_yesterday_total = data.total_cases;
+        gr_yesterday_deaths = data.total_deaths;
+        gr_yesterday_recovered = data.total_recovered;
       });
 
     });
@@ -5392,11 +5384,12 @@
       div2.id = "dataDiv";
       div.appendChild(div2);
 
-      var reference1 = y_total[pos]; // yesterday's reference
-      var reference2 = y_total_deaths[pos]; // yesterday's reference
+      //var reference1 = y_total[pos]; // yesterday's reference
+      //var reference2 = y_total_deaths[pos]; // yesterday's reference
       var reference1 = gr_yesterday_total; //fixed yesterday's reference-using yesterday from worldometers
       var reference2 = gr_yesterday_deaths; //fixed yesterday's reference-using yesterday from worldometers
       var reference3 = gr_yesterday_recovered; //fixed yesterday's reference-using yesterday from worldometers
+
       var layout = {
         width:  (window.innerWidth-$(".tab").innerWidth()),
         height: 700,
