@@ -203,6 +203,15 @@
       })
     });
 
+    var flag = 0;
+    var continentalData = {
+      "North America": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Europe": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Asia": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"South America": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Oceania": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Africa": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999}
+    };
     var gr_yesterday_total = 0;
     var gr_yesterday_deaths = 0;
     var gr_yesterday_recovered = 0;
@@ -861,6 +870,7 @@
           }
     	  },
         complete: function () {
+          flag += 1;
         }
     	});
 
@@ -965,13 +975,79 @@
                 growth_deaths.push((y_deaths[i]-y_deaths[i-1])*100 / y_deaths[i-1].toFixed(2));
               }
             }
+            flag += 1;
           }
-      	});
+        });
 
 
     });
 
     $(function(){
+      $.getJSON( "https://coron-api.herokuapp.com/api/v2/continents").success(function( data ) {
+        //var items = [];
+        data.forEach(function(item, index, array) {
+          $.each( item, function( key, val ) {
+             if(key=="continent") {
+               if(val=="North America") {
+                 continentalData["North America"].total_cases = parseInt(item.total_cases);
+                 continentalData["North America"].new_cases = parseInt(item.new_case);
+                 continentalData["North America"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["North America"].active_cases = parseInt(item.active_cases);
+                 continentalData["North America"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["North America"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["North America"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Europe") {
+                 continentalData["Europe"].total_cases = parseInt(item.total_cases);
+                 continentalData["Europe"].new_cases = parseInt(item.new_cases);
+                 continentalData["Europe"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Europe"].active_cases = parseInt(item.active_cases);
+                 continentalData["Europe"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Europe"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Europe"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Asia") {
+                 continentalData["Asia"].total_cases = parseInt(item.total_cases);
+                 continentalData["Asia"].new_cases = parseInt(item.new_cases);
+                 continentalData["Asia"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Asia"].active_cases = parseInt(item.active_cases);
+                 continentalData["Asia"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Asia"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Asia"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="South America") {
+                 continentalData["South America"].total_cases = parseInt(item.total_cases);
+                 continentalData["South America"].new_cases = parseInt(item.new_cases);
+                 continentalData["South America"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["South America"].active_cases = parseInt(item.active_cases);
+                 continentalData["South America"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["South America"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["South America"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Oceania") {
+                 continentalData["Oceania"].total_cases = parseInt(item.total_cases);
+                 continentalData["Oceania"].new_cases = parseInt(item.new_cases);
+                 continentalData["Oceania"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Oceania"].active_cases = parseInt(item.active_cases);
+                 continentalData["Oceania"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Oceania"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Oceania"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Africa") {
+                 continentalData["Africa"].total_cases = parseInt(item.total_cases);
+                 continentalData["Africa"].new_cases = parseInt(item.new_cases);
+                 continentalData["Africa"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Africa"].active_cases = parseInt(item.active_cases);
+                 continentalData["Africa"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Africa"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Africa"].total_recovered = parseInt(item.total_recovered);
+               }
+             }
+          });
+        })
+
+        flag += 1;
+      });
       $.getJSON( "https://coron-api.herokuapp.com/api/v1/stats").success(function( data ) {
         //var items = [];
         data.forEach(function(item, index, array) {
@@ -3565,8 +3641,12 @@
           });
         })
 
+        flag += 1;
       }).then(function() {
 
+        while(flag!=4){
+
+        }
             createPlots();
             //doBeforeShow();
             showPage();
@@ -4156,9 +4236,9 @@
 
 
     population_cont = [747636026, 4641054775, 1340598147, 592072212, 430759766, 42677813];
-    total_cases_cont = [615445, 214686, 8752, 333264, 23502, 6836];
-    recovered_cont = [114310, 109722, 836, 18232, 2214, 742];
-    deaths_cont = [46194, 8335, 401, 8972, 822, 40];
+    total_cases_cont = [continentalData["Europe"].total_cases, continentalData["Asia"].total_cases, continentalData["Africa"].total_cases, continentalData["North America"].total_cases, continentalData["South America"].total_cases, continentalData["Oceania"].total_cases];
+    recovered_cont = [continentalData["Europe"].total_recovered, continentalData["Asia"].total_recovered, continentalData["Africa"].total_recovered, continentalData["North America"].total_recovered, continentalData["South America"].total_recovered, continentalData["Oceania"].total_recovered];
+    deaths_cont = [continentalData["Europe"].total_deaths, continentalData["Asia"].total_deaths, continentalData["Africa"].total_deaths, continentalData["North America"].total_deaths, continentalData["South America"].total_deaths, continentalData["Oceania"].total_deaths];
     total = [0,0,0,0];
     for(var i=0; i<6; i++){
       total[0]=total[0]+population_cont[i];

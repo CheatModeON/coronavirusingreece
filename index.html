@@ -178,14 +178,6 @@
     <button id="social-distance"class="tablinks" onClick="openTab(event, 'socialDistancing')">Γιατί μένω μέσα;</button>
     <div id="telegram">
       <iframe id="webroundbuttonwidget2" file="webroundbuttonwidget" src="https://telegrambutton.com/webroundbuttonwidget.php?chat_id=coronavirusingreece&showchatid=true&showmembercount=true&showmembercount=true&color=&pulse=true&textcolor=white&shadowval=&textval=ΖΩΝΤΑΝΗ ΕΝΗΜΕΡΩΣΗ" border="1" style="border:20px;height: 80px;width: 80px;"></iframe>
-
-      <!--table class="telegram_t">
-      <tr><td class="l">
-      <iframe id="webroundbuttonwidget2" file="webroundbuttonwidget" src="https://telegrambutton.com/webroundbuttonwidget.php?chat_id=coronavirusingreece&showchatid=true&showmembercount=true&showmembercount=true&color=&pulse=true&textcolor=white&shadowval=&textval=ΖΩΝΤΑΝΗ ΕΝΗΜΕΡΩΣΗ" border="1" style="border:20px;height: 60px;width: 60px;"></iframe>
-      </td>
-      <td class="r"><a href="https://t.me/coronavirusingreece" target="_blank">Ληψη Live ειδοποιήσεων μέσω Telegram</a></td>
-      </tr>
-      </table-->
     </div>
   </div>
 
@@ -269,192 +261,6 @@
             <div id="bar1"></div>
             <br>
             <div id="pie1"></div>
-
-              <script>
-                population_cont = [747636026, 4641054775, 1340598147, 592072212, 430759766, 42677813];
-                total_cases_cont = [615445, 214686, 8752, 333264, 23502, 6836];
-                recovered_cont = [114310, 109722, 836, 18232, 2214, 742];
-                deaths_cont = [46194, 8335, 401, 8972, 822, 40];
-                total = [0,0,0,0];
-                for(var i=0; i<6; i++){
-                  total[0]=total[0]+population_cont[i];
-                  total[1]=total[1]+total_cases_cont[i];
-                  total[2]=total[2]+recovered_cont[i];
-                  total[3]=total[3]+deaths_cont[i];
-
-                }
-
-                for(var i=0; i<6; i++){
-                  var a = 'a'+(i+1);
-                  var b = 'b'+(i+1);
-                  var c = 'c'+(i+1);
-                  document.getElementById(a).innerHTML = ""+(population_cont[i]/total_cases_cont[i]).toFixed();
-                  document.getElementById(b).innerHTML = ""+(total_cases_cont[i]/recovered_cont[i]).toFixed();
-                  document.getElementById(c).innerHTML = ""+(total_cases_cont[i]/deaths_cont[i]).toFixed();
-                }
-
-                var trace1 = {
-                  x: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                  y: [(total_cases_cont[0]).toFixed(), (total_cases_cont[1]).toFixed(), (total_cases_cont[2]).toFixed(), (total_cases_cont[3]).toFixed(), (total_cases_cont[4]).toFixed(), (total_cases_cont[5]).toFixed()],
-                  marker:{
-                    color: '#31708e'
-                  //  color: ['rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
-                  },
-                  name: "Total cases",
-                  type: 'bar'
-                };
-                var trace2 = {
-                  x: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                  y: [(recovered_cont[0]).toFixed(), (recovered_cont[1]).toFixed(), (recovered_cont[2]).toFixed(), (recovered_cont[3]).toFixed(), (recovered_cont[4]).toFixed(), (recovered_cont[5]).toFixed()],
-                  marker:{
-                    color: '#8fc1e3'
-                  //  color: ['rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)']
-                  },
-                  name: "Recoveries",
-                  type: 'bar'
-                };
-                var trace3 = {
-                  x: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                  y: [(deaths_cont[0]).toFixed(), (deaths_cont[1]).toFixed(), (deaths_cont[2]).toFixed(), (deaths_cont[3]).toFixed(), (deaths_cont[4]).toFixed(), (deaths_cont[5]).toFixed()],
-                  marker:{
-                    color: '#844d36'
-                  //  color: ['rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)']
-                  },
-                  name: "Deaths",
-                  type: 'bar'
-                };
-
-                var data = [trace1, trace2, trace3];
-
-                var layout = {
-                  title: 'COVID-19 Σύγκριση δεδομένων ανά ήπειρο',
-                  barmode: 'stack',
-                  height: 500,
-                  width: 1150,
-                  images: [{
-                    name: 'watermark_1',
-                    source: "http://83.212.112.51/coronavirusmap/logo.png",
-                    xref: "paper",
-                    yref: "paper",
-                    x: 0.4,//0.4
-                    y: 0.8,//0.9
-                    sizex: 0.7,//0.7
-                    sizey: 0.7,//0.7
-                    // sizing: "stretch",
-                    opacity: 0.05,
-                    layer: "below"
-                  }]
-                };
-
-                Plotly.newPlot('bar1', data, layout);
-
-                var data = [{
-                    values:  population_cont.map(x => x * 100 / total[0]),
-                    labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                    text: 'Population',
-                    domain: {column: 0},
-                    name: 'Population share',
-                    hoverinfo: 'label+percent+name',
-                    //hole: .4,
-                    type: 'pie'
-                  },
-                  {
-                    values: total_cases_cont.map(x => x * 100 / total[1]),
-                    labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                    text: 'Total Cases',
-                    textposition: 'inside',
-                    domain: {column: 1},
-                    name: 'Covid19 cases share',
-                    hoverinfo: 'label+percent+name',
-                    //hole: .4,
-                    type: 'pie'
-                  },
-                  {
-                    values: recovered_cont.map(x => x * 100 / total[2]),
-                    labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                    text: 'Total Recoveries',
-                    textposition: 'inside',
-                    domain: {column: 2},
-                    name: 'Covid19 recoveries share',
-                    hoverinfo: 'label+percent+name',
-                    //hole: .4,
-                    type: 'pie'
-                  },
-                  {
-                    values: deaths_cont.map(x => x * 100 / total[3]),
-                    labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
-                    text: 'Total Deaths',
-                    textposition: 'inside',
-                    domain: {column: 3},
-                    name: 'Covid19 deaths share',
-                    hoverinfo: 'label+percent+name',
-                    //hole: .4,
-                    type: 'pie'
-                  }
-                ];
-
-                var layout = {
-                  title: 'COVID-19 Ποσοστιαίο μοίρασμα δεδομένων ανά ήπειρο',
-                  annotations: [
-                    {
-                      font: {
-                        size: 15
-                      },
-                      showarrow: false,
-                      text: 'POPULATION',
-                      x: 0.065,
-                      y: 1
-                    },
-                    {
-                      font: {
-                        size: 15
-                      },
-                      showarrow: false,
-                      text: 'CASES',
-                      x: 0.37,
-                      y: 1
-                    },
-                    {
-                      font: {
-                        size: 15
-                      },
-                      showarrow: false,
-                      text: 'RECOVERED',
-                      x: 0.63,
-                      y: 1
-                    },
-                    {
-                      font: {
-                        size: 15
-                      },
-                      showarrow: false,
-                      text: 'DEATHS',
-                      x: 0.92,
-                      y: 1
-                    }
-                  ],
-                  images: [{
-                    name: 'watermark_1',
-                    source: "http://83.212.112.51/coronavirusmap/logo.png",
-                    xref: "paper",
-                    yref: "paper",
-                    x: 0.4,//0.4
-                    y: 0.8,//0.9
-                    sizex: 0.7,//0.7
-                    sizey: 0.7,//0.7
-                    // sizing: "stretch",
-                    opacity: 0.05,
-                    layer: "below"
-                  }],
-                  height: 500,
-                  width: 1150,
-                  showlegend: true,
-                  grid: {rows: 1, columns: 4}
-                };
-
-                Plotly.newPlot('pie1', data, layout);
-
-              </script>
       </div>
 
       <div id="greek-data" class="tabcontent" style="text-align: center;">
@@ -741,6 +547,15 @@
       })
     });
 
+    var flag = 0;
+    var continentalData = {
+      "North America": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Europe": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Asia": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"South America": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Oceania": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999},
+    	"Africa": {"total_cases":-99999, "new_cases":-99999, "new_deaths":-99999, "active_cases":-99999, "serious_cases":-99999, "total_deaths":-99999, "total_recovered":-99999, "total_cases_per_mil":-99999, "deaths_per_mil":-99999, "total_tests":-99999,"tests_per_mil":-99999}
+    };
     var gr_yesterday_total = 0;
     var gr_yesterday_deaths = 0;
     var gr_yesterday_recovered = 0;
@@ -1399,6 +1214,7 @@
           }
     	  },
         complete: function () {
+          flag += 1;
         }
     	});
 
@@ -1503,6 +1319,7 @@
                 growth_deaths.push((y_deaths[i]-y_deaths[i-1])*100 / y_deaths[i-1].toFixed(2));
               }
             }
+            flag += 1;
           }
       	});
 
@@ -1510,6 +1327,71 @@
         gr_yesterday_total = data.total_cases;
         gr_yesterday_deaths = data.total_deaths;
         gr_yesterday_recovered = data.total_recovered;
+        flag += 1;
+      });
+      $.getJSON( "https://coron-api.herokuapp.com/api/v2/continents").success(function( data ) {
+        //var items = [];
+        data.forEach(function(item, index, array) {
+          $.each( item, function( key, val ) {
+             if(key=="continent") {
+               if(val=="North America") {
+                 continentalData["North America"].total_cases = parseInt(item.total_cases);
+                 continentalData["North America"].new_cases = parseInt(item.new_case);
+                 continentalData["North America"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["North America"].active_cases = parseInt(item.active_cases);
+                 continentalData["North America"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["North America"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["North America"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Europe") {
+                 continentalData["Europe"].total_cases = parseInt(item.total_cases);
+                 continentalData["Europe"].new_cases = parseInt(item.new_cases);
+                 continentalData["Europe"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Europe"].active_cases = parseInt(item.active_cases);
+                 continentalData["Europe"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Europe"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Europe"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Asia") {
+                 continentalData["Asia"].total_cases = parseInt(item.total_cases);
+                 continentalData["Asia"].new_cases = parseInt(item.new_cases);
+                 continentalData["Asia"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Asia"].active_cases = parseInt(item.active_cases);
+                 continentalData["Asia"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Asia"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Asia"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="South America") {
+                 continentalData["South America"].total_cases = parseInt(item.total_cases);
+                 continentalData["South America"].new_cases = parseInt(item.new_cases);
+                 continentalData["South America"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["South America"].active_cases = parseInt(item.active_cases);
+                 continentalData["South America"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["South America"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["South America"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Oceania") {
+                 continentalData["Oceania"].total_cases = parseInt(item.total_cases);
+                 continentalData["Oceania"].new_cases = parseInt(item.new_cases);
+                 continentalData["Oceania"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Oceania"].active_cases = parseInt(item.active_cases);
+                 continentalData["Oceania"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Oceania"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Oceania"].total_recovered = parseInt(item.total_recovered);
+               }
+               if(val=="Africa") {
+                 continentalData["Africa"].total_cases = parseInt(item.total_cases);
+                 continentalData["Africa"].new_cases = parseInt(item.new_cases);
+                 continentalData["Africa"].new_deaths = parseInt(item.new_deaths);
+                 continentalData["Africa"].active_cases = parseInt(item.active_cases);
+                 continentalData["Africa"].serious_cases = parseInt(item.serious_cases);
+                 continentalData["Africa"].total_deaths = parseInt(item.total_deaths);
+                 continentalData["Africa"].total_recovered = parseInt(item.total_recovered);
+               }
+             }
+          });
+        })
+        flag += 1;
       });
 
     });
@@ -4107,7 +3989,6 @@
 
           });
         })
-
         /*for (var i=0; i< populationData2.length; i++){
           //alert(populationData2[i].abbreviation)
             if(virusData[populationData2[i].abbreviation]!=null || typeof(virusData[populationData2[i].abbreviation]) !== 'undefined'){
@@ -4478,6 +4359,9 @@
 
         // end of maps
 
+        while(flag!=4){
+
+        }
         drawGrData();
         drawInfo();
         createPlots();
@@ -5333,6 +5217,190 @@
      Plotly.newPlot('greeceTrend', data, layout).then(function() {
       Plotly.addFrames('greeceTrend', frames);
     });
+
+
+    population_cont = [747636026, 4641054775, 1340598147, 592072212, 430759766, 42677813];
+    total_cases_cont = [continentalData["Europe"].total_cases, continentalData["Asia"].total_cases, continentalData["Africa"].total_cases, continentalData["North America"].total_cases, continentalData["South America"].total_cases, continentalData["Oceania"].total_cases];
+    recovered_cont = [continentalData["Europe"].total_recovered, continentalData["Asia"].total_recovered, continentalData["Africa"].total_recovered, continentalData["North America"].total_recovered, continentalData["South America"].total_recovered, continentalData["Oceania"].total_recovered];
+    deaths_cont = [continentalData["Europe"].total_deaths, continentalData["Asia"].total_deaths, continentalData["Africa"].total_deaths, continentalData["North America"].total_deaths, continentalData["South America"].total_deaths, continentalData["Oceania"].total_deaths];
+    total = [0,0,0,0];
+    for(var i=0; i<6; i++){
+      total[0]=total[0]+population_cont[i];
+      total[1]=total[1]+total_cases_cont[i];
+      total[2]=total[2]+recovered_cont[i];
+      total[3]=total[3]+deaths_cont[i];
+
+    }
+
+    for(var i=0; i<6; i++){
+      var a = 'a'+(i+1);
+      var b = 'b'+(i+1);
+      var c = 'c'+(i+1);
+      document.getElementById(a).innerHTML = ""+(population_cont[i]/total_cases_cont[i]).toFixed();
+      document.getElementById(b).innerHTML = ""+(total_cases_cont[i]/recovered_cont[i]).toFixed();
+      document.getElementById(c).innerHTML = ""+(total_cases_cont[i]/deaths_cont[i]).toFixed();
+    }
+
+    var trace1 = {
+      x: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+      y: [(total_cases_cont[0]).toFixed(), (total_cases_cont[1]).toFixed(), (total_cases_cont[2]).toFixed(), (total_cases_cont[3]).toFixed(), (total_cases_cont[4]).toFixed(), (total_cases_cont[5]).toFixed()],
+      marker:{
+        color: '#31708e'
+      //  color: ['rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
+      },
+      name: "Total cases",
+      type: 'bar'
+    };
+    var trace2 = {
+      x: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+      y: [(recovered_cont[0]).toFixed(), (recovered_cont[1]).toFixed(), (recovered_cont[2]).toFixed(), (recovered_cont[3]).toFixed(), (recovered_cont[4]).toFixed(), (recovered_cont[5]).toFixed()],
+      marker:{
+        color: '#8fc1e3'
+      //  color: ['rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)']
+      },
+      name: "Recoveries",
+      type: 'bar'
+    };
+    var trace3 = {
+      x: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+      y: [(deaths_cont[0]).toFixed(), (deaths_cont[1]).toFixed(), (deaths_cont[2]).toFixed(), (deaths_cont[3]).toFixed(), (deaths_cont[4]).toFixed(), (deaths_cont[5]).toFixed()],
+      marker:{
+        color: '#844d36'
+      //  color: ['rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)', 'rgba(204,11,22,1)']
+      },
+      name: "Deaths",
+      type: 'bar'
+    };
+
+    var data = [trace1, trace2, trace3];
+
+    var layout = {
+      title: 'COVID-19 Σύγκριση δεδομένων ανά ήπειρο',
+      barmode: 'stack',
+      height: 500,
+      width: 1150,
+      images: [{
+        name: 'watermark_1',
+        source: "http://83.212.112.51/coronavirusmap/logo.png",
+        xref: "paper",
+        yref: "paper",
+        x: 0.4,//0.4
+        y: 0.8,//0.9
+        sizex: 0.7,//0.7
+        sizey: 0.7,//0.7
+        // sizing: "stretch",
+        opacity: 0.05,
+        layer: "below"
+      }]
+    };
+
+    Plotly.newPlot('bar1', data, layout);
+
+    var data = [{
+        values:  population_cont.map(x => x * 100 / total[0]),
+        labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+        text: 'Population',
+        domain: {column: 0},
+        name: 'Population share',
+        hoverinfo: 'label+percent+name',
+        //hole: .4,
+        type: 'pie'
+      },
+      {
+        values: total_cases_cont.map(x => x * 100 / total[1]),
+        labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+        text: 'Total Cases',
+        textposition: 'inside',
+        domain: {column: 1},
+        name: 'Covid19 cases share',
+        hoverinfo: 'label+percent+name',
+        //hole: .4,
+        type: 'pie'
+      },
+      {
+        values: recovered_cont.map(x => x * 100 / total[2]),
+        labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+        text: 'Total Recoveries',
+        textposition: 'inside',
+        domain: {column: 2},
+        name: 'Covid19 recoveries share',
+        hoverinfo: 'label+percent+name',
+        //hole: .4,
+        type: 'pie'
+      },
+      {
+        values: deaths_cont.map(x => x * 100 / total[3]),
+        labels: ['Europe', 'Asia', 'Africa', 'N. America', 'S. America', 'Oceania'],
+        text: 'Total Deaths',
+        textposition: 'inside',
+        domain: {column: 3},
+        name: 'Covid19 deaths share',
+        hoverinfo: 'label+percent+name',
+        //hole: .4,
+        type: 'pie'
+      }
+    ];
+
+    var layout = {
+      title: 'COVID-19 Ποσοστιαίο μοίρασμα δεδομένων ανά ήπειρο',
+      annotations: [
+        {
+          font: {
+            size: 15
+          },
+          showarrow: false,
+          text: 'POPULATION',
+          x: 0.065,
+          y: 1
+        },
+        {
+          font: {
+            size: 15
+          },
+          showarrow: false,
+          text: 'CASES',
+          x: 0.37,
+          y: 1
+        },
+        {
+          font: {
+            size: 15
+          },
+          showarrow: false,
+          text: 'RECOVERED',
+          x: 0.63,
+          y: 1
+        },
+        {
+          font: {
+            size: 15
+          },
+          showarrow: false,
+          text: 'DEATHS',
+          x: 0.92,
+          y: 1
+        }
+      ],
+      images: [{
+        name: 'watermark_1',
+        source: "http://83.212.112.51/coronavirusmap/logo.png",
+        xref: "paper",
+        yref: "paper",
+        x: 0.4,//0.4
+        y: 0.8,//0.9
+        sizex: 0.7,//0.7
+        sizey: 0.7,//0.7
+        // sizing: "stretch",
+        opacity: 0.05,
+        layer: "below"
+      }],
+      height: 500,
+      width: 1150,
+      showlegend: true,
+      grid: {rows: 1, columns: 4}
+    };
+
+    Plotly.newPlot('pie1', data, layout);
   }
 
   function doBeforeShow(){
