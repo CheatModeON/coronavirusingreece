@@ -72,6 +72,11 @@
          width:  window.innerWidth-$(".tab").innerWidth()-15,
          //height:  window.innerHeight-50
         })
+        Plotly.relayout('plot_tests', {
+         width:  window.innerWidth-$(".tab").innerWidth()-15,
+         //height:  window.innerHeight-50
+        })
+
 
       }
 
@@ -163,6 +168,8 @@
           <div id="bar1"></div>
           <br>
           <div id="pie1"></div>
+          <br>
+          <div id="plot_tests"></div>
 
     </div>
   </div>
@@ -198,6 +205,10 @@
        //height:  window.innerHeight-50
       })
       Plotly.relayout('greeceTrend', {
+       width:  window.innerWidth-$(".tab").innerWidth()-15,
+       //height:  window.innerHeight-50
+      })
+      Plotly.relayout('plot_tests', {
        width:  window.innerWidth-$(".tab").innerWidth()-15,
        //height:  window.innerHeight-50
       })
@@ -3710,17 +3721,17 @@
   function createPlots(){
 
     var greek_pop = (virusData["GR"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //10423054;
-    var usa_pop = (virusData["US"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //331002651;
-    var germ_pop = (virusData["DE"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //83783942;
-    var spain_poo = (virusData["ES"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //46754778;
-    var italy_pop = (virusData["IT"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //60461826;
-    var france_pop = (virusData["FR"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //65273511;
-    var uk_pop = (virusData["GR"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //67886011;
-    var russia_pop = (virusData["RU"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //145934462;
-    var cz_pop = (virusData["CZ"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //10708981;
-    var romania_pop = (virusData["RO"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //19237691;
-    var ukraine_pop = (virusData["UA"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //43733762;
-    var poland_pop = (virusData["PL"].total_cases*1000000) / virusData["GR"].total_cases_per_mil; //37846611;
+    var usa_pop = (virusData["US"].total_cases*1000000) / virusData["US"].total_cases_per_mil; //331002651;
+    var germ_pop = (virusData["DE"].total_cases*1000000) / virusData["DE"].total_cases_per_mil; //83783942;
+    var spain_pop = (virusData["ES"].total_cases*1000000) / virusData["ES"].total_cases_per_mil; //46754778;
+    var italy_pop = (virusData["IT"].total_cases*1000000) / virusData["IT"].total_cases_per_mil; //60461826;
+    var france_pop = (virusData["FR"].total_cases*1000000) / virusData["FR"].total_cases_per_mil; //65273511;
+    var uk_pop = (virusData["GB"].total_cases*1000000) / virusData["GB"].total_cases_per_mil; //67886011;
+    var russia_pop = (virusData["RU"].total_cases*1000000) / virusData["RU"].total_cases_per_mil; //145934462;
+    var cz_pop = (virusData["CZ"].total_cases*1000000) / virusData["CZ"].total_cases_per_mil; //10708981;
+    var romania_pop = (virusData["RO"].total_cases*1000000) / virusData["RO"].total_cases_per_mil; //19237691;
+    var ukraine_pop = (virusData["UA"].total_cases*1000000) / virusData["UA"].total_cases_per_mil; //43733762;
+    var poland_pop = (virusData["PL"].total_cases*1000000) / virusData["PL"].total_cases_per_mil; //37846611;
 
     var greece_expenditure = 2223;
     var usa_expenditure = 9892;
@@ -4417,6 +4428,81 @@
     };
 
     Plotly.newPlot('pie1', data, layout);
+
+
+
+
+    greece_ratio =  (virusData["GR"].total_tests *100 / greek_pop);
+    usa_ratio = (virusData["US"].total_tests *100 / usa_pop);
+    germany_ratio = (virusData["DE"].total_tests *100 / germ_pop);
+    spain_ratio = (virusData["ES"].total_tests *100 / spain_pop);
+    italy_ratio = (virusData["IT"].total_tests *100 / italy_pop);
+    france_ratio = (virusData["FR"].total_tests *100 / france_pop);
+    uk_ratio = (virusData["GB"].total_tests *100 / uk_pop);
+    russia_ratio = (virusData["RU"].total_tests *100 / russia_pop);
+    cz_ratio = (virusData["CZ"].total_tests *100 / cz_pop);
+    romania_ratio = (virusData["RO"].total_tests *100 / romania_pop);
+    ukraine_ratio = (virusData["UA"].total_tests *100 / ukraine_pop);
+    poland_ratio = (virusData["PL"].total_tests *100 / poland_pop);
+
+    var data = [
+        {
+          x: [greece_ratio,usa_ratio,germany_ratio,italy_ratio,france_ratio,uk_ratio,russia_ratio,cz_ratio,romania_ratio,ukraine_ratio,poland_ratio],
+          y: ['Ελλάδα','ΗΠΑ','Γερμανία','Ιταλία','Γαλλία','Αγγλία','Ρωσία','Τσεχία','Ρουμανία','Ουκρανία','Πολωνία'],
+          //y: [1/greece_ratio,1/usa_ratio,1/germany_ratio,1/italy_ratio,1/france_ratio,1/uk_ratio,1/russia_ratio,1/cz_ratio,1/romania_ratio,1/ukraine_ratio,1/poland_ratio],
+          transforms: [{
+              type: 'sort',
+              target: 'x',
+              order: 'ascending'
+            }],
+          type: 'bar',
+          orientation: 'h',
+          textposition: 'auto',
+          //hoverinfo: 'none',
+          text: ['Ελλάδα','ΗΠΑ','Γερμανία','Ιταλία','Γαλλία','Αγγλία','Ρωσία','Τσεχία','Ρουμανία','Ουκρανία','Πολωνία'],
+          textposition: 'top center',
+          //marker: { size: 20 }
+        }
+
+      ];
+    var layout = {
+          width: window.innerWidth-250,
+          height: 600,
+          margin: {
+            l: 100,
+            r: 50,
+            b: 80,
+            t: 100,
+            pad: 4
+          },
+          title: {
+            text: "ΤΕΣΤ ανά πληθυσμό "  + (new Date()).getDate() + "/" + ((new Date()).getMonth() + 1) +"/"+ (new Date()).getFullYear(),
+            font: {
+              size: 20
+            }
+          },
+          xaxis: {
+            title: 'Ποσοστό (%)'
+          },
+          yaxis: {
+            //title: 'Χώρες'
+          },
+          images: [{
+            name: 'watermark_1',
+            source: "http://83.212.112.51/coronavirusmap/logo.png",
+            xref: "paper",
+            yref: "paper",
+            x: 0.4,//0.4
+            y: 0.8,//0.9
+            sizex: 0.7,//0.7
+            sizey: 0.7,//0.7
+            // sizing: "stretch",
+            opacity: 0.05,
+            layer: "below"
+          }]
+    };
+
+    Plotly.newPlot('plot_tests', data, layout);
   }
 
   function doBeforeShow(){
