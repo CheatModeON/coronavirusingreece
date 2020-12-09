@@ -182,7 +182,7 @@
     	});
   	$.ajax({
   	  type: "GET",
-  	  url: "https://raw.githubusercontent.com/iMEdD-Lab/open-data/master/COVID-19/greece.csv",
+  	  url: "https://raw.githubusercontent.com/iMEdD-Lab/open-data/master/COVID-19/greece_v2.csv",
   	  dataType: "text",
   	  success: function(response) {
         var items = $.csv.toObjects(response);
@@ -273,7 +273,7 @@
                 //greek_data_latlon["5"].latLng[0] = parseFloat(obj.lat);
                 //greek_data_latlon["5"].latLng[1] = parseFloat(obj.lng);
             }
-            if(obj.county_normalized == "ΑΘΗΝΩΝ"){
+            if(obj.county_normalized == "ΑΤΤΙΚΗΣ"){
                 greek_data_cases["6"] += parseInt(obj.cases, 10);
                 greek_data_hospitalized["6"] += parseInt(obj.hospitalized, 10);
                 greek_data_dead["6"] += parseInt(obj.dead, 10);
