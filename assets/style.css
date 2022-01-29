@@ -122,6 +122,7 @@
       #contentDiv {
         overflow:auto;
         overflow-x:hidden;
+        margin-bottom: 40px;
       }
 
       /* Style the tab content */
@@ -240,17 +241,22 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        text-align: center;
         /*background:#f5f5f5;*/
-        background:#fff;
-        border-top: 1px solid #BFBFBF;
+        background: rgba(80,80,80,1);
+        color: white;
+        /* border-top: 1px solid #BFBFBF; */
         /*border: 1px solid #ccc;*/
         font-size:0.7em;
         /*font-family: Arial, Helvetica, sans-serif;*/
         /*margin: 0 auto 8px 125px;
         /*text-shadow: 0 1px 0px #000;*/
         z-index: 88;
-        /* height: 38px; */
+        height: 40px;
+        padding: 0 20px;
+      }
+      .footer a, .footer a:visited, a:active {
+        text-decoration: none;
+        color: white;
       }
       #footer-text{
         position: relative;
@@ -461,7 +467,7 @@ div#ball-graph {
   display: none;
   position: absolute;
   /* margin-left: 20px; */
-  bottom: 25px;
+  bottom: 55px;
   left: 25px;
   width: 50px;
   height: 50px;
@@ -498,9 +504,16 @@ div#ball-graph {
 .overlay-content {
   position: relative;
   top: 15%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left:50%;
+  top:50%;
   width: 100%;
   text-align: center;
   margin-top: 10px;
+}
+.overlay-content > .active {
+  color: white;
 }
 
 .overlay a {
@@ -561,6 +574,9 @@ div#ball-graph {
     width: 80px;
   }
   .contentDiv {
+  }
+  #socialDistancing {
+    overflow: auto;
   }
 
 }
