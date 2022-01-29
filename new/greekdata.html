@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Ενημέρωση Ελλήνων πολιτών για τον κορονοϊό (COVID-19)</title>
+  <meta name="author" content="Achilleas Papakonstantinou" />
+  <meta name="description" content="Live updates on coronavirus (COVID-19) outbreak" />
+  <meta name="keywords" content="coronavirus, covid19, greece, coronavirusingreece, outbreak, pandemic, greek, daily, updates, info, information, infographics, statistics, scientific, analysis, cases, deaths, recovered, critical, percentage, prognosis, forecasting, κορονοϊός, πανδημία, 2020, εξελίξεις, νέα, ειδήσεις, χρήσιμες, πληροφορίες, στατιστικά, ανάλυση, καθημερινά, καθημερινή, πληροφόροηση, επιστημονικά, επιστημονική, νεκροί, θάνατοι, αναρρώσαντες, κρίσιμα, ποσοστά, προγνωστικά, μένουμε_σπίτι, alive, connected, covid, culture, online, open, staying, έχει, αγγλικούς, αμερική, αναγκαία, αναρρώσαντες, αναρρώσει, ανρθώπους, αποστασιοποίηση, ασία, αυτή, αυτούς, αφήγηση, αφρική, βάση, γιατί, γονέων, δεδομένων, δημιουργήθηκε, διαγράμματα, διαγραμματα, διεύθυνση, δυνατή, δωρεάν, δωρεαν, είναι, εθνικη, ελλάδα, ελλάδας, ελλήνων, ελλαδα, ενημέρωση, ενημερώνεται, ευρώπη, ηλεκτρονική, ημερήσια, ημερησια, θανόντες, θεατρικές, θεατρο, ιστότοπος, κίνηση, καθημερινά, κατοικίας, κενό, κινηματογραφος, κοινωνική, κορονοϊο, κορονοϊό, κρουσμάτων, κρούσματα, λονδίνο, μένω, μέσα, μέτρα, μέχρι, μετάβαση, μετρα, μουσείο, ντοκιμαντέρ, ονοματεπώνυμο, παγκόσμιος, παρίσι, παραμυθια, παραστάσεις, παραστασεις, πεθάνει, πολιτών, πολλές, προληψης, προσβληθεί, πρόληψης, σήμερα, σπίτι, σπιτι, στην, στις, στους, στόχο, σχετικά, σχετικα, ταινίες, ταινιες, τους, τωρα, υπότιτλους, φορτώνεται, χάρτης, ψηφιακο, ψηφιακό, ψυχιατρική, ωκεανία, όπου" />
+  <meta name="google-site-verification" content="ujpdXepwcjwWfhs18QZaqRgZl4Uuv2rDaotW4CfdhQo" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="../assets/jquery-jvectormap-2.0.5.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="../assets/style.css" type="text/css">
+  <script src="../assets/jquery-1.8.2.js"></script>
+  <script src="../assets/jquery-jvectormap-2.0.5.min.js"></script>
+  <script src="../assets/jquery-jvectormap-world-mill-en.js"></script>
+
+  <script src="../assets/dataformat.js" type="text/javascript"></script>
+  <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script type="text/javascript" src="../assets/maps/jquery.vmap.greece2.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../assets/jquery-jvectormap-world-merc.js" charset="utf-8"></script>
+
+  <script src="../assets/jquery-csv.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+  <script src='../assets/plotly-latest.min.js'></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42135511-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-42135511-3');
+  </script>
+</head>
+<!-- <body onload="begin()" style="margin:0;"> -->
+<body onload="" style="margin:0;">
+  <script>
+      //var myVar;
+      var first_time=1;
+
+      function begin() {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          window.location.replace("http://www.coronavirusingreece.eu/m/");
+        }
+
+        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && first_time == 1){
+            alert("Ο Firefox δεν υποστηρίζεται.");
+            first_time = 0;
+        }
+
+
+        var buttons = document.getElementsByClassName("tablinks");
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+      }
+
+    </script>
+
+    <div class='page-container'>
+      <div class="tab">
+        <div id="text" style="text-align: center;">
+          <img src="../logo.png" alt="" style="width:60%; opacity: 0.7;">
+        </div>
+        <a id="home" class="tablinks" href="/new/index.html">Ψηφιακό Σπίτι</a>
+        <a id="all-map" class="tablinks" href="/new/worldmap.html">Παγκόσμιος Χάρτης COVID-19</a>
+        <a id="gr-map" class="tablinks" href="/new/greekmap.html">Χάρτης Ελλάδας COVID-19</a>
+        <a id="the-plots" class="tablinks" href="/new/dailyplots.html">Ημερήσια διαγράμματα</a>
+        <a id="gr-data" class="tablinks active" href="/new/greekdata.html">Ελλάδα ΤΩΡΑ</a>
+        <a id="gen-info"class="tablinks" href="/new/info.html">Μέτρα πρόληψης</a>
+        <a id="coronavirus-info"class="tablinks" href="/new/coronavirus.html">Σχετικά με τον Κορονοϊό</a>
+        <a id="social-distance"class="tablinks" href="/new/socialdistancing.html">Γιατί μένω μέσα;</a>
+      </div>
+
+      <div id="contentDiv" class="animate-bottom">
+
+        <div id="greek-data" class="tabcontent" style="text-align: center;">
+          <div id="info-img"></div>
+          <div class="bg-text">ΕΛΛΑΔΑ ΤΩΡΑ</div>
+
+          <div id="dataDiv">
+            <div id="load">
+              <div id="loader_text" style="text-align: center;">
+                Φορτώνεται η βάση δεδομένων κρουσμάτων με COVID-19
+              </div>
+              <div id="loader"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">
+        <p id="footer-text">All rights reserved Achilleas Papakonstantinou. <a href="https://github.com/CheatModeON/">Github</a>, <a href="http://worldometers.info/coronavirus/">Data source</a>, <a href="https://coron-api.herokuapp.com/api/v1/docs/">Coronavirus API</a></p>
+    </div>
+
+    <div id="navigation" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <a href="index.html">HOME</a>
+        <a href="worldmap.html">WORLD</a>
+        <a href="greekmap.html">GREECE</a>
+        <a href="greekdata.html">GREEK DATA</a>
+        <a href="dailyplots.html">DAILY PLOTS</a>
+        <a href="info.html">INFO</a>
+        <a href="coronavirus.html">CORONAVIRUS</a>
+        <a href="socialdistancing.html">SOCIAL DISTANCING</a>
+      </div>
+    </div>
+
+    <script>
+    function openNav() {
+      document.getElementById("navigation").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("navigation").style.width = "0%";
+    }
+    </script>
+
+    <div id="navBtn">
+      <span style="color:white;position:absolute; transform: translate(-50%,-50%); left:50%; top:50%; font-size:22px; text-align:center;" onclick="openNav()">&#9776;</span>
+    </div>
+
+  <script src="/assets/js/main.js"></script>
+  <script>
+
+  var gr_yesterday_total = 0;
+  var gr_yesterday_deaths = 0;
+  var gr_yesterday_recovered = 0;
+  var gr_today_total = 0;
+  var gr_today_deaths = 0;
+  var gr_today_recovered = 0;
+
+  $.getJSON( "https://coron-api.herokuapp.com/api/v1/stats?country=Greece", function( data ) {
+    gr_today_total = data.total_cases;
+    gr_today_deaths = data.total_deaths;
+    gr_today_recovered = data.total_recovered;
+
+    $.getJSON( "https://coron-api.herokuapp.com/api/v2/yesterday?country=Greece", function( data ) {
+      gr_yesterday_total = data.total_cases;
+      gr_yesterday_deaths = data.total_deaths;
+      gr_yesterday_recovered = data.total_recovered;
+      drawGrData();
+    });
+  });
+
+
+  /*
+  $.ajax({
+    type: "GET",
+    url: "https://raw.githubusercontent.com/iMEdD-Lab/open-data/master/COVID-19/greeceTimeline.csv",
+    dataType: "text",
+    success: function(response) {
+      var items = $.csv.toObjects(response);
+      for(var i = 0; i < items.length; i++) {
+          var obj = items[i];
+
+          var count = 0;
+          if(obj.Status=="cases"){
+            Object.keys(obj).forEach(function(key) {
+              if(count>2){
+                  x_cases.push(new Date(key));
+                  y_cases.push(parseInt(obj[key], 10));
+                  //alert(key + ': ' + obj[key]);
+              }
+              count += 1;
+            });
+          }
+
+
+          var count = 0;
+          if(obj.Status=="deaths"){
+            Object.keys(obj).forEach(function(key) {
+              if(count>2){
+                  if(obj[key]=="") {
+                    x_deaths.push(new Date(key));
+                    y_deaths.push(0);
+                  } else {
+                    x_deaths.push(new Date(key));
+                    y_deaths.push(parseInt(obj[key], 10));
+                    //alert(key + ': ' + obj[key]);
+                  }
+              }
+              count += 1;
+            });
+          }
+
+
+          var count = 0;
+          if(obj.Status=="total_cases"){
+            Object.keys(obj).forEach(function(key) {
+              if(count>2){
+                  x_total_cases.push(new Date(key));
+                  y_total_cases.push(parseInt(obj[key], 10));
+                  //alert(key + ': ' + obj[key]);
+              }
+              count += 1;
+            });
+          }
+
+
+          var count = 0;
+          if(obj.Status=="recovered"){
+            Object.keys(obj).forEach(function(key) {
+              if(count>2){
+                  x_recovered.push(new Date(key));
+                  y_recovered.push(parseInt(obj[key], 10));
+                  //alert(key + ': ' + obj[key]);
+              }
+              count += 1;
+            });
+          }
+
+
+          var count = 0;
+          if(obj.Status=="total cases"){
+            Object.keys(obj).forEach(function(key) {
+              if(count>2){
+                  x_total.push(new Date(key));
+                  y_total.push(parseInt(obj[key], 10));
+                  //alert(key + ': ' + obj[key]);
+              }
+              count += 1;
+            });
+          }
+
+      }
+    },
+    complete: function () {
+      y_total_deaths[0]=y_deaths[0];
+      for(var i=1; i<y_total.length; i++){
+        y_total_deaths.push(y_total_deaths[i-1]+y_deaths[i]);
+        if(y_total[i-1]==0){
+          growth_total.push(0);
+        } else {
+          growth_total.push((y_total[i]-y_total[i-1])*100 / y_total[i-1].toFixed(2));
+        }
+        if(y_cases[i-1]==0){
+          growth_cases.push(0);
+        } else {
+          growth_cases.push((y_cases[i]-y_cases[i-1])*100 / y_cases[i-1].toFixed(2));
+        }
+        if(y_deaths[i-1]==0){
+          growth_deaths.push(0);
+        } else {
+          growth_deaths.push((y_deaths[i]-y_deaths[i-1])*100 / y_deaths[i-1].toFixed(2));
+        }
+      }
+    }
+  });
+
+  */
+
+
+    var x_cases=[];
+    var y_cases=[];
+    var x_hospitalized=[];
+    var y_hospitalized=[];
+    var x_deaths=[];
+    var y_deaths=[];
+    var x_recovered=[];
+    var y_recovered=[];
+    var x_total=[];
+    var y_total=[];
+    var y_total_deaths=[0];
+    var growth_total=[0];
+    var growth_cases=[0];
+    var growth_deaths=[0];
+    function drawGrData() {
+        // get the reference for the body
+        var div = document.getElementById('greek-data');
+
+        var main_container = document.createElement("div");
+        main_container.id = "main-container";
+
+        //get yesterday position on array
+        var pos = -1;
+        var today = new Date();
+        var yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+        for(var i=0; i<x_total.length; i++){
+          if(x_total[i].getDate()==yesterday.getDate() && x_total[i].getMonth()==yesterday.getMonth() && x_total[i].getFullYear()==yesterday.getFullYear()){
+            pos = i;
+            break;
+          }
+        }
+
+        var reference1 = gr_yesterday_total; //fixed yesterday's reference-using yesterday from worldometers
+        var reference2 = gr_yesterday_deaths; //fixed yesterday's reference-using yesterday from worldometers
+        var reference3 = gr_yesterday_recovered; //fixed yesterday's reference-using yesterday from worldometers
+
+        var layout = {
+          width:  ($("#contentDiv").innerWidth()),
+          height: 700,
+          margin: { t: 100, r: 25, l: 25, b: 50 },
+          grid: { rows: 3, columns: 1, pattern: "independent" }
+        };
+        var data = [{
+          type: "indicator",
+          mode: "number+delta",
+          value: gr_today_total,
+          title: {
+            text:
+              "<span style='font-size:1.2em; color:lightblue'>Συνολικά κρούσματα</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+          },
+          delta: { position: "right", reference: reference1/*, relative: true */},
+          domain: {row:0, column: 0}
+          },
+          {
+            type: "indicator",
+            mode: "number+delta",
+            value: gr_today_deaths,
+            number: { suffix: " ("+ (gr_today_deaths*100/gr_today_total).toFixed() + "%)"},
+            title: {
+              text:
+                "<span style='font-size:1.2em; color:red'>Θανόντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+            },
+            delta: { position: "right", reference: reference2/*, relative: true */},
+            domain: {row:1, column: 0}
+          },
+          {
+            type: "indicator",
+            mode: "number+delta",
+            value: gr_today_recovered,
+            number: { suffix: " ("+ (gr_today_recovered*100/gr_today_total).toFixed() + "%)"},
+            title: {
+              text:
+                "<span style='font-size:1.2em; color:green'>Αναρρώσαντες</span><br><span style='font-size:0.8em;color:gray'>COVID-19</span><br><span style='font-size:0.8em;color:gray'></span>"
+            },
+            delta: { position: "right", reference: reference3/*, relative: true */},
+            domain: {row:2, column: 0}
+          }]
+        Plotly.newPlot('dataDiv', data, layout);
+
+        // var plot_div = document.createElement("div");
+        // plot_div.id = "plot";
+        // div.appendChild(plot_div);
+        //
+        // var plot_div = document.createElement("div");
+        // plot_div.id = "plot2";
+        // div.appendChild(plot_div);
+        //
+        // var plot_div = document.createElement("div");
+        // plot_div.id = "plot4";
+        // div.appendChild(plot_div);
+
+        document.getElementById("load").style.display = "none";
+    }
+
+    $(window).resize(function() {
+      $('#greek-data').css('width', $("#contentDiv").innerWidth()-15);
+
+      Plotly.relayout('dataDiv', {
+       width:  $("#contentDiv").innerWidth()-15,
+       //height:  window.innerHeight-50
+      })
+    });
+
+  </script>
+</body>
+</html>
