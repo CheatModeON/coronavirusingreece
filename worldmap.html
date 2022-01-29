@@ -31,28 +31,7 @@
     gtag('config', 'UA-42135511-3');
   </script>
 </head>
-<!-- <body onload="begin()" style="margin:0;"> -->
 <body onload="" style="margin:0;">
-  <script>
-      var first_time=1;
-
-      function begin() {
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          window.location.replace("http://www.coronavirusingreece.eu/m/");
-        }
-
-        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && first_time == 1){
-            alert("Ο Firefox δεν υποστηρίζεται.");
-            first_time = 0;
-        }
-
-        var buttons = document.getElementsByClassName("tablinks");
-        for (i = 0; i < buttons.length; i++) {
-            buttons[i].disabled = true;
-        }
-      }
-
-    </script>
 
     <div class='page-container'>
       <div class="tab">
