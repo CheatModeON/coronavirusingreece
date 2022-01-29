@@ -37,7 +37,7 @@
     <div class='page-container'>
       <div class="tab">
         <div id="text" style="text-align: center;">
-          <img src="../logo.png" alt="" style="width:60%; opacity: 0.7;">
+          <img src="../logo.png" alt="" style="width:50%; opacity: 0.7;">
         </div>
         <a id="home" class="tablinks" href="index.html">Ψηφιακό Σπίτι</a>
         <a id="all-map" class="tablinks" href="worldmap.html">Παγκόσμιος Χάρτης COVID-19</a>
@@ -113,20 +113,26 @@
     </div>
 
     <div class="footer">
-        <p id="footer-text">All rights reserved Achilleas Papakonstantinou. <a href="https://github.com/CheatModeON/">Github</a>, <a href="http://worldometers.info/coronavirus/">Data source</a>, <a href="https://coron-api.herokuapp.com/api/v1/docs/">Coronavirus API</a></p>
+        <p id="footer-text">
+          All rights reserved Achilleas Papakonstantinou in cooperation with the University of the Aegean, 2022 |
+          <a href="https://github.com/CheatModeON/">Github</a> |
+          <a href="http://worldometers.info/coronavirus/">Data source</a> |
+          <a href="https://coron-api.herokuapp.com/api/v1/docs/">Coronavirus API</a>
+        </p>
     </div>
+
 
     <div id="navigation" class="overlay">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <div class="overlay-content">
-        <a href="index.html">HOME</a>
-        <a href="worldmap.html">WORLD</a>
-        <a href="greekmap.html">GREECE</a>
-        <a href="greekdata.html">GREEK DATA</a>
-        <a href="dailyplots.html">DAILY PLOTS</a>
-        <a href="info.html">INFO</a>
-        <a href="coronavirus.html">CORONAVIRUS</a>
-        <a href="socialdistancing.html">SOCIAL DISTANCING</a>
+        <a href="index.html">Ψηφιακό Σπίτι</a>
+        <a href="worldmap.html">Παγκόσμιος Χάρτης COVID-19</a>
+        <a href="greekmap.html">Χάρτης Ελλάδας COVID-19</a>
+        <a href="dailyplots.html">Ημερήσια διαγράμματα</a>
+        <a href="greekdata.html">Ελλάδα ΤΩΡΑ</a>
+        <a href="info.html">Μέτρα πρόληψης</a>
+        <a href="coronavirus.html">Σχετικά με τον Κορονοϊό</a>
+        <a class="active" href="socialdistancing.html">Γιατί μένω μέσα;</a>
       </div>
     </div>
 
@@ -140,9 +146,15 @@
     }
     </script>
 
-    <div id="navBtn">
-      <span style="color:white;position:absolute; transform: translate(-50%,-50%); left:50%; top:50%; font-size:22px; text-align:center;" onclick="openNav()">&#9776;</span>
+    <div id="navBtn" onclick="openNav()">
+      <span style="color:white;position:absolute; transform: translate(-50%,-50%); left:50%; top:50%; font-size:22px; text-align:center;">&#9776;</span>
     </div>
+
+    <script>
+     $(window).resize(function() {
+       $('#socialDistancing').css('width', $("#contentDiv").innerWidth()-50);
+     });
+   </script>
 
 </body>
 </html>

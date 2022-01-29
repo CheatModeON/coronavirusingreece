@@ -6,6 +6,7 @@
   <meta name="author" content="Achilleas Papakonstantinou" />
   <meta name="description" content="Live updates on coronavirus (COVID-19) outbreak" />
   <meta name="keywords" content="coronavirus, covid19, greece, coronavirusingreece, outbreak, pandemic, greek, daily, updates, info, information, infographics, statistics, scientific, analysis, cases, deaths, recovered, critical, percentage, prognosis, forecasting, κορονοϊός, πανδημία, 2020, εξελίξεις, νέα, ειδήσεις, χρήσιμες, πληροφορίες, στατιστικά, ανάλυση, καθημερινά, καθημερινή, πληροφόροηση, επιστημονικά, επιστημονική, νεκροί, θάνατοι, αναρρώσαντες, κρίσιμα, ποσοστά, προγνωστικά, μένουμε_σπίτι, alive, connected, covid, culture, online, open, staying, έχει, αγγλικούς, αμερική, αναγκαία, αναρρώσαντες, αναρρώσει, ανρθώπους, αποστασιοποίηση, ασία, αυτή, αυτούς, αφήγηση, αφρική, βάση, γιατί, γονέων, δεδομένων, δημιουργήθηκε, διαγράμματα, διαγραμματα, διεύθυνση, δυνατή, δωρεάν, δωρεαν, είναι, εθνικη, ελλάδα, ελλάδας, ελλήνων, ελλαδα, ενημέρωση, ενημερώνεται, ευρώπη, ηλεκτρονική, ημερήσια, ημερησια, θανόντες, θεατρικές, θεατρο, ιστότοπος, κίνηση, καθημερινά, κατοικίας, κενό, κινηματογραφος, κοινωνική, κορονοϊο, κορονοϊό, κρουσμάτων, κρούσματα, λονδίνο, μένω, μέσα, μέτρα, μέχρι, μετάβαση, μετρα, μουσείο, ντοκιμαντέρ, ονοματεπώνυμο, παγκόσμιος, παρίσι, παραμυθια, παραστάσεις, παραστασεις, πεθάνει, πολιτών, πολλές, προληψης, προσβληθεί, πρόληψης, σήμερα, σπίτι, σπιτι, στην, στις, στους, στόχο, σχετικά, σχετικα, ταινίες, ταινιες, τους, τωρα, υπότιτλους, φορτώνεται, χάρτης, ψηφιακο, ψηφιακό, ψυχιατρική, ωκεανία, όπου" />
+  <meta charset="UTF-8">
   <meta name="google-site-verification" content="ujpdXepwcjwWfhs18QZaqRgZl4Uuv2rDaotW4CfdhQo" />
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <link rel="stylesheet" href="/assets/jquery-jvectormap-2.0.5.css" type="text/css" media="screen"/>
@@ -37,7 +38,7 @@
   <div class='page-container'>
     <div class="tab">
       <div id="text" style="text-align: center;">
-        <img src="../logo.png" alt="" style="width:60%; opacity: 0.7;">
+        <img src="../logo.png" alt="" style="width:50%; opacity: 0.7;">
       </div>
       <a id="home" class="tablinks active" href="/index.html">Ψηφιακό Σπίτι</a>
       <a id="all-map" class="tablinks" href="/worldmap.html">Παγκόσμιος Χάρτης COVID-19</a>
@@ -50,7 +51,7 @@
     </div>
 
     <div id="contentDiv" class="animate-bottom">
-        <div id="digi_home" class="tabcontent" style="text-align: center; margin-bottom:40px">
+        <div id="digi_home" class="tabcontent" style="text-align: center">
           <div id="info-img"></div>
           <div class="bg-text">ΨΗΦΙΑΚΟ ΣΠΙΤΙ</div>
           <div id="links">
@@ -191,21 +192,26 @@
   </div>
 
   <div class="footer">
-      <p id="footer-text">All rights reserved Achilleas Papakonstantinou. <a href="https://github.com/CheatModeON/">Github</a>, <a href="http://worldometers.info/coronavirus/">Data source</a>, <a href="https://coron-api.herokuapp.com/api/v1/docs/">Coronavirus API</a></p>
+      <p id="footer-text">
+        All rights reserved Achilleas Papakonstantinou in cooperation with the University of the Aegean, 2022 |
+        <a href="https://github.com/CheatModeON/">Github</a> |
+        <a href="http://worldometers.info/coronavirus/">Data source</a> |
+        <a href="https://coron-api.herokuapp.com/api/v1/docs/">Coronavirus API</a>
+      </p>
   </div>
 
 
   <div id="navigation" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="overlay-content">
-      <a href="index.html">HOME</a>
-      <a href="worldmap.html">WORLD</a>
-      <a href="greekmap.html">GREECE</a>
-      <a href="greekdata.html">GREEK DATA</a>
-      <a href="dailyplots.html">DAILY PLOTS</a>
-      <a href="info.html">INFO</a>
-      <a href="coronavirus.html">CORONAVIRUS</a>
-      <a href="socialdistancing.html">SOCIAL DISTANCING</a>
+      <a class="active" href="index.html">Ψηφιακό Σπίτι</a>
+      <a href="worldmap.html">Παγκόσμιος Χάρτης COVID-19</a>
+      <a href="greekmap.html">Χάρτης Ελλάδας COVID-19</a>
+      <a href="dailyplots.html">Ημερήσια διαγράμματα</a>
+      <a href="greekdata.html">Ελλάδα ΤΩΡΑ</a>
+      <a href="info.html">Μέτρα πρόληψης</a>
+      <a href="coronavirus.html">Σχετικά με τον Κορονοϊό</a>
+      <a href="socialdistancing.html">Γιατί μένω μέσα;</a>
     </div>
   </div>
 
@@ -219,8 +225,8 @@
   }
   </script>
 
-  <div id="navBtn">
-    <span style="color:white;position:absolute; transform: translate(-50%,-50%); left:50%; top:50%; font-size:22px; text-align:center;" onclick="openNav()">&#9776;</span>
+  <div id="navBtn" onclick="openNav()">
+    <span style="color:white;position:absolute; transform: translate(-50%,-50%); left:50%; top:50%; font-size:22px; text-align:center;">&#9776;</span>
   </div>
 
 
